@@ -5,4 +5,4 @@ export {
   type AlertProps,
   type AlertTitleProps,
   type AlertDescriptionProps,
-} from './Alert';
+} from "./Alert";

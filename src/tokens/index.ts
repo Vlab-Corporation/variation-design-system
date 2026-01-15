@@ -1,4 +1,4 @@
-export { colors } from './colors';
-export { typography } from './typography';
-export { spacing, borderRadius } from './spacing';
-export { animations } from './animations';
+export { colors } from "./colors";
+export { typography } from "./typography";
+export { spacing, borderRadius } from "./spacing";
+export { animations } from "./animations";

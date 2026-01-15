@@ -1,9 +1,9 @@
-import { forwardRef, type HTMLAttributes } from 'react';
-import { cn } from '@/utils/cn';
+import { forwardRef, type HTMLAttributes } from "react";
+import { cn } from "@/utils/cn";
 
-type SpinnerSize = 'sm' | 'md' | 'lg' | 'xl';
-type SpinnerColor = 'primary' | 'white' | 'current' | 'gray';
-type SpinnerSpeed = 'normal' | 'slow' | 'fast';
+type SpinnerSize = "sm" | "md" | "lg" | "xl";
+type SpinnerColor = "primary" | "white" | "current" | "gray";
+type SpinnerSpeed = "normal" | "slow" | "fast";
 
 export interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
   /** Spinner size */
@@ -13,27 +13,27 @@ export interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
   /** Animation speed */
   speed?: SpinnerSpeed;
   /** Accessible label */
-  'aria-label'?: string;
+  "aria-label"?: string;
 }
 
 const sizeStyles: Record<SpinnerSize, string> = {
-  sm: 'w-4 h-4',
-  md: 'w-6 h-6',
-  lg: 'w-8 h-8',
-  xl: 'w-12 h-12',
+  sm: "w-4 h-4",
+  md: "w-6 h-6",
+  lg: "w-8 h-8",
+  xl: "w-12 h-12",
 };
 
 const colorStyles: Record<SpinnerColor, string> = {
-  primary: 'text-primary-500',
-  white: 'text-white',
-  current: 'text-current',
-  gray: 'text-gray-400',
+  primary: "text-primary-500",
+  white: "text-white",
+  current: "text-current",
+  gray: "text-gray-400",
 };
 
 const speedStyles: Record<SpinnerSpeed, string> = {
-  normal: 'animate-spin',
-  slow: 'animate-spin-slow',
-  fast: 'animate-spin-fast',
+  normal: "animate-spin",
+  slow: "animate-spin-slow",
+  fast: "animate-spin-fast",
 };
 
 /**
@@ -42,14 +42,14 @@ const speedStyles: Record<SpinnerSpeed, string> = {
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   (
     {
-      size = 'md',
-      color = 'primary',
-      speed = 'normal',
-      'aria-label': ariaLabel = 'Loading',
+      size = "md",
+      color = "primary",
+      speed = "normal",
+      "aria-label": ariaLabel = "Loading",
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
@@ -57,16 +57,16 @@ export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
         role="status"
         aria-label={ariaLabel}
         className={cn(
-          'rounded-full border-2 border-current border-b-transparent',
+          "rounded-full border-2 border-current border-b-transparent",
           sizeStyles[size],
           colorStyles[color],
           speedStyles[speed],
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 
-Spinner.displayName = 'Spinner';
+Spinner.displayName = "Spinner";

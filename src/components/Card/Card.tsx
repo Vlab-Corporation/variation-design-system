@@ -1,8 +1,12 @@
-import React, { forwardRef, type HTMLAttributes, type ElementType } from 'react';
-import { cn } from '@/utils/cn';
+import React, {
+  forwardRef,
+  type HTMLAttributes,
+  type ElementType,
+} from "react";
+import { cn } from "@/utils/cn";
 
-type CardVariant = 'default' | 'elevated' | 'outlined' | 'filled';
-type CardPadding = 'none' | 'sm' | 'md' | 'lg';
+type CardVariant = "default" | "elevated" | "outlined" | "filled";
+type CardPadding = "none" | "sm" | "md" | "lg";
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   /** Visual style variant */
@@ -17,17 +21,17 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
 }
 
 const variantStyles: Record<CardVariant, string> = {
-  default: 'bg-white shadow-sm',
-  elevated: 'bg-white shadow-md',
-  outlined: 'bg-white border border-gray-200',
-  filled: 'bg-gray-50',
+  default: "bg-white shadow-sm",
+  elevated: "bg-white shadow-md",
+  outlined: "bg-white border border-gray-200",
+  filled: "bg-gray-50",
 };
 
 const paddingStyles: Record<CardPadding, string> = {
-  none: 'p-0',
-  sm: 'p-3',
-  md: 'p-4',
-  lg: 'p-6',
+  none: "p-0",
+  sm: "p-3",
+  md: "p-4",
+  lg: "p-6",
 };
 
 /**
@@ -36,39 +40,39 @@ const paddingStyles: Record<CardPadding, string> = {
 export const Card = forwardRef<HTMLElement, CardProps>(
   (
     {
-      variant = 'default',
-      padding = 'md',
+      variant = "default",
+      padding = "md",
       interactive = false,
-      as: Component = 'div',
+      as: Component = "div",
       className,
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <Component
         ref={ref}
         className={cn(
-          'rounded-lg',
+          "rounded-lg",
           variantStyles[variant],
           paddingStyles[padding],
           interactive && [
-            'transition-all duration-200 ease-out',
-            'hover:shadow-md hover:scale-[1.01]',
-            'cursor-pointer',
+            "transition-all duration-200 ease-out",
+            "hover:shadow-md hover:scale-[1.01]",
+            "cursor-pointer",
           ],
-          className
+          className,
         )}
         {...props}
       >
         {children}
       </Component>
     );
-  }
+  },
 );
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 /* Card subcomponents */
 
@@ -79,18 +83,14 @@ export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn('pb-2', className)}
-        {...props}
-      >
+      <div ref={ref} className={cn("pb-2", className)} {...props}>
         {children}
       </div>
     );
-  }
+  },
 );
 
-CardHeader.displayName = 'CardHeader';
+CardHeader.displayName = "CardHeader";
 
 export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
@@ -101,36 +101,33 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     return (
       <h3
         ref={ref}
-        className={cn('text-lg font-semibold text-gray-900', className)}
+        className={cn("text-lg font-semibold text-gray-900", className)}
         {...props}
       >
         {children}
       </h3>
     );
-  }
+  },
 );
 
-CardTitle.displayName = 'CardTitle';
+CardTitle.displayName = "CardTitle";
 
 export interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;
 }
 
-export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <p
-        ref={ref}
-        className={cn('text-sm text-gray-500', className)}
-        {...props}
-      >
-        {children}
-      </p>
-    );
-  }
-);
+export const CardDescription = forwardRef<
+  HTMLParagraphElement,
+  CardDescriptionProps
+>(({ className, children, ...props }, ref) => {
+  return (
+    <p ref={ref} className={cn("text-sm text-gray-500", className)} {...props}>
+      {children}
+    </p>
+  );
+});
 
-CardDescription.displayName = 'CardDescription';
+CardDescription.displayName = "CardDescription";
 
 export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -139,18 +136,14 @@ export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn('py-2', className)}
-        {...props}
-      >
+      <div ref={ref} className={cn("py-2", className)} {...props}>
         {children}
       </div>
     );
-  }
+  },
 );
 
-CardContent.displayName = 'CardContent';
+CardContent.displayName = "CardContent";
 
 export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -161,13 +154,16 @@ export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
     return (
       <div
         ref={ref}
-        className={cn('pt-4 border-t border-gray-100 flex items-center gap-2', className)}
+        className={cn(
+          "pt-4 border-t border-gray-100 flex items-center gap-2",
+          className,
+        )}
         {...props}
       >
         {children}
       </div>
     );
-  }
+  },
 );
 
-CardFooter.displayName = 'CardFooter';
+CardFooter.displayName = "CardFooter";
