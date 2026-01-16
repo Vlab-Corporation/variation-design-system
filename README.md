@@ -1,4 +1,7 @@
-# @variation/design-system
+# @vlab-corporation/design-system
+
+[![CI](https://github.com/Vlab-Corporation/design-system/actions/workflows/ci.yml/badge.svg)](https://github.com/Vlab-Corporation/design-system/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Cross-framework design system with Tailwind CSS for Astro, React, and pure HTML.
 
@@ -14,8 +17,19 @@ Cross-framework design system with Tailwind CSS for Astro, React, and pure HTML.
 
 ## Installation
 
+This package is published to GitHub Packages. To install:
+
+1. Create or update `.npmrc` in your project root:
+
+```
+@vlab-corporation:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+2. Install the package:
+
 ```bash
-npm install @variation/design-system
+npm install @vlab-corporation/design-system
 ```
 
 ## Usage
@@ -23,7 +37,7 @@ npm install @variation/design-system
 ### With React
 
 ```tsx
-import { Button, Input, Card } from '@variation/design-system';
+import { Button, Input, Card } from '@vlab-corporation/design-system';
 
 function App() {
   return (
@@ -41,7 +55,7 @@ Configure your `tailwind.config.js`:
 
 ```js
 module.exports = {
-  presets: [require('@variation/design-system/tailwind-preset')],
+  presets: [require('@vlab-corporation/design-system/tailwind-preset')],
   content: [
     // your content paths...
   ],
@@ -61,7 +75,7 @@ Then use Tailwind classes directly in HTML or any framework:
 ### Design Tokens
 
 ```ts
-import { colors, typography, spacing, animations } from '@variation/design-system';
+import { colors, typography, spacing, animations } from '@vlab-corporation/design-system';
 
 console.log(colors.primary['500']); // #D38475
 console.log(typography.fontFamily.sans); // ['Pretendard', ...]
@@ -104,6 +118,10 @@ npm test
 npm run build
 ```
 
+## Contributing
+
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+
 ## License
 
-MIT
+MIT © [vlab Corporation](https://github.com/Vlab-Corporation)

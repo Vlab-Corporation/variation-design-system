@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 /**
- * These patterns show how to use the Variation Design System
+ * These patterns show how to use the vlab Corporation Design System
  * with pure HTML and Tailwind CSS classes.
  *
  * Copy these patterns for use in Astro, static HTML, or any framework.
@@ -17,14 +17,14 @@ These patterns demonstrate how to create UI components using only Tailwind CSS c
 Perfect for Astro components, static HTML pages, or any framework that uses Tailwind.
 
 **Usage:**
-1. Install the Tailwind preset: \`@variation/design-system/tailwind-preset\`
+1. Install the Tailwind preset: \`@vlab-corporation/design-system/tailwind-preset\`
 2. Copy the HTML patterns you need
 3. Apply Tailwind classes directly
 
 \`\`\`js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@variation/design-system/tailwind-preset')],
+  presets: [require('@vlab-corporation/design-system/tailwind-preset')],
   // your config...
 }
 \`\`\`

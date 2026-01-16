@@ -1,8 +1,21 @@
 {
-  "name": "@variation/design-system",
+  "name": "@vlab-corporation/design-system",
   "version": "0.1.0",
   "type": "module",
   "description": "Cross-framework design system with Tailwind CSS for Astro, React, and pure HTML",
+  "author": "vlab Corporation",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vlab-Corporation/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vlab-Corporation/design-system/issues"
+  },
+  "homepage": "https://github.com/Vlab-Corporation/design-system#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -84,7 +97,7 @@
     "react",
     "astro",
     "storybook",
-    "ui-components"
-  ],
-  "license": "MIT"
+    "ui-components",
+    "vlab"
+  ]
 }

@@ -1,9 +1,9 @@
 /**
- * Variation Design System - Tailwind CSS Preset
+ * vlab Corporation Design System - Tailwind CSS Preset
  * Use this preset in your tailwind.config.js:
  *
  * module.exports = {
- *   presets: [require('@variation/design-system/tailwind-preset')],
+ *   presets: [require('@vlab-corporation/design-system/tailwind-preset')],
  *   // your config...
  * }
  */
