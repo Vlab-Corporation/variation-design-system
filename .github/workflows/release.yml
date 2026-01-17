@@ -30,6 +30,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Sync version from release tag
+        run: |
+          # Extract version from release tag (removes 'v' prefix if present)
+          VERSION=${GITHUB_REF_NAME#v}
+          echo "Setting version to $VERSION"
+          npm version $VERSION --no-git-tag-version --allow-same-version
+
       - name: Run tests
         run: npm run test
 
