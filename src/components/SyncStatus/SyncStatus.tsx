@@ -1,18 +1,12 @@
 import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "@/utils/cn";
+import {
+  syncStatusIndicatorStyles,
+  syncStatusTextForState,
+  type SyncState,
+} from "./SyncStatus.styles";
 
-/* Types */
-export type SyncState = "synced" | "syncing" | "error" | "offline";
-
-const statusConfig: Record<
-  SyncState,
-  { color: string; text: string; animate?: boolean }
-> = {
-  synced: { color: "bg-green-500", text: "All changes saved" },
-  syncing: { color: "bg-yellow-500", text: "Saving...", animate: true },
-  error: { color: "bg-red-500", text: "Error saving" },
-  offline: { color: "bg-gray-400", text: "Offline" },
-};
+export type { SyncState } from "./SyncStatus.styles";
 
 /* SyncStatus */
 export interface SyncStatusProps extends HTMLAttributes<HTMLDivElement> {
@@ -47,17 +41,10 @@ export const SyncStatusIndicator = forwardRef<
   HTMLSpanElement,
   SyncStatusIndicatorProps
 >(({ status, className, ...props }, ref) => {
-  const config = statusConfig[status];
-
   return (
     <span
       ref={ref}
-      className={cn(
-        "w-2 h-2 rounded-full",
-        config.color,
-        config.animate && "animate-pulse",
-        className,
-      )}
+      className={syncStatusIndicatorStyles(status, className)}
       {...props}
     />
   );
@@ -73,7 +60,7 @@ export interface SyncStatusTextProps extends HTMLAttributes<HTMLSpanElement> {
 
 export const SyncStatusText = forwardRef<HTMLSpanElement, SyncStatusTextProps>(
   ({ status, text, className, ...props }, ref) => {
-    const displayText = text ?? statusConfig[status].text;
+    const displayText = text ?? syncStatusTextForState(status);
 
     return (
       <span

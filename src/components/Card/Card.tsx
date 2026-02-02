@@ -4,9 +4,13 @@ import React, {
   type ElementType,
 } from "react";
 import { cn } from "@/utils/cn";
+import {
+  cardStyles,
+  type CardVariant,
+  type CardPadding,
+} from "./Card.styles";
 
-type CardVariant = "default" | "elevated" | "outlined" | "filled";
-type CardPadding = "none" | "sm" | "md" | "lg";
+export type { CardVariant, CardPadding } from "./Card.styles";
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   /** Visual style variant */
@@ -19,20 +23,6 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
   as?: ElementType;
   children: React.ReactNode;
 }
-
-const variantStyles: Record<CardVariant, string> = {
-  default: "bg-white shadow-sm",
-  elevated: "bg-white shadow-md",
-  outlined: "bg-white border border-gray-200",
-  filled: "bg-gray-50",
-};
-
-const paddingStyles: Record<CardPadding, string> = {
-  none: "p-0",
-  sm: "p-3",
-  md: "p-4",
-  lg: "p-6",
-};
 
 /**
  * Card container component with multiple variants
@@ -53,17 +43,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
     return (
       <Component
         ref={ref}
-        className={cn(
-          "rounded-lg",
-          variantStyles[variant],
-          paddingStyles[padding],
-          interactive && [
-            "transition-all duration-200 ease-out",
-            "hover:shadow-md hover:scale-[1.01]",
-            "cursor-pointer",
-          ],
-          className,
-        )}
+        className={cardStyles({ variant, padding, interactive, className })}
         {...props}
       >
         {children}

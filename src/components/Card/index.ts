@@ -11,4 +11,7 @@ export {
   type CardDescriptionProps,
   type CardContentProps,
   type CardFooterProps,
+  type CardVariant,
+  type CardPadding,
 } from "./Card";
+export { cardStyles, cardVariants, cardPaddings, type CardStyleProps } from "./Card.styles";

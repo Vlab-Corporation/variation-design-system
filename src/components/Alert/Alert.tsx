@@ -1,8 +1,14 @@
 import React, { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/utils/cn";
+import {
+  alertStyles,
+  alertIconStyles,
+  alertDismissStyles,
+  type AlertVariant,
+  type AlertAnimation,
+} from "./Alert.styles";
 
-type AlertVariant = "info" | "success" | "warning" | "error";
-type AlertAnimation = "fade-in" | "slide-down" | "none";
+export type { AlertVariant, AlertAnimation } from "./Alert.styles";
 
 export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   /** Visual style variant */
@@ -18,29 +24,9 @@ export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-const variantStyles: Record<AlertVariant, string> = {
-  info: "bg-blue-50 border-blue-200 text-blue-800",
-  success: "bg-green-50 border-green-200 text-green-800",
-  warning: "bg-yellow-50 border-yellow-200 text-yellow-800",
-  error: "bg-red-50 border-red-200 text-red-800",
-};
-
-const iconColors: Record<AlertVariant, string> = {
-  info: "text-blue-500",
-  success: "text-green-500",
-  warning: "text-yellow-500",
-  error: "text-red-500",
-};
-
-const animationStyles: Record<AlertAnimation, string> = {
-  "fade-in": "animate-fade-in",
-  "slide-down": "animate-slide-down",
-  none: "",
-};
-
 // Default icons for each variant
 const DefaultIcon = ({ variant }: { variant: AlertVariant }) => {
-  const iconClass = cn("w-5 h-5", iconColors[variant]);
+  const iconClass = alertIconStyles(variant);
 
   switch (variant) {
     case "success":
@@ -111,12 +97,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         ref={ref}
         role="alert"
         aria-live={variant === "error" ? "assertive" : "polite"}
-        className={cn(
-          "flex gap-3 p-4 rounded-lg border",
-          variantStyles[variant],
-          animationStyles[animation],
-          className,
-        )}
+        className={alertStyles({ variant, animation, className })}
         {...props}
       >
         {showIcon && (
@@ -130,10 +111,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             onClick={onDismiss}
             aria-label="Dismiss alert"
-            className={cn(
-              "flex-shrink-0 p-1 rounded-md transition-colors duration-200",
-              "hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-current/20",
-            )}
+            className={alertDismissStyles()}
           >
             <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
               <path

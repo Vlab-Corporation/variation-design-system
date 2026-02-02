@@ -1,5 +1,8 @@
 import { forwardRef, useId, type InputHTMLAttributes } from "react";
 import { cn } from "@/utils/cn";
+import { inputStyles, type InputSize } from "./Input.styles";
+
+export type { InputSize } from "./Input.styles";
 
 export interface InputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -12,18 +15,12 @@ export interface InputProps extends Omit<
   /** Error message (replaces helperText when present) */
   error?: string;
   /** Input size */
-  size?: "sm" | "md" | "lg";
+  size?: InputSize;
   /** Wrapper className */
   className?: string;
   /** Input element className */
   inputClassName?: string;
 }
-
-const sizeStyles = {
-  sm: "px-2 py-1 text-sm",
-  md: "px-3 py-2 text-base",
-  lg: "px-4 py-3 text-lg",
-};
 
 /**
  * Text input component with label and error state support
@@ -68,24 +65,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-describedby={
             hasError ? errorId : helperText ? helperId : undefined
           }
-          className={cn(
-            // Base styles
-            "w-full rounded-input border bg-white",
-            "transition-all duration-200 ease-out",
-            "placeholder:text-gray-400",
-            // Focus styles with subtle animation
-            "focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500",
-            // Size styles
-            sizeStyles[size],
-            // Error styles
-            hasError
-              ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
-              : "border-gray-300",
-            // Disabled styles
-            disabled && "opacity-50 cursor-not-allowed bg-gray-50",
-            // Custom className
-            inputClassName,
-          )}
+          className={inputStyles({
+            size,
+            error: hasError,
+            disabled,
+            className: inputClassName,
+          })}
           {...props}
         />
         {error && (
