@@ -32,12 +32,7 @@ export interface SpinnerStyleProps {
 }
 
 export function spinnerStyles(props: SpinnerStyleProps = {}): string {
-  const {
-    size = "md",
-    color = "primary",
-    speed = "normal",
-    className,
-  } = props;
+  const { size = "md", color = "primary", speed = "normal", className } = props;
 
   return cn(
     "rounded-full border-2 border-current border-b-transparent",

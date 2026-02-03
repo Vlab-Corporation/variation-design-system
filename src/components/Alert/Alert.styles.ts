@@ -30,11 +30,7 @@ export interface AlertStyleProps {
 }
 
 export function alertStyles(props: AlertStyleProps = {}): string {
-  const {
-    variant = "info",
-    animation = "fade-in",
-    className,
-  } = props;
+  const { variant = "info", animation = "fade-in", className } = props;
 
   return cn(
     "flex gap-3 p-4 rounded-lg border",

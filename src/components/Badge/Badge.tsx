@@ -47,10 +47,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
         {...props}
       >
         {dot && (
-          <span
-            data-testid="badge-dot"
-            className={badgeDotStyles(variant)}
-          />
+          <span data-testid="badge-dot" className={badgeDotStyles(variant)} />
         )}
         {children}
       </span>
