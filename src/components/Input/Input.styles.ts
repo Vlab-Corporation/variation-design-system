@@ -16,12 +16,7 @@ export interface InputStyleProps {
 }
 
 export function inputStyles(props: InputStyleProps = {}): string {
-  const {
-    size = "md",
-    error = false,
-    disabled = false,
-    className,
-  } = props;
+  const { size = "md", error = false, disabled = false, className } = props;
 
   return cn(
     "w-full rounded-input border bg-white",

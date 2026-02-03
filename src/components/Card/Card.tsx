@@ -4,11 +4,7 @@ import React, {
   type ElementType,
 } from "react";
 import { cn } from "@/utils/cn";
-import {
-  cardStyles,
-  type CardVariant,
-  type CardPadding,
-} from "./Card.styles";
+import { cardStyles, type CardVariant, type CardPadding } from "./Card.styles";
 
 export type { CardVariant, CardPadding } from "./Card.styles";
 
