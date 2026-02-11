@@ -126,4 +126,42 @@ export const colors = {
     default: "#E5E7EB",
     focus: "#D38475",
   },
+
+  // Surface colors - Background layers for elevation hierarchy
+  surface: {
+    default: "#FFFFFF",
+    raised: "#FFFFFF",
+    sunken: "#F3F4F6",
+    overlay: "rgba(0, 0, 0, 0.5)",
+  },
+
+  // Interactive colors - States for interactive elements
+  interactive: {
+    default: "#D38475",
+    hover: "#C06A59",
+    pressed: "#A15548",
+    disabled: "#D1D5DB",
+  },
+
+  // Link colors
+  link: {
+    default: "#3B82F6",
+    hover: "#2563EB",
+    visited: "#7C3AED",
+  },
+
+  // Destructive colors - Danger/delete actions (distinct from error feedback)
+  destructive: {
+    default: "#EF4444",
+    hover: "#DC2626",
+    pressed: "#B91C1C",
+    text: "#991B1B",
+    bg: "#FEF2F2",
+  },
+
+  // Focus ring
+  focus: {
+    ring: "rgba(211, 132, 117, 0.2)",
+    outline: "#D38475",
+  },
 };

@@ -1,5 +1,14 @@
 import { describe, it, expect } from "vitest";
-import { colors, typography, spacing, animations, borderRadius } from "./index";
+import {
+  colors,
+  typography,
+  spacing,
+  animations,
+  borderRadius,
+  shadows,
+  zIndex,
+  textStyles,
+} from "./index";
 
 describe("Design Tokens", () => {
   describe("Colors", () => {
@@ -48,6 +57,42 @@ describe("Design Tokens", () => {
       expect(colors.background).toBeDefined();
       expect(colors.background.default).toBeDefined();
       expect(colors.background.card).toBeDefined();
+    });
+
+    it("should export surface colors", () => {
+      expect(colors.surface).toBeDefined();
+      expect(colors.surface.default).toBeDefined();
+      expect(colors.surface.raised).toBeDefined();
+      expect(colors.surface.sunken).toBeDefined();
+      expect(colors.surface.overlay).toBeDefined();
+    });
+
+    it("should export interactive colors", () => {
+      expect(colors.interactive).toBeDefined();
+      expect(colors.interactive.default).toBe("#D38475");
+      expect(colors.interactive.hover).toBeDefined();
+      expect(colors.interactive.pressed).toBeDefined();
+      expect(colors.interactive.disabled).toBeDefined();
+    });
+
+    it("should export link colors", () => {
+      expect(colors.link).toBeDefined();
+      expect(colors.link.default).toBeDefined();
+      expect(colors.link.hover).toBeDefined();
+      expect(colors.link.visited).toBeDefined();
+    });
+
+    it("should export destructive colors", () => {
+      expect(colors.destructive).toBeDefined();
+      expect(colors.destructive.default).toBe("#EF4444");
+      expect(colors.destructive.hover).toBeDefined();
+      expect(colors.destructive.bg).toBeDefined();
+    });
+
+    it("should export focus colors", () => {
+      expect(colors.focus).toBeDefined();
+      expect(colors.focus.ring).toBeDefined();
+      expect(colors.focus.outline).toBe("#D38475");
     });
   });
 
@@ -146,6 +191,105 @@ describe("Design Tokens", () => {
     it("should export semantic border radius", () => {
       expect(borderRadius.card).toBeDefined();
       expect(borderRadius.button).toBeDefined();
+    });
+  });
+
+  describe("Shadows", () => {
+    it("should export shadow scale", () => {
+      expect(shadows).toBeDefined();
+      expect(shadows.none).toBe("none");
+      expect(shadows.sm).toBeDefined();
+      expect(shadows.md).toBeDefined();
+      expect(shadows.lg).toBeDefined();
+      expect(shadows.xl).toBeDefined();
+      expect(shadows["2xl"]).toBeDefined();
+    });
+
+    it("should export focus shadow", () => {
+      expect(shadows.focus).toBeDefined();
+      expect(shadows.focus).toContain("rgba(211, 132, 117");
+    });
+
+    it("should export inner shadow", () => {
+      expect(shadows.inner).toBeDefined();
+      expect(shadows.inner).toContain("inset");
+    });
+  });
+
+  describe("Z-Index", () => {
+    it("should export z-index scale", () => {
+      expect(zIndex).toBeDefined();
+      expect(zIndex.base).toBe(0);
+      expect(zIndex.dropdown).toBe(1000);
+      expect(zIndex.modal).toBe(1050);
+      expect(zIndex.tooltip).toBe(1070);
+      expect(zIndex.toast).toBe(1080);
+    });
+
+    it("should have ascending order for overlapping elements", () => {
+      expect(zIndex.dropdown).toBeLessThan(zIndex.sticky);
+      expect(zIndex.sticky).toBeLessThan(zIndex.modal);
+      expect(zIndex.modal).toBeLessThan(zIndex.popover);
+      expect(zIndex.popover).toBeLessThan(zIndex.tooltip);
+      expect(zIndex.tooltip).toBeLessThan(zIndex.toast);
+    });
+  });
+
+  describe("Text Styles", () => {
+    it("should export display styles", () => {
+      expect(textStyles.display).toBeDefined();
+      expect(textStyles.display.lg.fontSize).toBe("3.75rem");
+      expect(textStyles.display.md.fontSize).toBe("3rem");
+      expect(textStyles.display.sm.fontSize).toBe("2.25rem");
+    });
+
+    it("should export heading styles h1-h6", () => {
+      expect(textStyles.heading).toBeDefined();
+      expect(textStyles.heading.h1).toBeDefined();
+      expect(textStyles.heading.h2).toBeDefined();
+      expect(textStyles.heading.h3).toBeDefined();
+      expect(textStyles.heading.h4).toBeDefined();
+      expect(textStyles.heading.h5).toBeDefined();
+      expect(textStyles.heading.h6).toBeDefined();
+    });
+
+    it("should export body styles", () => {
+      expect(textStyles.body).toBeDefined();
+      expect(textStyles.body.lg.fontSize).toBe("1.125rem");
+      expect(textStyles.body.md.fontSize).toBe("1rem");
+      expect(textStyles.body.sm.fontSize).toBe("0.875rem");
+    });
+
+    it("should export caption style", () => {
+      expect(textStyles.caption).toBeDefined();
+      expect(textStyles.caption.fontSize).toBe("0.75rem");
+    });
+
+    it("should export overline style", () => {
+      expect(textStyles.overline).toBeDefined();
+      expect(textStyles.overline.letterSpacing).toBe("0.05em");
+      expect(textStyles.overline.fontWeight).toBe("600");
+    });
+
+    it("should export label styles", () => {
+      expect(textStyles.label).toBeDefined();
+      expect(textStyles.label.lg).toBeDefined();
+      expect(textStyles.label.md).toBeDefined();
+      expect(textStyles.label.sm).toBeDefined();
+    });
+
+    it("should include all required properties in each preset", () => {
+      const requiredKeys = [
+        "fontSize",
+        "lineHeight",
+        "fontWeight",
+        "letterSpacing",
+      ];
+      requiredKeys.forEach((key) => {
+        expect(textStyles.heading.h1).toHaveProperty(key);
+        expect(textStyles.body.md).toHaveProperty(key);
+        expect(textStyles.caption).toHaveProperty(key);
+      });
     });
   });
 });

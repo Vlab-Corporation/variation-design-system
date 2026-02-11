@@ -90,6 +90,34 @@ module.exports = {
           800: '#1E40AF',
           900: '#1E3A8A',
         },
+        // Surface colors
+        surface: {
+          DEFAULT: '#FFFFFF',
+          raised: '#FFFFFF',
+          sunken: '#F3F4F6',
+          overlay: 'rgba(0, 0, 0, 0.5)',
+        },
+        // Interactive colors
+        interactive: {
+          DEFAULT: '#D38475',
+          hover: '#C06A59',
+          pressed: '#A15548',
+          disabled: '#D1D5DB',
+        },
+        // Link colors
+        link: {
+          DEFAULT: '#3B82F6',
+          hover: '#2563EB',
+          visited: '#7C3AED',
+        },
+        // Destructive colors
+        destructive: {
+          DEFAULT: '#EF4444',
+          hover: '#DC2626',
+          pressed: '#B91C1C',
+          text: '#991B1B',
+          bg: '#FEF2F2',
+        },
       },
 
       fontFamily: {
@@ -170,6 +198,31 @@ module.exports = {
         fast: '150ms',
         normal: '200ms',
         slow: '300ms',
+      },
+
+      // Box Shadow tokens
+      boxShadow: {
+        sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+        lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        focus: '0 0 0 3px rgba(211, 132, 117, 0.2)',
+        inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+      },
+
+      // Z-Index scale
+      zIndex: {
+        hide: '-1',
+        docked: '10',
+        dropdown: '1000',
+        sticky: '1020',
+        fixed: '1030',
+        'modal-backdrop': '1040',
+        modal: '1050',
+        popover: '1060',
+        tooltip: '1070',
+        toast: '1080',
       },
     },
   },

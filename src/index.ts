@@ -10,3 +10,9 @@ export { colors } from "./tokens/colors";
 export { typography } from "./tokens/typography";
 export { spacing, borderRadius } from "./tokens/spacing";
 export { animations } from "./tokens/animations";
+export { shadows } from "./tokens/shadows";
+export { zIndex } from "./tokens/zIndex";
+export {
+  textStyles as textStylePresets,
+  type TextStylePreset,
+} from "./tokens/textStyles";
