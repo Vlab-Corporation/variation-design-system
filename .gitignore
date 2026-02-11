@@ -28,5 +28,8 @@ npm-debug.log*
 *.tmp
 *.temp
 
+# Project docs (local only)
+CLAUDE.md
+
 # Lock files (optional - depends on preference)
 # package-lock.json
