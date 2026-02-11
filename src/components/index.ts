@@ -36,3 +36,12 @@ export * from "./Avatar";
 export * from "./Skeleton";
 export * from "./Popover";
 export * from "./Separator";
+
+// Phase 4 Components
+export * from "./Accordion";
+export * from "./Progress";
+export * from "./Tag";
+export * from "./Stepper";
+export * from "./Calendar";
+export * from "./EmptyState";
+export * from "./CommandPalette";

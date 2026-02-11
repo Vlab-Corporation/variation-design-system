@@ -266,3 +266,81 @@ export {
   type SeparatorStyleProps,
   type SeparatorOrientation,
 } from "./components/Separator/Separator.styles";
+
+// Phase 4 Style Functions
+export {
+  accordionStyles,
+  accordionTriggerStyles,
+  accordionContentStyles,
+  accordionContentInnerStyles,
+  accordionItemSeparatedStyles,
+  accordionVariants,
+  type AccordionStyleProps,
+  type AccordionVariant,
+} from "./components/Accordion/Accordion.styles";
+
+export {
+  progressTrackStyles,
+  progressBarStyles,
+  progressSizes,
+  progressVariants,
+  type ProgressStyleProps,
+  type ProgressBarStyleProps,
+  type ProgressSize,
+  type ProgressVariant,
+} from "./components/Progress/Progress.styles";
+
+export {
+  tagStyles,
+  tagRemoveStyles,
+  tagVariants,
+  tagSizes,
+  type TagStyleProps,
+  type TagVariant,
+  type TagSize,
+} from "./components/Tag/Tag.styles";
+
+export {
+  stepperStyles,
+  stepStyles,
+  stepIndicatorStyles,
+  stepConnectorStyles,
+  stepLabelStyles,
+  stepDescriptionStyles,
+  type StepperStyleProps,
+  type StepperOrientation,
+  type StepStatus,
+} from "./components/Stepper/Stepper.styles";
+
+export {
+  calendarStyles,
+  calendarHeaderStyles,
+  calendarNavButtonStyles,
+  calendarTitleStyles,
+  calendarGridStyles,
+  calendarWeekdayStyles,
+  calendarDayStyles,
+  type CalendarStyleProps,
+} from "./components/Calendar/Calendar.styles";
+
+export {
+  emptyStateStyles,
+  emptyStateIconStyles,
+  emptyStateTitleStyles,
+  emptyStateDescriptionStyles,
+  emptyStateSizes,
+  type EmptyStateStyleProps,
+  type EmptyStateSize,
+} from "./components/EmptyState/EmptyState.styles";
+
+export {
+  commandPaletteOverlayStyles,
+  commandPaletteStyles,
+  commandPaletteInputStyles,
+  commandPaletteListStyles,
+  commandPaletteGroupStyles,
+  commandPaletteItemStyles,
+  commandPaletteEmptyStyles,
+  commandPaletteShortcutStyles,
+  type CommandPaletteStyleProps,
+} from "./components/CommandPalette/CommandPalette.styles";
