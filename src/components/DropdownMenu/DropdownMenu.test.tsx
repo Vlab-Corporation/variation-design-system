@@ -1,0 +1,202 @@
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import type { ComponentProps } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
+} from "./DropdownMenu";
+
+function renderDropdown(props?: Partial<ComponentProps<typeof DropdownMenu>>) {
+  return render(
+    <DropdownMenu trigger={<button>Open Menu</button>} {...props}>
+      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuItem onSelect={() => {}}>Edit</DropdownMenuItem>
+      <DropdownMenuItem onSelect={() => {}}>Copy</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem destructive onSelect={() => {}}>
+        Delete
+      </DropdownMenuItem>
+    </DropdownMenu>,
+  );
+}
+
+describe("DropdownMenu Component", () => {
+  describe("Rendering", () => {
+    it("should render trigger", () => {
+      renderDropdown();
+      expect(screen.getByText("Open Menu")).toBeInTheDocument();
+    });
+
+    it("should not render menu by default", () => {
+      renderDropdown();
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should render menu when trigger is clicked", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+    });
+
+    it("should render menu items", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByText("Edit")).toBeInTheDocument();
+      expect(screen.getByText("Copy")).toBeInTheDocument();
+      expect(screen.getByText("Delete")).toBeInTheDocument();
+    });
+
+    it("should render label", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByText("Actions")).toBeInTheDocument();
+    });
+
+    it("should render separator", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("separator")).toBeInTheDocument();
+    });
+  });
+
+  describe("Open/Close", () => {
+    it("should toggle menu on trigger click", () => {
+      renderDropdown();
+      const trigger = screen.getByText("Open Menu");
+      fireEvent.click(trigger);
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.click(trigger);
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should close on Escape key", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should close on outside click", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.mouseDown(document.body);
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should support controlled open state", () => {
+      const handleOpenChange = vi.fn();
+      render(
+        <DropdownMenu
+          trigger={<button>Open</button>}
+          open={true}
+          onOpenChange={handleOpenChange}
+        >
+          <DropdownMenuItem>Item</DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+    });
+  });
+
+  describe("Menu Items", () => {
+    it("should call onSelect when item is clicked", () => {
+      const handleSelect = vi.fn();
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem onSelect={handleSelect}>Action</DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      fireEvent.click(screen.getByText("Action"));
+      expect(handleSelect).toHaveBeenCalled();
+    });
+
+    it("should not call onSelect when disabled", () => {
+      const handleSelect = vi.fn();
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem disabled onSelect={handleSelect}>
+            Action
+          </DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      fireEvent.click(screen.getByText("Action"));
+      expect(handleSelect).not.toHaveBeenCalled();
+    });
+
+    it("should have destructive styling", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByText("Delete")).toHaveClass("text-error-600");
+    });
+
+    it("should have disabled styling", () => {
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem disabled>Disabled</DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      expect(screen.getByText("Disabled")).toHaveClass("opacity-50");
+    });
+  });
+
+  describe("Keyboard Navigation", () => {
+    it("should open menu with Enter key", () => {
+      renderDropdown();
+      const trigger = screen.getByText("Open Menu").parentElement!;
+      fireEvent.keyDown(trigger, { key: "Enter" });
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+    });
+
+    it("should navigate items with ArrowDown", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const firstItem = screen.getByText("Edit");
+      firstItem.focus();
+      fireEvent.keyDown(firstItem, { key: "ArrowDown" });
+      expect(screen.getByText("Copy")).toHaveFocus();
+    });
+  });
+
+  describe("Alignment", () => {
+    it("should apply start alignment by default", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toHaveClass("left-0");
+    });
+
+    it("should apply end alignment", () => {
+      renderDropdown({ align: "end" });
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toHaveClass("right-0");
+    });
+  });
+
+  describe("Accessibility", () => {
+    it("should have aria-haspopup on trigger", () => {
+      renderDropdown();
+      const trigger = screen.getByText("Open Menu").parentElement!;
+      expect(trigger).toHaveAttribute("aria-haspopup", "true");
+    });
+
+    it("should have aria-expanded on trigger", () => {
+      renderDropdown();
+      const trigger = screen.getByText("Open Menu").parentElement!;
+      expect(trigger).toHaveAttribute("aria-expanded", "false");
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(trigger).toHaveAttribute("aria-expanded", "true");
+    });
+
+    it("should have menuitem role on items", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getAllByRole("menuitem")).toHaveLength(3);
+    });
+  });
+});
