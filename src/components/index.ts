@@ -27,3 +27,12 @@ export * from "./Modal";
 export * from "./Toast";
 export * from "./DropdownMenu";
 export * from "./Tooltip";
+
+// Phase 2 Components
+export * from "./Stack";
+export * from "./Tabs";
+export * from "./Pagination";
+export * from "./Avatar";
+export * from "./Skeleton";
+export * from "./Popover";
+export * from "./Separator";

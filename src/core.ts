@@ -193,3 +193,70 @@ export {
   type TooltipStyleProps,
   type TooltipPlacement,
 } from "./components/Tooltip/Tooltip.styles";
+
+// Phase 2 Style Functions
+export {
+  stackStyles,
+  stackDirections,
+  stackAligns,
+  stackJustifies,
+  stackGaps,
+  type StackStyleProps,
+  type StackDirection,
+  type StackAlign,
+  type StackJustify,
+  type StackGap,
+} from "./components/Stack/Stack.styles";
+
+export {
+  tabsListStyles,
+  tabStyles,
+  tabPanelStyles,
+  tabsListVariants,
+  tabVariants,
+  tabSizes,
+  type TabsListStyleProps,
+  type TabStyleProps,
+  type TabsVariant,
+  type TabsSize,
+} from "./components/Tabs/Tabs.styles";
+
+export {
+  paginationStyles,
+  paginationItemStyles,
+  paginationSizes,
+  type PaginationStyleProps,
+  type PaginationItemStyleProps,
+  type PaginationSize,
+} from "./components/Pagination/Pagination.styles";
+
+export {
+  avatarStyles,
+  avatarImageStyles,
+  avatarSizes,
+  avatarShapes,
+  type AvatarStyleProps,
+  type AvatarSize,
+  type AvatarShape,
+} from "./components/Avatar/Avatar.styles";
+
+export {
+  skeletonStyles,
+  skeletonVariants,
+  type SkeletonStyleProps,
+  type SkeletonVariant,
+} from "./components/Skeleton/Skeleton.styles";
+
+export {
+  popoverStyles,
+  popoverPlacements,
+  type PopoverStyleProps,
+  type PopoverPlacement,
+} from "./components/Popover/Popover.styles";
+
+export {
+  separatorStyles,
+  separatorOrientations,
+  type SeparatorStyleProps,
+  type SeparatorOrientation,
+} from "./components/Separator/Separator.styles";
