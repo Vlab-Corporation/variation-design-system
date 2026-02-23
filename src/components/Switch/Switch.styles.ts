@@ -37,7 +37,7 @@ export function switchTrackStyles(props: SwitchTrackStyleProps = {}): string {
   const { size = "md", checked = false, disabled = false, className } = props;
 
   return cn(
-    "relative inline-flex items-center shrink-0 rounded-full cursor-pointer",
+    "relative inline-flex items-center shrink-0 rounded-full cursor-pointer p-0.5",
     "transition-colors duration-200 ease-out",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20 focus-visible:ring-offset-2",
     switchTrackSizes[size],
@@ -58,7 +58,6 @@ export function switchThumbStyles(props: SwitchThumbStyleProps = {}): string {
   return cn(
     "inline-block rounded-full bg-white shadow-sm",
     "transition-transform duration-200 ease-out",
-    "translate-x-0.5",
     switchThumbSizes[size],
     checked && switchThumbTranslate[size],
   );
