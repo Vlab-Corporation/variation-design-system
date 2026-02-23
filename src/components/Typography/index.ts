@@ -1,5 +1,13 @@
-export { Heading, Text, type HeadingProps, type TextProps } from "./Typography";
+export {
+  Display,
+  Heading,
+  Text,
+  type DisplayProps,
+  type HeadingProps,
+  type TextProps,
+} from "./Typography";
 export type {
+  DisplaySize,
   HeadingLevel,
   TextSize,
   TextWeight,
@@ -7,6 +15,8 @@ export type {
   TextAlign,
 } from "./Typography";
 export {
+  displayStyles,
+  displaySizes,
   headingStyles,
   textStyles,
   headingLevelStyles,
@@ -14,6 +24,7 @@ export {
   textWeights,
   textColors,
   textAligns,
+  type DisplayStyleProps,
   type HeadingStyleProps,
   type TextStyleProps,
 } from "./Typography.styles";

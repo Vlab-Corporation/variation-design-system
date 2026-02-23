@@ -1,7 +1,67 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import type { RefObject } from "react";
-import { Heading, Text } from "./Typography";
+import { Display, Heading, Text } from "./Typography";
+
+describe("Display Component", () => {
+  describe("Rendering", () => {
+    it("should render as h1 by default", () => {
+      render(<Display>Hero Title</Display>);
+      expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    });
+
+    it("should render children text", () => {
+      render(<Display>Big Title</Display>);
+      expect(screen.getByText("Big Title")).toBeInTheDocument();
+    });
+
+    it("should render as different heading element", () => {
+      render(<Display as="h2">Sub Hero</Display>);
+      expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
+    });
+  });
+
+  describe("Sizes", () => {
+    it("should render lg size by default", () => {
+      render(<Display>Large</Display>);
+      const heading = screen.getByRole("heading");
+      expect(heading).toHaveClass("text-display-lg");
+      expect(heading).toHaveClass("font-semibold");
+    });
+
+    it("should render md size", () => {
+      render(<Display size="md">Medium</Display>);
+      const heading = screen.getByRole("heading");
+      expect(heading).toHaveClass("text-display-md");
+      expect(heading).toHaveClass("font-semibold");
+    });
+  });
+
+  describe("Styling", () => {
+    it("should have tracking-tight", () => {
+      render(<Display>Tracked</Display>);
+      expect(screen.getByRole("heading")).toHaveClass("tracking-tight");
+    });
+
+    it("should apply color", () => {
+      render(<Display color="primary">Colored</Display>);
+      expect(screen.getByRole("heading")).toHaveClass("text-primary-500");
+    });
+
+    it("should apply custom className", () => {
+      render(<Display className="custom">Title</Display>);
+      expect(screen.getByRole("heading")).toHaveClass("custom");
+    });
+  });
+
+  describe("HTML attributes", () => {
+    it("should forward ref", () => {
+      const ref = { current: null } as RefObject<HTMLHeadingElement>;
+      render(<Display ref={ref}>Title</Display>);
+      expect(ref.current).toBeInstanceOf(HTMLElement);
+    });
+  });
+});
 
 describe("Heading Component", () => {
   describe("Rendering", () => {
@@ -22,40 +82,47 @@ describe("Heading Component", () => {
   });
 
   describe("Levels", () => {
-    it("should render h1", () => {
+    it("should render h1 with Figma spec styles", () => {
       render(<Heading level="h1">H1</Heading>);
       const heading = screen.getByRole("heading", { level: 1 });
-      expect(heading).toHaveClass("text-4xl", "font-bold");
+      expect(heading).toHaveClass("text-heading-1", "font-semibold");
     });
 
-    it("should render h2", () => {
+    it("should render h2 with Figma spec styles", () => {
       render(<Heading level="h2">H2</Heading>);
       const heading = screen.getByRole("heading", { level: 2 });
-      expect(heading).toHaveClass("text-3xl", "font-bold");
+      expect(heading).toHaveClass("text-heading-2", "font-medium");
     });
 
-    it("should render h3", () => {
+    it("should render h3 with Figma spec styles", () => {
       render(<Heading level="h3">H3</Heading>);
       const heading = screen.getByRole("heading", { level: 3 });
-      expect(heading).toHaveClass("text-2xl", "font-semibold");
+      expect(heading).toHaveClass("text-heading-3", "font-semibold");
     });
 
-    it("should render h4", () => {
+    it("should render h4 with Figma spec styles", () => {
       render(<Heading level="h4">H4</Heading>);
       const heading = screen.getByRole("heading", { level: 4 });
-      expect(heading).toHaveClass("text-xl", "font-semibold");
+      expect(heading).toHaveClass("text-heading-4", "font-normal");
     });
 
     it("should render h5", () => {
       render(<Heading level="h5">H5</Heading>);
       const heading = screen.getByRole("heading", { level: 5 });
-      expect(heading).toHaveClass("text-lg", "font-medium");
+      expect(heading).toHaveClass("text-body-1", "font-medium");
     });
 
     it("should render h6", () => {
       render(<Heading level="h6">H6</Heading>);
       const heading = screen.getByRole("heading", { level: 6 });
-      expect(heading).toHaveClass("text-base", "font-medium");
+      expect(heading).toHaveClass("text-body-2", "font-medium");
+    });
+  });
+
+  describe("Styling", () => {
+    it("should have tracking-tight on all levels", () => {
+      render(<Heading level="h1">Title</Heading>);
+      expect(screen.getByRole("heading")).toHaveClass("tracking-tight");
     });
   });
 
@@ -171,6 +238,13 @@ describe("Text Component", () => {
     it("should apply semibold weight", () => {
       render(<Text weight="semibold">Semibold</Text>);
       expect(screen.getByText("Semibold")).toHaveClass("font-semibold");
+    });
+  });
+
+  describe("Styling", () => {
+    it("should have tracking-tight", () => {
+      render(<Text>Tracked</Text>);
+      expect(screen.getByText("Tracked")).toHaveClass("tracking-tight");
     });
   });
 

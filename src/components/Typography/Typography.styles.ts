@@ -1,6 +1,7 @@
 import { cn } from "@/utils/cn";
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type DisplaySize = "lg" | "md";
 
 export type TextSize =
   | "xs"
@@ -36,13 +37,18 @@ export type TextColor =
 
 export type TextAlign = "left" | "center" | "right";
 
+export const displaySizes: Record<DisplaySize, string> = {
+  lg: "text-display-lg font-semibold",
+  md: "text-display-md font-semibold",
+};
+
 export const headingLevelStyles: Record<HeadingLevel, string> = {
-  h1: "text-4xl font-bold tracking-tight",
-  h2: "text-3xl font-bold tracking-tight",
-  h3: "text-2xl font-semibold",
-  h4: "text-xl font-semibold",
-  h5: "text-lg font-medium",
-  h6: "text-base font-medium",
+  h1: "text-heading-1 font-semibold",
+  h2: "text-heading-2 font-medium",
+  h3: "text-heading-3 font-semibold",
+  h4: "text-heading-4 font-normal",
+  h5: "text-body-1 font-medium",
+  h6: "text-body-2 font-medium",
 };
 
 export const textSizes: Record<TextSize, string> = {
@@ -86,6 +92,33 @@ export const textAligns: Record<TextAlign, string> = {
   right: "text-right",
 };
 
+export interface DisplayStyleProps {
+  size?: DisplaySize;
+  color?: TextColor;
+  align?: TextAlign;
+  truncate?: boolean;
+  className?: string;
+}
+
+export function displayStyles(props: DisplayStyleProps = {}): string {
+  const {
+    size = "lg",
+    color = "default",
+    align,
+    truncate = false,
+    className,
+  } = props;
+
+  return cn(
+    displaySizes[size],
+    "tracking-tight",
+    textColors[color],
+    align && textAligns[align],
+    truncate && "truncate",
+    className,
+  );
+}
+
 export interface HeadingStyleProps {
   level?: HeadingLevel;
   color?: TextColor;
@@ -105,6 +138,7 @@ export function headingStyles(props: HeadingStyleProps = {}): string {
 
   return cn(
     headingLevelStyles[level],
+    "tracking-tight",
     textColors[color],
     align && textAligns[align],
     truncate && "truncate",
@@ -136,6 +170,7 @@ export function textStyles(props: TextStyleProps = {}): string {
   return cn(
     textSizes[size],
     textWeights[weight],
+    "tracking-tight",
     textColors[color],
     align && textAligns[align],
     truncate && "truncate",

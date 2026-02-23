@@ -25,10 +25,16 @@ export {
 export {
   buttonStyles,
   buttonVariants,
+  buttonDisabledVariants,
+  buttonShapes,
   buttonSizes,
+  buttonIconGaps,
+  buttonIconSizes,
+  buttonIconPadding,
   type ButtonStyleProps,
   type ButtonVariant,
   type ButtonSize,
+  type ButtonShape,
 } from "./components/Button/Button.styles";
 
 export {
@@ -91,6 +97,8 @@ export {
 
 // Phase 1 Style Functions
 export {
+  displayStyles,
+  displaySizes,
   headingStyles,
   textStyles,
   headingLevelStyles,
@@ -98,6 +106,8 @@ export {
   textWeights,
   textColors,
   textAligns,
+  type DisplayStyleProps,
+  type DisplaySize,
   type HeadingStyleProps,
   type TextStyleProps,
   type HeadingLevel,

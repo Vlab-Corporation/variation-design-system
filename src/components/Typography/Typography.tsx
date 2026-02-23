@@ -1,7 +1,9 @@
 import { forwardRef, type HTMLAttributes } from "react";
 import {
+  displayStyles,
   headingStyles,
   textStyles,
+  type DisplaySize,
   type HeadingLevel,
   type TextSize,
   type TextWeight,
@@ -9,7 +11,50 @@ import {
   type TextAlign,
 } from "./Typography.styles";
 
-export type { HeadingLevel, TextSize, TextWeight, TextColor, TextAlign };
+export type { DisplaySize, HeadingLevel, TextSize, TextWeight, TextColor, TextAlign };
+
+export interface DisplayProps extends HTMLAttributes<HTMLHeadingElement> {
+  /** Display size */
+  size?: DisplaySize;
+  /** Render as specific heading element */
+  as?: "h1" | "h2" | "h3";
+  /** Text color */
+  color?: TextColor;
+  /** Text alignment */
+  align?: TextAlign;
+  /** Truncate with ellipsis */
+  truncate?: boolean;
+}
+
+export const Display = forwardRef<HTMLHeadingElement, DisplayProps>(
+  (
+    {
+      size = "lg",
+      as = "h1",
+      color = "default",
+      align,
+      truncate = false,
+      className,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const Tag = as;
+
+    return (
+      <Tag
+        ref={ref}
+        className={displayStyles({ size, color, align, truncate, className })}
+        {...props}
+      >
+        {children}
+      </Tag>
+    );
+  },
+);
+
+Display.displayName = "Display";
 
 export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   /** Heading level (h1-h6) — also determines the rendered HTML tag */
