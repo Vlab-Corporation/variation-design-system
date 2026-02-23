@@ -37,6 +37,9 @@ export * from "./Skeleton";
 export * from "./Popover";
 export * from "./Separator";
 
+// Sidebar
+export * from "./Sidebar";
+
 // Phase 4 Components
 export * from "./Accordion";
 export * from "./Progress";

@@ -48,6 +48,16 @@ export const colors = {
     "950": "#121416",
   },
 
+  // RW Primary - RehabWorks violet-blue palette
+  rwPrimary: {
+    "100": "#F5F5FF",
+    "200": "#EEEEFF",
+    "300": "#DBDBFF",
+    "400": "#B7B7FF",
+    "600": "#7070FE",
+    "800": "#4141FF",
+  },
+
   // Base colors
   white: "#FFFFFF",
   black: "#000000",
