@@ -1,15 +1,21 @@
 /**
- * Design System Semantic Text Style Presets
- * Predefined text style combinations for consistent typography
+ * Design System Semantic Text Style Presets (Figma Display spec)
  *
- * Each preset defines: fontSize, lineHeight, fontWeight, letterSpacing
- * Use these in components or apply via Tailwind classes.
+ * Typography scale defines SIZE only (fontSize + lineHeight + letterSpacing).
+ * Font weight is orthogonal — specify it separately via component props.
+ *
+ * Figma reference weights (for documentation, not enforced here):
+ *   Display Lg/Md: Semibold (600)
+ *   Heading 1: Semibold (600), Heading 2: Medium (500)
+ *   Heading 3: Semibold (600), Heading 4: Regular (400)
+ *   Body 1: Semibold (600) or Regular (400)
+ *   Body 2/3: Medium (500)
+ *   Label: Regular (400) or Medium (500)
  */
 
 export interface TextStylePreset {
   fontSize: string;
   lineHeight: string;
-  fontWeight: string;
   letterSpacing: string;
 }
 
@@ -17,122 +23,80 @@ export const textStyles = {
   /** Display styles - Hero sections, landing pages */
   display: {
     lg: {
-      fontSize: "3.75rem", // 60px
-      lineHeight: "1",
-      fontWeight: "700",
-      letterSpacing: "-0.025em",
+      fontSize: "2.75rem", // 44px
+      lineHeight: "3.625rem", // 58px
+      letterSpacing: "-0.02em",
     },
     md: {
-      fontSize: "3rem", // 48px
-      lineHeight: "1",
-      fontWeight: "700",
-      letterSpacing: "-0.025em",
-    },
-    sm: {
       fontSize: "2.25rem", // 36px
-      lineHeight: "1.1",
-      fontWeight: "700",
-      letterSpacing: "-0.025em",
+      lineHeight: "2.75rem", // 44px
+      letterSpacing: "-0.02em",
     },
   } satisfies Record<string, TextStylePreset>,
 
   /** Heading styles - Section headings */
   heading: {
     h1: {
-      fontSize: "2.25rem", // 36px
-      lineHeight: "2.5rem",
-      fontWeight: "700",
-      letterSpacing: "-0.025em",
+      fontSize: "1.875rem", // 30px
+      lineHeight: "2.5rem", // 40px
+      letterSpacing: "-0.02em",
     },
     h2: {
-      fontSize: "1.875rem", // 30px
-      lineHeight: "2.25rem",
-      fontWeight: "600",
-      letterSpacing: "-0.025em",
+      fontSize: "1.75rem", // 28px
+      lineHeight: "2.25rem", // 36px
+      letterSpacing: "-0.02em",
     },
     h3: {
-      fontSize: "1.5rem", // 24px
-      lineHeight: "2rem",
-      fontWeight: "600",
-      letterSpacing: "-0.025em",
+      fontSize: "1.625rem", // 26px
+      lineHeight: "2rem", // 32px
+      letterSpacing: "-0.02em",
     },
     h4: {
-      fontSize: "1.25rem", // 20px
-      lineHeight: "1.75rem",
-      fontWeight: "600",
-      letterSpacing: "0em",
-    },
-    h5: {
-      fontSize: "1.125rem", // 18px
-      lineHeight: "1.75rem",
-      fontWeight: "600",
-      letterSpacing: "0em",
-    },
-    h6: {
-      fontSize: "1rem", // 16px
-      lineHeight: "1.5rem",
-      fontWeight: "600",
-      letterSpacing: "0em",
+      fontSize: "1.375rem", // 22px
+      lineHeight: "1.875rem", // 30px
+      letterSpacing: "-0.02em",
     },
   } satisfies Record<string, TextStylePreset>,
 
-  /** Body styles - Paragraph text */
-  body: {
-    lg: {
-      fontSize: "1.125rem", // 18px
-      lineHeight: "1.75rem",
-      fontWeight: "400",
-      letterSpacing: "0em",
-    },
-    md: {
-      fontSize: "1rem", // 16px
-      lineHeight: "1.5rem",
-      fontWeight: "400",
-      letterSpacing: "0em",
-    },
-    sm: {
-      fontSize: "0.875rem", // 14px
-      lineHeight: "1.25rem",
-      fontWeight: "400",
-      letterSpacing: "0em",
-    },
-  } satisfies Record<string, TextStylePreset>,
+  /** Body 1 - 18px, primary reading text */
+  body1: {
+    fontSize: "1.125rem", // 18px
+    lineHeight: "1.75rem", // 28px
+    letterSpacing: "-0.02em",
+  } satisfies TextStylePreset,
 
-  /** Caption - Small supplementary text */
+  /** Body 2 - 16px, secondary text */
+  body2: {
+    fontSize: "1rem", // 16px
+    lineHeight: "1.625rem", // 26px
+    letterSpacing: "-0.02em",
+  } satisfies TextStylePreset,
+
+  /** Body 3 - 14px, supporting text */
+  body3: {
+    fontSize: "0.875rem", // 14px
+    lineHeight: "1.25rem", // 20px
+    letterSpacing: "-0.02em",
+  } satisfies TextStylePreset,
+
+  /** Label - 12px, form labels and small UI text */
+  label: {
+    fontSize: "0.75rem", // 12px
+    lineHeight: "1rem", // 16px
+    letterSpacing: "-0.02em",
+  } satisfies TextStylePreset,
+
+  /** Caption - 12px, small supplementary text */
   caption: {
     fontSize: "0.75rem", // 12px
-    lineHeight: "1rem",
-    fontWeight: "400",
-    letterSpacing: "0em",
+    lineHeight: "1rem", // 16px
+    letterSpacing: "-0.02em",
   } satisfies TextStylePreset,
 
-  /** Overline - Uppercase label text */
+  /** Overline - 12px, uppercase label text */
   overline: {
     fontSize: "0.75rem", // 12px
-    lineHeight: "1rem",
-    fontWeight: "600",
+    lineHeight: "1rem", // 16px
     letterSpacing: "0.05em",
   } satisfies TextStylePreset,
-
-  /** Label - Form labels */
-  label: {
-    lg: {
-      fontSize: "1rem",
-      lineHeight: "1.5rem",
-      fontWeight: "500",
-      letterSpacing: "0em",
-    },
-    md: {
-      fontSize: "0.875rem",
-      lineHeight: "1.25rem",
-      fontWeight: "500",
-      letterSpacing: "0em",
-    },
-    sm: {
-      fontSize: "0.75rem",
-      lineHeight: "1rem",
-      fontWeight: "500",
-      letterSpacing: "0em",
-    },
-  } satisfies Record<string, TextStylePreset>,
 };

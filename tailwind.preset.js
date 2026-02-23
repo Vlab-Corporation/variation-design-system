@@ -13,19 +13,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary - Warm terracotta
+        // Primary - Variation Coral Red
         primary: {
-          50: '#FDF8F7',
-          100: '#FBEFED',
-          200: '#F5DCD7',
-          300: '#EEC3BB',
-          400: '#E29C8F',
-          500: '#D38475',
-          600: '#C06A59',
-          700: '#A15548',
-          800: '#84463C',
-          900: '#6D3B33',
-          950: '#3A1E1A',
+          50: '#FFF5F5',
+          100: '#FFE8E8',
+          200: '#FFDEDE',
+          300: '#FFD3D3',
+          400: '#FFB4B4',
+          500: '#FF9292',
+          600: '#FE7070',
+          700: '#F65F5F',
+          800: '#EE4E4E',
+          900: '#C93636',
+          950: '#7A2020',
         },
         // Secondary - Complementary palette
         secondary: {
@@ -41,42 +41,59 @@ module.exports = {
           900: '#52443D',
           950: '#2B231F',
         },
+        // Gray scale - Neutral
+        gray: {
+          50: '#F8F9FA',
+          100: '#F1F3F5',
+          200: '#E9ECEF',
+          300: '#DEE2E6',
+          400: '#CED4DA',
+          500: '#ADB5BD',
+          600: '#868E96',
+          700: '#495057',
+          800: '#343A40',
+          900: '#212529',
+          950: '#121416',
+        },
         // Semantic
         success: {
-          50: '#F0FDF4',
-          100: '#DCFCE7',
-          200: '#BBF7D0',
-          300: '#86EFAC',
-          400: '#4ADE80',
-          500: '#22C55E',
-          600: '#16A34A',
-          700: '#15803D',
-          800: '#166534',
-          900: '#14532D',
+          50: '#F0FFF9',
+          100: '#E6FCF5',
+          200: '#B2F5E0',
+          300: '#76EDCC',
+          400: '#38E5B4',
+          500: '#12DCA0',
+          600: '#00D897',
+          700: '#00B37D',
+          800: '#008F64',
+          900: '#006B4C',
+          950: '#003D2B',
         },
         warning: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          200: '#FDE68A',
-          300: '#FCD34D',
-          400: '#FBBF24',
-          500: '#F59E0B',
-          600: '#D97706',
-          700: '#B45309',
-          800: '#92400E',
-          900: '#78350F',
+          50: '#FFFCF0',
+          100: '#FFF9DB',
+          200: '#FFE8A3',
+          300: '#FFD666',
+          400: '#FFC233',
+          500: '#FF8C00',
+          600: '#F76707',
+          700: '#CC5500',
+          800: '#A34400',
+          900: '#7A3300',
+          950: '#421C00',
         },
         error: {
-          50: '#FEF2F2',
-          100: '#FEE2E2',
-          200: '#FECACA',
-          300: '#FCA5A5',
+          50: '#FFF5F5',
+          100: '#FFE3E4',
+          200: '#FFC9CA',
+          300: '#FFA3A4',
           400: '#F87171',
-          500: '#EF4444',
-          600: '#DC2626',
-          700: '#B91C1C',
-          800: '#991B1B',
-          900: '#7F1D1D',
+          500: '#F45252',
+          600: '#F13E3E',
+          700: '#D32F2F',
+          800: '#B71C1C',
+          900: '#8B1A1A',
+          950: '#4A0E0E',
         },
         info: {
           50: '#EFF6FF',
@@ -94,15 +111,15 @@ module.exports = {
         surface: {
           DEFAULT: '#FFFFFF',
           raised: '#FFFFFF',
-          sunken: '#F3F4F6',
+          sunken: '#F1F3F5',
           overlay: 'rgba(0, 0, 0, 0.5)',
         },
         // Interactive colors
         interactive: {
-          DEFAULT: '#D38475',
-          hover: '#C06A59',
-          pressed: '#A15548',
-          disabled: '#D1D5DB',
+          DEFAULT: '#FE7070',
+          hover: '#F65F5F',
+          pressed: '#EE4E4E',
+          disabled: '#CED4DA',
         },
         // Link colors
         link: {
@@ -112,11 +129,11 @@ module.exports = {
         },
         // Destructive colors
         destructive: {
-          DEFAULT: '#EF4444',
-          hover: '#DC2626',
-          pressed: '#B91C1C',
-          text: '#991B1B',
-          bg: '#FEF2F2',
+          DEFAULT: '#F13E3E',
+          hover: '#D32F2F',
+          pressed: '#B71C1C',
+          text: '#8B1A1A',
+          bg: '#FFE3E4',
         },
       },
 
@@ -145,9 +162,28 @@ module.exports = {
         ],
       },
 
+      // Semantic typography scale (Figma Display spec)
+      fontSize: {
+        'display-lg': ['2.75rem', { lineHeight: '3.625rem' }],   // 44px / 58px
+        'display-md': ['2.25rem', { lineHeight: '2.75rem' }],    // 36px / 44px
+        'heading-1': ['1.875rem', { lineHeight: '2.5rem' }],     // 30px / 40px
+        'heading-2': ['1.75rem', { lineHeight: '2.25rem' }],     // 28px / 36px
+        'heading-3': ['1.625rem', { lineHeight: '2rem' }],       // 26px / 32px
+        'heading-4': ['1.375rem', { lineHeight: '1.875rem' }],   // 22px / 30px
+        'body-1': ['1.125rem', { lineHeight: '1.75rem' }],       // 18px / 28px
+        'body-2': ['1rem', { lineHeight: '1.625rem' }],          // 16px / 26px
+        'body-3': ['0.875rem', { lineHeight: '1.25rem' }],       // 14px / 20px
+        'label': ['0.75rem', { lineHeight: '1rem' }],            // 12px / 16px
+      },
+
+      letterSpacing: {
+        tight: '-0.02em',  // Figma -2%
+      },
+
       borderRadius: {
         card: '0.75rem',
-        button: '0.375rem',
+        button: '7px',
+        pill: '30px',
         input: '0.375rem',
       },
 
@@ -207,7 +243,7 @@ module.exports = {
         lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
         xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
         '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        focus: '0 0 0 3px rgba(211, 132, 117, 0.2)',
+        focus: '0 0 0 3px rgba(254, 112, 112, 0.2)',
         inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       },
 

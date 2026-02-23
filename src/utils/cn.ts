@@ -1,5 +1,28 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+const twMerge = extendTailwindMerge({
+  extend: {
+    classGroups: {
+      "font-size": [
+        {
+          text: [
+            "display-lg",
+            "display-md",
+            "heading-1",
+            "heading-2",
+            "heading-3",
+            "heading-4",
+            "body-1",
+            "body-2",
+            "body-3",
+            "label",
+          ],
+        },
+      ],
+    },
+  },
+});
 
 /**
  * Utility function to merge class names with Tailwind CSS conflict resolution

@@ -16,7 +16,7 @@ export const shadows = {
   /** 2XL for dramatic elevation */
   "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
   /** Focus ring shadow (primary color) */
-  focus: "0 0 0 3px rgba(211, 132, 117, 0.2)",
+  focus: "0 0 0 3px rgba(254, 112, 112, 0.2)",
   /** Inner shadow for pressed/sunken states */
   inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
 };

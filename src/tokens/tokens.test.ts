@@ -14,7 +14,7 @@ describe("Design Tokens", () => {
   describe("Colors", () => {
     it("should export primary color scale", () => {
       expect(colors.primary).toBeDefined();
-      expect(colors.primary["500"]).toBe("#D38475");
+      expect(colors.primary["500"]).toBe("#FF9292");
     });
 
     it("should export full primary color scale (50-950)", () => {
@@ -69,7 +69,7 @@ describe("Design Tokens", () => {
 
     it("should export interactive colors", () => {
       expect(colors.interactive).toBeDefined();
-      expect(colors.interactive.default).toBe("#D38475");
+      expect(colors.interactive.default).toBe("#FE7070");
       expect(colors.interactive.hover).toBeDefined();
       expect(colors.interactive.pressed).toBeDefined();
       expect(colors.interactive.disabled).toBeDefined();
@@ -84,7 +84,7 @@ describe("Design Tokens", () => {
 
     it("should export destructive colors", () => {
       expect(colors.destructive).toBeDefined();
-      expect(colors.destructive.default).toBe("#EF4444");
+      expect(colors.destructive.default).toBe("#F13E3E");
       expect(colors.destructive.hover).toBeDefined();
       expect(colors.destructive.bg).toBeDefined();
     });
@@ -92,7 +92,7 @@ describe("Design Tokens", () => {
     it("should export focus colors", () => {
       expect(colors.focus).toBeDefined();
       expect(colors.focus.ring).toBeDefined();
-      expect(colors.focus.outline).toBe("#D38475");
+      expect(colors.focus.outline).toBe("#FE7070");
     });
   });
 
@@ -207,7 +207,7 @@ describe("Design Tokens", () => {
 
     it("should export focus shadow", () => {
       expect(shadows.focus).toBeDefined();
-      expect(shadows.focus).toContain("rgba(211, 132, 117");
+      expect(shadows.focus).toContain("rgba(254, 112, 112");
     });
 
     it("should export inner shadow", () => {
@@ -236,28 +236,30 @@ describe("Design Tokens", () => {
   });
 
   describe("Text Styles", () => {
-    it("should export display styles", () => {
+    it("should export display styles (Figma spec)", () => {
       expect(textStyles.display).toBeDefined();
-      expect(textStyles.display.lg.fontSize).toBe("3.75rem");
-      expect(textStyles.display.md.fontSize).toBe("3rem");
-      expect(textStyles.display.sm.fontSize).toBe("2.25rem");
+      expect(textStyles.display.lg.fontSize).toBe("2.75rem");
+      expect(textStyles.display.md.fontSize).toBe("2.25rem");
     });
 
-    it("should export heading styles h1-h6", () => {
+    it("should export heading styles h1-h4", () => {
       expect(textStyles.heading).toBeDefined();
-      expect(textStyles.heading.h1).toBeDefined();
-      expect(textStyles.heading.h2).toBeDefined();
-      expect(textStyles.heading.h3).toBeDefined();
-      expect(textStyles.heading.h4).toBeDefined();
-      expect(textStyles.heading.h5).toBeDefined();
-      expect(textStyles.heading.h6).toBeDefined();
+      expect(textStyles.heading.h1.fontSize).toBe("1.875rem");
+      expect(textStyles.heading.h2.fontSize).toBe("1.75rem");
+      expect(textStyles.heading.h3.fontSize).toBe("1.625rem");
+      expect(textStyles.heading.h4.fontSize).toBe("1.375rem");
     });
 
-    it("should export body styles", () => {
-      expect(textStyles.body).toBeDefined();
-      expect(textStyles.body.lg.fontSize).toBe("1.125rem");
-      expect(textStyles.body.md.fontSize).toBe("1rem");
-      expect(textStyles.body.sm.fontSize).toBe("0.875rem");
+    it("should export body styles (body1, body2, body3)", () => {
+      expect(textStyles.body1.fontSize).toBe("1.125rem");
+      expect(textStyles.body2.fontSize).toBe("1rem");
+      expect(textStyles.body3.fontSize).toBe("0.875rem");
+    });
+
+    it("should export label style as single 12px size", () => {
+      expect(textStyles.label).toBeDefined();
+      expect(textStyles.label.fontSize).toBe("0.75rem");
+      expect(textStyles.label.lineHeight).toBe("1rem");
     });
 
     it("should export caption style", () => {
@@ -268,28 +270,25 @@ describe("Design Tokens", () => {
     it("should export overline style", () => {
       expect(textStyles.overline).toBeDefined();
       expect(textStyles.overline.letterSpacing).toBe("0.05em");
-      expect(textStyles.overline.fontWeight).toBe("600");
     });
 
-    it("should export label styles", () => {
-      expect(textStyles.label).toBeDefined();
-      expect(textStyles.label.lg).toBeDefined();
-      expect(textStyles.label.md).toBeDefined();
-      expect(textStyles.label.sm).toBeDefined();
+    it("should have -2% letter-spacing on all presets (except overline)", () => {
+      expect(textStyles.display.lg.letterSpacing).toBe("-0.02em");
+      expect(textStyles.heading.h1.letterSpacing).toBe("-0.02em");
+      expect(textStyles.body1.letterSpacing).toBe("-0.02em");
+      expect(textStyles.label.letterSpacing).toBe("-0.02em");
     });
 
-    it("should include all required properties in each preset", () => {
-      const requiredKeys = [
-        "fontSize",
-        "lineHeight",
-        "fontWeight",
-        "letterSpacing",
-      ];
+    it("should include size-only properties (no fontWeight)", () => {
+      const requiredKeys = ["fontSize", "lineHeight", "letterSpacing"];
       requiredKeys.forEach((key) => {
         expect(textStyles.heading.h1).toHaveProperty(key);
-        expect(textStyles.body.md).toHaveProperty(key);
+        expect(textStyles.body1).toHaveProperty(key);
         expect(textStyles.caption).toHaveProperty(key);
       });
+      // fontWeight should NOT be in presets
+      expect(textStyles.heading.h1).not.toHaveProperty("fontWeight");
+      expect(textStyles.body1).not.toHaveProperty("fontWeight");
     });
   });
 });
