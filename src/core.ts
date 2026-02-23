@@ -277,6 +277,26 @@ export {
   type SeparatorOrientation,
 } from "./components/Separator/Separator.styles";
 
+// Sidebar Style Functions
+export {
+  sidebarStyles,
+  sidebarHeaderStyles,
+  sidebarContentStyles,
+  sidebarFooterStyles,
+  sidebarGroupStyles,
+  sidebarGroupLabelStyles,
+  sidebarMenuStyles,
+  sidebarMenuButtonStyles,
+  sidebarMenuSubStyles,
+  sidebarMenuSubButtonStyles,
+  sidebarChevronStyles,
+  sidebarTriggerStyles,
+  type SidebarStyleProps,
+  type SidebarMenuButtonStyleProps,
+  type SidebarMenuSubButtonStyleProps,
+  type SidebarChevronStyleProps,
+} from "./components/Sidebar/Sidebar.styles";
+
 // Phase 4 Style Functions
 export {
   accordionStyles,
@@ -312,9 +332,11 @@ export {
 
 export {
   stepperStyles,
-  stepStyles,
+  stepSegmentStyles,
+  stepIndicatorRowStyles,
   stepIndicatorStyles,
-  stepConnectorStyles,
+  stepHalfConnectorStyles,
+  stepVerticalHalfConnectorStyles,
   stepLabelStyles,
   stepDescriptionStyles,
   type StepperStyleProps,

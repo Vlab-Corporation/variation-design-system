@@ -5,7 +5,7 @@ const meta: Meta<typeof Stepper> = {
   title: "Components/Stepper",
   component: Stepper,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   tags: ["autodocs"],
   argTypes: {

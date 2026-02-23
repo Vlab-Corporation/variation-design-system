@@ -8,9 +8,11 @@ export {
 
 export {
   stepperStyles,
-  stepStyles,
+  stepSegmentStyles,
+  stepIndicatorRowStyles,
   stepIndicatorStyles,
-  stepConnectorStyles,
+  stepHalfConnectorStyles,
+  stepVerticalHalfConnectorStyles,
   stepLabelStyles,
   stepDescriptionStyles,
   type StepperStyleProps,

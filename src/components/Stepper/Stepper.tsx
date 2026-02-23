@@ -1,8 +1,11 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import {
   stepperStyles,
+  stepSegmentStyles,
+  stepIndicatorRowStyles,
   stepIndicatorStyles,
-  stepConnectorStyles,
+  stepHalfConnectorStyles,
+  stepVerticalHalfConnectorStyles,
   stepLabelStyles,
   stepDescriptionStyles,
   type StepperOrientation,
@@ -54,6 +57,72 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
     { steps, activeStep, orientation = "horizontal", className, ...props },
     ref,
   ) => {
+    if (orientation === "horizontal") {
+      return (
+        <div
+          ref={ref}
+          role="list"
+          aria-label="Progress"
+          className={stepperStyles({ orientation, className })}
+          {...props}
+        >
+          {steps.map((step, index) => {
+            const status = getStepStatus(index, activeStep);
+            const isFirst = index === 0;
+            const isLast = index === steps.length - 1;
+            const leftCompleted = index > 0 && index - 1 < activeStep;
+            const rightCompleted = index < activeStep;
+
+            return (
+              <div
+                key={index}
+                role="listitem"
+                className={stepSegmentStyles()}
+              >
+                {/* Indicator row: [left-connector] [circle] [right-connector] */}
+                <div className={stepIndicatorRowStyles()}>
+                  <div
+                    className={stepHalfConnectorStyles(
+                      leftCompleted,
+                      !isFirst,
+                    )}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className={stepIndicatorStyles(status)}
+                    aria-current={status === "active" ? "step" : undefined}
+                  >
+                    {status === "completed" ? (
+                      <CheckIcon />
+                    ) : (
+                      (step.icon ?? index + 1)
+                    )}
+                  </div>
+                  <div
+                    className={stepHalfConnectorStyles(
+                      rightCompleted,
+                      !isLast,
+                    )}
+                    aria-hidden="true"
+                  />
+                </div>
+                {/* Label + description below, centered under circle */}
+                <div className={stepLabelStyles(status, orientation)}>
+                  {step.label}
+                </div>
+                {step.description && (
+                  <div className={stepDescriptionStyles(orientation)}>
+                    {step.description}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    // Vertical orientation — same half-connector pattern as horizontal
     return (
       <div
         ref={ref}
@@ -64,19 +133,26 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
       >
         {steps.map((step, index) => {
           const status = getStepStatus(index, activeStep);
+          const isFirst = index === 0;
           const isLast = index === steps.length - 1;
+          const topCompleted = index > 0 && index - 1 < activeStep;
+          const bottomCompleted = index < activeStep;
 
           return (
             <div
               key={index}
               role="listitem"
-              className={
-                orientation === "horizontal"
-                  ? `flex items-center ${!isLast ? "flex-1" : ""}`
-                  : "flex flex-col"
-              }
+              className="flex-1 flex flex-row gap-3"
             >
-              <div className="flex items-center">
+              {/* Left column: [top-half-connector] [circle] [bottom-half-connector] */}
+              <div className="flex flex-col items-center shrink-0">
+                <div
+                  className={stepVerticalHalfConnectorStyles(
+                    topCompleted,
+                    !isFirst,
+                  )}
+                  aria-hidden="true"
+                />
                 <div
                   className={stepIndicatorStyles(status)}
                   aria-current={status === "active" ? "step" : undefined}
@@ -87,38 +163,25 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                     (step.icon ?? index + 1)
                   )}
                 </div>
-                {orientation === "horizontal" && (
-                  <div className="ml-2">
-                    <div className={stepLabelStyles(status)}>{step.label}</div>
-                    {step.description && (
-                      <div className={stepDescriptionStyles()}>
-                        {step.description}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {orientation === "vertical" && (
-                <div className="ml-10 mt-1">
-                  <div className={stepLabelStyles(status)}>{step.label}</div>
-                  {step.description && (
-                    <div className={stepDescriptionStyles()}>
-                      {step.description}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {!isLast && (
                 <div
-                  className={stepConnectorStyles(
-                    status === "completed",
-                    orientation,
+                  className={stepVerticalHalfConnectorStyles(
+                    bottomCompleted,
+                    !isLast,
                   )}
                   aria-hidden="true"
                 />
-              )}
+              </div>
+              {/* Right column: label + description, vertically centered */}
+              <div className="flex flex-col justify-center py-2">
+                <div className={stepLabelStyles(status, orientation)}>
+                  {step.label}
+                </div>
+                {step.description && (
+                  <div className={stepDescriptionStyles(orientation)}>
+                    {step.description}
+                  </div>
+                )}
+              </div>
             </div>
           );
         })}

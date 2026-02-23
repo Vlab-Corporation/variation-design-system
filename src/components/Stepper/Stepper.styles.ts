@@ -12,53 +12,86 @@ export function stepperStyles(props: StepperStyleProps = {}): string {
   const { orientation = "horizontal", className } = props;
   return cn(
     "flex",
-    orientation === "horizontal" ? "flex-row items-center" : "flex-col",
+    orientation === "horizontal" ? "flex-row w-full" : "flex-col",
     className,
   );
 }
 
-export function stepStyles(
-  _status: StepStatus,
-  orientation: StepperOrientation = "horizontal",
-): string {
-  return cn(
-    "flex items-center",
-    orientation === "horizontal" ? "flex-row" : "flex-col",
-  );
+/** Each step column — all equal width via flex-1 */
+export function stepSegmentStyles(): string {
+  return "flex-1 flex flex-col items-center relative";
+}
+
+/**
+ * Row containing [left-half-connector] [circle] [right-half-connector].
+ * Connectors sit at indicator level, independent of label width.
+ */
+export function stepIndicatorRowStyles(): string {
+  return "flex items-center w-full";
 }
 
 export function stepIndicatorStyles(status: StepStatus): string {
   return cn(
-    "flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium shrink-0",
-    "transition-colors duration-200",
-    status === "completed" && "bg-primary-500 text-white",
-    status === "active" && "bg-primary-500 text-white ring-4 ring-primary-100",
-    status === "pending" && "bg-gray-200 text-gray-500",
+    "flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold shrink-0",
+    "transition-all duration-200 border-2",
+    status === "completed" && "bg-primary-600 border-primary-600 text-white",
+    status === "active" &&
+      "bg-white border-primary-600 text-primary-600 shadow-sm",
+    status === "pending" && "bg-white border-gray-300 text-gray-400",
   );
 }
 
-export function stepConnectorStyles(
+/**
+ * Half-connector line sitting beside the indicator circle.
+ * `visible=false` renders a transparent spacer (first-left / last-right).
+ */
+export function stepHalfConnectorStyles(
   completed: boolean,
+  visible: boolean,
+): string {
+  return cn(
+    "flex-1 h-0.5 transition-colors duration-300",
+    visible
+      ? completed
+        ? "bg-primary-600"
+        : "bg-gray-200"
+      : "bg-transparent",
+  );
+}
+
+/** Vertical half-connector — mirrors the horizontal pattern */
+export function stepVerticalHalfConnectorStyles(
+  completed: boolean,
+  visible: boolean,
+): string {
+  return cn(
+    "flex-1 w-0.5 min-h-3 transition-colors duration-300",
+    visible
+      ? completed
+        ? "bg-primary-600"
+        : "bg-gray-200"
+      : "bg-transparent",
+  );
+}
+
+export function stepLabelStyles(
+  status: StepStatus,
   orientation: StepperOrientation = "horizontal",
 ): string {
   return cn(
-    "transition-colors duration-200",
-    orientation === "horizontal"
-      ? "flex-1 h-0.5 mx-2 min-w-8"
-      : "w-0.5 my-2 min-h-8 ml-4",
-    completed ? "bg-primary-500" : "bg-gray-200",
+    "text-sm font-medium transition-colors duration-200 leading-tight",
+    orientation === "horizontal" ? "mt-2 text-center" : "",
+    status === "active" && "text-primary-700",
+    status === "completed" && "text-gray-800",
+    status === "pending" && "text-gray-400",
   );
 }
 
-export function stepLabelStyles(status: StepStatus): string {
+export function stepDescriptionStyles(
+  orientation: StepperOrientation = "horizontal",
+): string {
   return cn(
-    "text-sm font-medium mt-2",
-    status === "active" && "text-primary-600",
-    status === "completed" && "text-gray-900",
-    status === "pending" && "text-gray-500",
+    "text-xs text-gray-500 mt-0.5 leading-tight",
+    orientation === "horizontal" ? "text-center" : "",
   );
-}
-
-export function stepDescriptionStyles(): string {
-  return "text-xs text-gray-500 mt-0.5";
 }

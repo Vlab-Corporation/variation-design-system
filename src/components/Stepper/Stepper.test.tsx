@@ -34,7 +34,7 @@ describe("Stepper Component", () => {
     it("should mark current step as active", () => {
       render(<Stepper steps={steps} activeStep={1} />);
       const activeIndicator = screen.getByText("2").closest("div");
-      expect(activeIndicator).toHaveClass("ring-4");
+      expect(activeIndicator).toHaveClass("border-primary-600");
     });
 
     it("should have aria-current on active step", () => {
