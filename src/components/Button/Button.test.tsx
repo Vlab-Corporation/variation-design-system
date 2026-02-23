@@ -26,26 +26,22 @@ describe("Button Component", () => {
     it("should render primary variant by default", () => {
       render(<Button>Primary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("bg-primary-500");
+      expect(button).toHaveClass("bg-gray-900");
+      expect(button).toHaveClass("text-white");
     });
 
-    it("should render secondary variant", () => {
+    it("should render secondary variant with border", () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("bg-secondary-100");
-    });
-
-    it("should render outline variant", () => {
-      render(<Button variant="outline">Outline</Button>);
-      const button = screen.getByRole("button");
-      expect(button).toHaveClass("border");
-      expect(button).toHaveClass("border-primary-500");
+      expect(button).toHaveClass("border-gray-400");
+      expect(button).toHaveClass("text-gray-800");
     });
 
     it("should render ghost variant", () => {
       render(<Button variant="ghost">Ghost</Button>);
       const button = screen.getByRole("button");
       expect(button).toHaveClass("bg-transparent");
+      expect(button).toHaveClass("text-gray-700");
     });
   });
 
@@ -53,24 +49,93 @@ describe("Button Component", () => {
     it("should render small size", () => {
       render(<Button size="sm">Small</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("px-3");
-      expect(button).toHaveClass("py-1.5");
+      expect(button).toHaveClass("py-2");
+      expect(button).toHaveClass("px-6");
       expect(button).toHaveClass("text-sm");
+      expect(button).toHaveClass("font-medium");
     });
 
     it("should render medium size by default", () => {
       render(<Button>Medium</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("px-4");
-      expect(button).toHaveClass("py-2");
+      expect(button).toHaveClass("py-3");
+      expect(button).toHaveClass("px-6");
+      expect(button).toHaveClass("text-base");
+      expect(button).toHaveClass("font-medium");
     });
 
     it("should render large size", () => {
       render(<Button size="lg">Large</Button>);
       const button = screen.getByRole("button");
+      expect(button).toHaveClass("py-3.5");
       expect(button).toHaveClass("px-6");
-      expect(button).toHaveClass("py-3");
       expect(button).toHaveClass("text-lg");
+      expect(button).toHaveClass("font-semibold");
+    });
+  });
+
+  describe("Shapes", () => {
+    it("should render rounded shape by default", () => {
+      render(<Button>Rounded</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("rounded-button");
+    });
+
+    it("should render pill shape", () => {
+      render(<Button shape="pill">Pill</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("rounded-pill");
+    });
+  });
+
+  describe("Icons", () => {
+    it("should render left icon", () => {
+      render(
+        <Button leftIcon={<svg data-testid="left-svg" />}>With Icon</Button>,
+      );
+      expect(screen.getByTestId("button-left-icon")).toBeInTheDocument();
+      expect(screen.getByTestId("left-svg")).toBeInTheDocument();
+    });
+
+    it("should render right icon", () => {
+      render(
+        <Button rightIcon={<svg data-testid="right-svg" />}>With Icon</Button>,
+      );
+      expect(screen.getByTestId("button-right-icon")).toBeInTheDocument();
+      expect(screen.getByTestId("right-svg")).toBeInTheDocument();
+    });
+
+    it("should render both icons", () => {
+      render(
+        <Button
+          leftIcon={<svg data-testid="left-svg" />}
+          rightIcon={<svg data-testid="right-svg" />}
+        >
+          Both Icons
+        </Button>,
+      );
+      expect(screen.getByTestId("button-left-icon")).toBeInTheDocument();
+      expect(screen.getByTestId("button-right-icon")).toBeInTheDocument();
+    });
+
+    it("should adjust padding when left icon is present", () => {
+      render(
+        <Button leftIcon={<svg />} size="md">
+          Icon
+        </Button>,
+      );
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("pl-[18px]");
+    });
+
+    it("should adjust padding when right icon is present", () => {
+      render(
+        <Button rightIcon={<svg />} size="md">
+          Icon
+        </Button>,
+      );
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("pr-[18px]");
     });
   });
 
@@ -79,8 +144,35 @@ describe("Button Component", () => {
       render(<Button disabled>Disabled</Button>);
       const button = screen.getByRole("button");
       expect(button).toBeDisabled();
-      expect(button).toHaveClass("opacity-50");
       expect(button).toHaveClass("cursor-not-allowed");
+    });
+
+    it("should apply disabled colors for primary variant", () => {
+      render(<Button disabled>Disabled</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("bg-gray-200");
+      expect(button).toHaveClass("text-gray-500");
+    });
+
+    it("should apply disabled colors for secondary variant", () => {
+      render(
+        <Button variant="secondary" disabled>
+          Disabled
+        </Button>,
+      );
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("border-gray-200");
+      expect(button).toHaveClass("text-gray-400");
+    });
+
+    it("should apply disabled colors for ghost variant", () => {
+      render(
+        <Button variant="ghost" disabled>
+          Disabled
+        </Button>,
+      );
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("text-gray-400");
     });
 
     it("should show loading state", () => {
@@ -94,6 +186,16 @@ describe("Button Component", () => {
       render(<Button loading>Hidden Text</Button>);
       const text = screen.getByText("Hidden Text");
       expect(text).toHaveClass("invisible");
+    });
+
+    it("should hide icons when loading", () => {
+      render(
+        <Button loading leftIcon={<svg />} rightIcon={<svg />}>
+          Loading
+        </Button>,
+      );
+      expect(screen.getByTestId("button-left-icon")).toHaveClass("invisible");
+      expect(screen.getByTestId("button-right-icon")).toHaveClass("invisible");
     });
   });
 
@@ -148,24 +250,18 @@ describe("Button Component", () => {
     });
   });
 
-  describe("Animations", () => {
-    it("should have transition classes for hover effects", () => {
-      render(<Button>Animated</Button>);
+  describe("Styling", () => {
+    it("should have transition classes", () => {
+      render(<Button>Styled</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("transition-all");
+      expect(button).toHaveClass("transition-colors");
       expect(button).toHaveClass("duration-200");
     });
 
-    it("should have hover scale transform", () => {
-      render(<Button>Hover</Button>);
+    it("should have tracking-tight for letter spacing", () => {
+      render(<Button>Tracked</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("hover:scale-[1.02]");
-    });
-
-    it("should have active scale transform", () => {
-      render(<Button>Active</Button>);
-      const button = screen.getByRole("button");
-      expect(button).toHaveClass("active:scale-[0.98]");
+      expect(button).toHaveClass("tracking-tight");
     });
   });
 
