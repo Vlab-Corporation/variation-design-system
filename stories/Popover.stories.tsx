@@ -92,10 +92,10 @@ export const Controlled: Story = {
       return (
         <div className="flex flex-col items-center gap-4">
           <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setOpen(true)}>
+            <Button variant="secondary" onClick={() => setOpen(true)}>
               Open
             </Button>
-            <Button variant="outline" onClick={() => setOpen(false)}>
+            <Button variant="secondary" onClick={() => setOpen(false)}>
               Close
             </Button>
           </div>
@@ -131,7 +131,7 @@ export const RichContent: Story = {
         </div>
       }
     >
-      <Button variant="outline">User Menu</Button>
+      <Button variant="secondary">User Menu</Button>
     </Popover>
   ),
 };
@@ -143,25 +143,25 @@ export const AllPlacements: Story = {
       <div />
       <div className="flex justify-center">
         <Popover content={<PopoverContent />} placement="top">
-          <Button variant="outline" size="sm">Top</Button>
+          <Button variant="secondary" size="sm">Top</Button>
         </Popover>
       </div>
       <div />
       <div className="flex justify-end">
         <Popover content={<PopoverContent />} placement="left">
-          <Button variant="outline" size="sm">Left</Button>
+          <Button variant="secondary" size="sm">Left</Button>
         </Popover>
       </div>
       <div />
       <div className="flex justify-start">
         <Popover content={<PopoverContent />} placement="right">
-          <Button variant="outline" size="sm">Right</Button>
+          <Button variant="secondary" size="sm">Right</Button>
         </Popover>
       </div>
       <div />
       <div className="flex justify-center">
         <Popover content={<PopoverContent />} placement="bottom">
-          <Button variant="outline" size="sm">Bottom</Button>
+          <Button variant="secondary" size="sm">Bottom</Button>
         </Popover>
       </div>
       <div />

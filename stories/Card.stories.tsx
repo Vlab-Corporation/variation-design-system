@@ -95,7 +95,7 @@ export const FullComposition: Story = {
         </p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" size="sm">
+        <Button variant="secondary" size="sm">
           Cancel
         </Button>
         <Button size="sm">Confirm</Button>

@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 // Default
 export const Default: Story = {
   render: () => (
-    <DropdownMenu trigger={<Button variant="outline">Open Menu</Button>}>
+    <DropdownMenu trigger={<Button variant="secondary">Open Menu</Button>}>
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem onSelect={() => console.log("Profile")}>
@@ -54,7 +54,7 @@ export const AlignEnd: Story = {
   render: () => (
     <div className="flex justify-end w-80">
       <DropdownMenu
-        trigger={<Button variant="outline">Align End</Button>}
+        trigger={<Button variant="secondary">Align End</Button>}
         align="end"
       >
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
@@ -76,7 +76,7 @@ export const AlignEnd: Story = {
 // With Destructive Item
 export const WithDestructiveItem: Story = {
   render: () => (
-    <DropdownMenu trigger={<Button variant="outline">More Actions</Button>}>
+    <DropdownMenu trigger={<Button variant="secondary">More Actions</Button>}>
       <DropdownMenuLabel>File Actions</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem onSelect={() => console.log("Download")}>

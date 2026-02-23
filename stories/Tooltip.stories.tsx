@@ -41,7 +41,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     content: "This is a tooltip",
-    children: <Button variant="outline">Hover me</Button>,
+    children: <Button variant="secondary">Hover me</Button>,
   },
 };
 
@@ -50,18 +50,18 @@ export const Placements: Story = {
   render: () => (
     <div className="flex flex-col items-center gap-12 py-16">
       <Tooltip content="Tooltip on top" placement="top">
-        <Button variant="outline">Top</Button>
+        <Button variant="secondary">Top</Button>
       </Tooltip>
       <div className="flex gap-24">
         <Tooltip content="Tooltip on left" placement="left">
-          <Button variant="outline">Left</Button>
+          <Button variant="secondary">Left</Button>
         </Tooltip>
         <Tooltip content="Tooltip on right" placement="right">
-          <Button variant="outline">Right</Button>
+          <Button variant="secondary">Right</Button>
         </Tooltip>
       </div>
       <Tooltip content="Tooltip on bottom" placement="bottom">
-        <Button variant="outline">Bottom</Button>
+        <Button variant="secondary">Bottom</Button>
       </Tooltip>
     </div>
   ),
@@ -72,6 +72,6 @@ export const NoArrow: Story = {
   args: {
     content: "Tooltip without arrow",
     arrow: false,
-    children: <Button variant="outline">No arrow</Button>,
+    children: <Button variant="secondary">No arrow</Button>,
   },
 };

@@ -38,7 +38,7 @@ function ToastTriggers() {
         Show Success
       </Button>
       <Button
-        variant="outline"
+        variant="secondary"
         onClick={() =>
           addToast({
             variant: "error",
@@ -50,7 +50,7 @@ function ToastTriggers() {
         Show Error
       </Button>
       <Button
-        variant="outline"
+        variant="secondary"
         onClick={() =>
           addToast({
             variant: "warning",
@@ -94,7 +94,7 @@ function ToastTriggersNoTitle() {
         Success (no title)
       </Button>
       <Button
-        variant="outline"
+        variant="secondary"
         onClick={() =>
           addToast({
             variant: "error",

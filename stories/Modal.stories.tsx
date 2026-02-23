@@ -77,7 +77,7 @@ export const WithFooter: Story = {
             title="Confirm Action"
             footer={
               <div className="flex justify-end gap-3">
-                <Button variant="outline" onClick={() => setOpen(false)}>
+                <Button variant="secondary" onClick={() => setOpen(false)}>
                   Cancel
                 </Button>
                 <Button variant="primary" onClick={() => setOpen(false)}>
