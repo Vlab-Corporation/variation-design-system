@@ -27,7 +27,10 @@ export interface SidebarChevronStyleProps {
 
 // --- Style Functions ---
 
-export function sidebarStyles({ collapsed, className }: SidebarStyleProps = {}) {
+export function sidebarStyles({
+  collapsed,
+  className,
+}: SidebarStyleProps = {}) {
   return cn(
     "flex h-full flex-col bg-rwPrimary-100 transition-[width] duration-normal",
     collapsed ? "w-16" : "w-[284px]",
@@ -35,15 +38,21 @@ export function sidebarStyles({ collapsed, className }: SidebarStyleProps = {}) 
   );
 }
 
-export function sidebarHeaderStyles({ className }: { className?: string } = {}) {
+export function sidebarHeaderStyles({
+  className,
+}: { className?: string } = {}) {
   return cn("shrink-0 px-4 py-3", className);
 }
 
-export function sidebarContentStyles({ className }: { className?: string } = {}) {
+export function sidebarContentStyles({
+  className,
+}: { className?: string } = {}) {
   return cn("flex-1 overflow-y-auto py-2", className);
 }
 
-export function sidebarFooterStyles({ className }: { className?: string } = {}) {
+export function sidebarFooterStyles({
+  className,
+}: { className?: string } = {}) {
   return cn("shrink-0 px-4 py-3", className);
 }
 
@@ -51,7 +60,9 @@ export function sidebarGroupStyles({ className }: { className?: string } = {}) {
   return cn("px-4 pb-4", className);
 }
 
-export function sidebarGroupLabelStyles({ className }: { className?: string } = {}) {
+export function sidebarGroupLabelStyles({
+  className,
+}: { className?: string } = {}) {
   return cn("mb-1 px-2 text-label font-medium text-gray-500", className);
 }
 
@@ -76,7 +87,9 @@ export function sidebarMenuButtonStyles({
   );
 }
 
-export function sidebarMenuSubStyles({ className }: { className?: string } = {}) {
+export function sidebarMenuSubStyles({
+  className,
+}: { className?: string } = {}) {
   return cn("flex flex-col gap-0.5 pl-[38px]", className);
 }
 
@@ -114,7 +127,9 @@ export function sidebarChevronStyles({
   );
 }
 
-export function sidebarTriggerStyles({ className }: { className?: string } = {}) {
+export function sidebarTriggerStyles({
+  className,
+}: { className?: string } = {}) {
   return cn(
     "inline-flex h-8 w-8 items-center justify-center rounded-button transition-colors duration-fast",
     "hover:bg-rwPrimary-200",

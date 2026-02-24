@@ -18,11 +18,13 @@ import {
   SidebarMenuSubButton,
 } from ".";
 
-function renderSidebar(props: {
-  defaultCollapsed?: boolean;
-  collapsed?: boolean;
-  onCollapsedChange?: (v: boolean) => void;
-} = {}) {
+function renderSidebar(
+  props: {
+    defaultCollapsed?: boolean;
+    collapsed?: boolean;
+    onCollapsedChange?: (v: boolean) => void;
+  } = {},
+) {
   return render(
     <SidebarProvider {...props}>
       <Sidebar>
@@ -37,7 +39,11 @@ function renderSidebar(props: {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem defaultExpanded>
-                <SidebarMenuButton icon={<span>👥</span>} hasSub tooltip="Members">
+                <SidebarMenuButton
+                  icon={<span>👥</span>}
+                  hasSub
+                  tooltip="Members"
+                >
                   Members
                 </SidebarMenuButton>
                 <SidebarMenuSub>
@@ -47,7 +53,9 @@ function renderSidebar(props: {
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton active>Bookmarks</SidebarMenuSubButton>
+                    <SidebarMenuSubButton active>
+                      Bookmarks
+                    </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                 </SidebarMenuSub>
               </SidebarMenuItem>
@@ -354,9 +362,9 @@ describe("Accessibility", () => {
 
   it("SidebarTrigger has aria-expanded", () => {
     renderSidebar();
-    const triggers = screen.getAllByRole("button").filter(
-      (b) => b.getAttribute("aria-expanded") !== null,
-    );
+    const triggers = screen
+      .getAllByRole("button")
+      .filter((b) => b.getAttribute("aria-expanded") !== null);
     expect(triggers.length).toBeGreaterThanOrEqual(1);
   });
 });

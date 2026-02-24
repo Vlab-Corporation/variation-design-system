@@ -77,7 +77,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {leftIcon && (
           <span
             data-testid="button-left-icon"
-            className={cn("inline-flex items-center justify-center shrink-0", iconSize, "[&>svg]:w-full [&>svg]:h-full", loading && "invisible")}
+            className={cn(
+              "inline-flex items-center justify-center shrink-0",
+              iconSize,
+              "[&>svg]:w-full [&>svg]:h-full",
+              loading && "invisible",
+            )}
           >
             {leftIcon}
           </span>
@@ -86,7 +91,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon && (
           <span
             data-testid="button-right-icon"
-            className={cn("inline-flex items-center justify-center shrink-0", iconSize, "[&>svg]:w-full [&>svg]:h-full", loading && "invisible")}
+            className={cn(
+              "inline-flex items-center justify-center shrink-0",
+              iconSize,
+              "[&>svg]:w-full [&>svg]:h-full",
+              loading && "invisible",
+            )}
           >
             {rightIcon}
           </span>

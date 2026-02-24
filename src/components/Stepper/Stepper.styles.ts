@@ -51,11 +51,7 @@ export function stepHalfConnectorStyles(
 ): string {
   return cn(
     "flex-1 h-0.5 transition-colors duration-300",
-    visible
-      ? completed
-        ? "bg-primary-600"
-        : "bg-gray-200"
-      : "bg-transparent",
+    visible ? (completed ? "bg-primary-600" : "bg-gray-200") : "bg-transparent",
   );
 }
 
@@ -66,11 +62,7 @@ export function stepVerticalHalfConnectorStyles(
 ): string {
   return cn(
     "flex-1 w-0.5 min-h-3 transition-colors duration-300",
-    visible
-      ? completed
-        ? "bg-primary-600"
-        : "bg-gray-200"
-      : "bg-transparent",
+    visible ? (completed ? "bg-primary-600" : "bg-gray-200") : "bg-transparent",
   );
 }
 

@@ -92,7 +92,11 @@ export const SidebarGroupLabel = forwardRef<
   if (collapsed) return null;
 
   return (
-    <div ref={ref} className={sidebarGroupLabelStyles({ className })} {...props}>
+    <div
+      ref={ref}
+      className={sidebarGroupLabelStyles({ className })}
+      {...props}
+    >
       {children}
     </div>
   );

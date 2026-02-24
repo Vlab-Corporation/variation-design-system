@@ -11,7 +11,14 @@ import {
   type TextAlign,
 } from "./Typography.styles";
 
-export type { DisplaySize, HeadingLevel, TextSize, TextWeight, TextColor, TextAlign };
+export type {
+  DisplaySize,
+  HeadingLevel,
+  TextSize,
+  TextWeight,
+  TextColor,
+  TextAlign,
+};
 
 export interface DisplayProps extends HTMLAttributes<HTMLHeadingElement> {
   /** Display size */

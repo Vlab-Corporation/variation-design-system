@@ -182,8 +182,7 @@ SidebarMenuItem.displayName = "SidebarMenuItem";
 
 // --- SidebarMenuButton ---
 
-export interface SidebarMenuButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SidebarMenuButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon element (24x24 recommended) */
   icon?: ReactNode;
   /** Active state */
@@ -310,8 +309,7 @@ SidebarMenuSubItem.displayName = "SidebarMenuSubItem";
 
 // --- SidebarMenuSubButton ---
 
-export interface SidebarMenuSubButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SidebarMenuSubButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Active state */
   active?: boolean;
   /** Header style (B2 SemiBold) vs list style (B3 Medium) */

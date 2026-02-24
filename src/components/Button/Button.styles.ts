@@ -8,7 +8,8 @@ export const buttonVariants: Record<ButtonVariant, string> = {
   primary: "bg-gray-900 text-white hover:bg-gray-700 focus:ring-gray-900/20",
   secondary:
     "bg-transparent border-[1.5px] border-gray-400 text-gray-800 hover:bg-gray-50 focus:ring-gray-400/20",
-  ghost: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500/20",
+  ghost:
+    "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500/20",
 };
 
 export const buttonDisabledVariants: Record<ButtonVariant, string> = {

@@ -105,54 +105,54 @@ Sidebar.displayName = "Sidebar";
 
 // --- SidebarTrigger ---
 
-export interface SidebarTriggerProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface SidebarTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Tooltip label for collapsed mode */
   tooltip?: string;
 }
 
-export const SidebarTrigger = forwardRef<HTMLButtonElement, SidebarTriggerProps>(
-  ({ className, tooltip, children, ...props }, ref) => {
-    const { collapsed, toggleCollapsed } = useSidebarContext();
+export const SidebarTrigger = forwardRef<
+  HTMLButtonElement,
+  SidebarTriggerProps
+>(({ className, tooltip, children, ...props }, ref) => {
+  const { collapsed, toggleCollapsed } = useSidebarContext();
 
-    const button = (
-      <button
-        ref={ref}
-        type="button"
-        aria-expanded={!collapsed}
-        onClick={toggleCollapsed}
-        className={sidebarTriggerStyles({ className })}
-        {...props}
-      >
-        {children ?? (
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 5h14M3 10h14M3 15h14"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        )}
-      </button>
+  const button = (
+    <button
+      ref={ref}
+      type="button"
+      aria-expanded={!collapsed}
+      onClick={toggleCollapsed}
+      className={sidebarTriggerStyles({ className })}
+      {...props}
+    >
+      {children ?? (
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 5h14M3 10h14M3 15h14"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      )}
+    </button>
+  );
+
+  if (collapsed && tooltip) {
+    return (
+      <Tooltip content={tooltip} placement="right">
+        {button}
+      </Tooltip>
     );
+  }
 
-    if (collapsed && tooltip) {
-      return (
-        <Tooltip content={tooltip} placement="right">
-          {button}
-        </Tooltip>
-      );
-    }
-
-    return button;
-  },
-);
+  return button;
+});
 
 SidebarTrigger.displayName = "SidebarTrigger";

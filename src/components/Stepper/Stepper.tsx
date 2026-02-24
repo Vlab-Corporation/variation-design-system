@@ -74,18 +74,11 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
             const rightCompleted = index < activeStep;
 
             return (
-              <div
-                key={index}
-                role="listitem"
-                className={stepSegmentStyles()}
-              >
+              <div key={index} role="listitem" className={stepSegmentStyles()}>
                 {/* Indicator row: [left-connector] [circle] [right-connector] */}
                 <div className={stepIndicatorRowStyles()}>
                   <div
-                    className={stepHalfConnectorStyles(
-                      leftCompleted,
-                      !isFirst,
-                    )}
+                    className={stepHalfConnectorStyles(leftCompleted, !isFirst)}
                     aria-hidden="true"
                   />
                   <div
@@ -99,10 +92,7 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(
                     )}
                   </div>
                   <div
-                    className={stepHalfConnectorStyles(
-                      rightCompleted,
-                      !isLast,
-                    )}
+                    className={stepHalfConnectorStyles(rightCompleted, !isLast)}
                     aria-hidden="true"
                   />
                 </div>
