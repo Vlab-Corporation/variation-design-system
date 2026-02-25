@@ -224,7 +224,7 @@ export const KanbanBoard = forwardRef<HTMLDivElement, KanbanBoardProps>(
                 data-column-content
                 className={cn(
                   "flex-1 overflow-y-auto p-2 pt-0 space-y-2 min-h-[100px] transition-colors",
-                  isDragOver && "bg-primary-50",
+                  isDragOver && "bg-accent-50",
                 )}
                 onDragOver={(e) => handleDragOver(e, column.id)}
                 onDragLeave={handleDragLeave}
@@ -245,7 +245,7 @@ export const KanbanBoard = forwardRef<HTMLDivElement, KanbanBoardProps>(
                         "bg-white rounded-md shadow-sm p-3 cursor-pointer",
                         "transition-all duration-150",
                         "hover:shadow-md",
-                        "focus:outline-none focus:ring-2 focus:ring-primary-500",
+                        "focus:outline-none focus:ring-2 focus:ring-accent-500",
                         draggedCardId === card.id && "opacity-50",
                       )}
                       onClick={() => onCardClick?.(card)}
@@ -376,7 +376,7 @@ export const KanbanCard = forwardRef<HTMLDivElement, KanbanCardProps>(
           "bg-white rounded-md shadow-sm p-3 cursor-pointer",
           "transition-all duration-150",
           "hover:shadow-md",
-          "focus:outline-none focus:ring-2 focus:ring-primary-500",
+          "focus:outline-none focus:ring-2 focus:ring-accent-500",
           className,
         )}
         {...props}

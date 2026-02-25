@@ -65,7 +65,7 @@ export function modalCloseStyles(className?: string): string {
     "inline-flex items-center justify-center rounded-button p-1",
     "text-gray-400 hover:text-gray-600",
     "transition-colors duration-200",
-    "focus:outline-none focus:ring-2 focus:ring-primary-500/20",
+    "focus:outline-none focus:ring-2 focus:ring-accent-500/20",
     className,
   );
 }

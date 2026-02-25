@@ -39,7 +39,7 @@ describe("Pagination Component", () => {
 
     it("should apply active styling", () => {
       render(<Pagination page={2} totalPages={5} />);
-      expect(screen.getByLabelText("Page 2")).toHaveClass("bg-primary-500");
+      expect(screen.getByLabelText("Page 2")).toHaveClass("bg-accent-500");
     });
   });
 

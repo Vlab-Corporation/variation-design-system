@@ -207,7 +207,7 @@ describe("PageTree Component", () => {
       render(<PageTree pages={mockPages} selectedId="1" />);
       const homeItem = screen.getByText("Home").closest('[role="treeitem"]');
       expect(homeItem?.querySelector("[data-tree-item-content]")).toHaveClass(
-        "bg-primary-100",
+        "bg-accent-100",
       );
     });
 
@@ -218,7 +218,7 @@ describe("PageTree Component", () => {
         .closest('[role="treeitem"]');
       expect(
         settingsItem?.querySelector("[data-tree-item-content]"),
-      ).not.toHaveClass("bg-primary-100");
+      ).not.toHaveClass("bg-accent-100");
     });
 
     it("should call onSelect with child page", () => {

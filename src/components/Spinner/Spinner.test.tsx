@@ -59,7 +59,7 @@ describe("Spinner Component", () => {
     it("should render primary color by default", () => {
       render(<Spinner />);
       const spinner = screen.getByRole("status");
-      expect(spinner).toHaveClass("text-primary-500");
+      expect(spinner).toHaveClass("text-accent-500");
     });
 
     it("should render white color", () => {

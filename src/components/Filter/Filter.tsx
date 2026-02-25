@@ -76,7 +76,7 @@ export const FilterTrigger = forwardRef<HTMLButtonElement, FilterTriggerProps>(
           "flex items-center gap-2 px-3 py-1.5 text-sm font-medium",
           "border border-gray-200 rounded-md",
           "hover:bg-gray-50 transition-colors",
-          "focus:outline-none focus:ring-2 focus:ring-primary-500",
+          "focus:outline-none focus:ring-2 focus:ring-accent-500",
           className,
         )}
         {...props}
@@ -175,7 +175,7 @@ export const FilterItem = forwardRef<HTMLLabelElement, FilterItemProps>(
           type="checkbox"
           checked={isChecked}
           onChange={handleChange}
-          className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+          className="rounded border-gray-300 text-accent-600 focus:ring-accent-500"
         />
         <span className="text-sm text-gray-700">{label}</span>
       </label>
@@ -210,7 +210,7 @@ export const FilterInput = forwardRef<HTMLInputElement, FilterInputProps>(
         placeholder={placeholder}
         className={cn(
           "w-full px-2 py-1.5 text-sm border border-gray-200 rounded",
-          "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
+          "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent",
           className,
         )}
         {...props}

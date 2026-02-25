@@ -18,7 +18,7 @@ describe("Tag Component", () => {
 
     it("should apply primary variant", () => {
       render(<Tag variant="primary">Tag</Tag>);
-      expect(screen.getByText("Tag")).toHaveClass("bg-primary-100");
+      expect(screen.getByText("Tag")).toHaveClass("bg-accent-100");
     });
 
     it("should apply success variant", () => {

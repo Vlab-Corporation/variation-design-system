@@ -264,7 +264,7 @@ export const DataTable = forwardRef<
                 key={rowId}
                 className={cn(
                   "border-b border-gray-100 transition-colors",
-                  isSelected && "bg-primary-50",
+                  isSelected && "bg-accent-50",
                   isStriped && "bg-gray-50",
                   hoverable && "hover:bg-gray-50",
                   onRowClick && "cursor-pointer",
@@ -363,7 +363,7 @@ export const DataTableRow = forwardRef<HTMLTableRowElement, DataTableRowProps>(
         ref={ref}
         className={cn(
           "border-b border-gray-100 transition-colors",
-          selected && "bg-primary-50",
+          selected && "bg-accent-50",
           className,
         )}
         {...props}

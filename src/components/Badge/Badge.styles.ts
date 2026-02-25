@@ -16,9 +16,9 @@ export const badgeVariants: Record<
 > = {
   default: { bg: "bg-gray-100", text: "text-gray-800", dot: "bg-gray-500" },
   primary: {
-    bg: "bg-primary-100",
-    text: "text-primary-800",
-    dot: "bg-primary-500",
+    bg: "bg-accent-100",
+    text: "text-accent-800",
+    dot: "bg-accent-500",
   },
   success: { bg: "bg-green-100", text: "text-green-800", dot: "bg-green-500" },
   warning: {

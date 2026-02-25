@@ -33,9 +33,9 @@ export function paginationItemStyles(
   return cn(
     "inline-flex items-center justify-center rounded-button font-medium",
     "transition-colors duration-200",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/20",
     paginationSizes[size],
-    active ? "bg-primary-500 text-white" : "text-gray-700 hover:bg-gray-100",
+    active ? "bg-accent-500 text-white" : "text-gray-700 hover:bg-gray-100",
     disabled && "opacity-50 cursor-not-allowed pointer-events-none",
     !disabled && "cursor-pointer",
     className,

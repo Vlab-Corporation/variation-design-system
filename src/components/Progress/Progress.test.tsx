@@ -78,7 +78,7 @@ describe("Progress Component", () => {
     it("should apply default variant", () => {
       render(<Progress value={50} />);
       const inner = screen.getByRole("progressbar").firstChild as HTMLElement;
-      expect(inner).toHaveClass("bg-primary-500");
+      expect(inner).toHaveClass("bg-accent-500");
     });
 
     it("should apply success variant", () => {

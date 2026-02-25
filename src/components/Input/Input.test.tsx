@@ -181,7 +181,7 @@ describe("Input Component", () => {
       render(<Input />);
       const input = screen.getByRole("textbox");
       expect(input).toHaveClass("focus:ring-2");
-      expect(input).toHaveClass("focus:ring-primary-500/20");
+      expect(input).toHaveClass("focus:ring-accent-500/20");
     });
   });
 

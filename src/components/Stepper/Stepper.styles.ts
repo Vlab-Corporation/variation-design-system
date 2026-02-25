@@ -34,9 +34,9 @@ export function stepIndicatorStyles(status: StepStatus): string {
   return cn(
     "flex items-center justify-center w-8 h-8 rounded-full text-sm font-semibold shrink-0",
     "transition-all duration-200 border-2",
-    status === "completed" && "bg-primary-600 border-primary-600 text-white",
+    status === "completed" && "bg-accent-600 border-accent-600 text-white",
     status === "active" &&
-      "bg-white border-primary-600 text-primary-600 shadow-sm",
+      "bg-white border-accent-600 text-accent-600 shadow-sm",
     status === "pending" && "bg-white border-gray-300 text-gray-400",
   );
 }
@@ -51,7 +51,7 @@ export function stepHalfConnectorStyles(
 ): string {
   return cn(
     "flex-1 h-0.5 transition-colors duration-300",
-    visible ? (completed ? "bg-primary-600" : "bg-gray-200") : "bg-transparent",
+    visible ? (completed ? "bg-accent-600" : "bg-gray-200") : "bg-transparent",
   );
 }
 
@@ -62,7 +62,7 @@ export function stepVerticalHalfConnectorStyles(
 ): string {
   return cn(
     "flex-1 w-0.5 min-h-3 transition-colors duration-300",
-    visible ? (completed ? "bg-primary-600" : "bg-gray-200") : "bg-transparent",
+    visible ? (completed ? "bg-accent-600" : "bg-gray-200") : "bg-transparent",
   );
 }
 
@@ -73,7 +73,7 @@ export function stepLabelStyles(
   return cn(
     "text-sm font-medium transition-colors duration-200 leading-tight",
     orientation === "horizontal" ? "mt-2 text-center" : "",
-    status === "active" && "text-primary-700",
+    status === "active" && "text-accent-700",
     status === "completed" && "text-gray-800",
     status === "pending" && "text-gray-400",
   );

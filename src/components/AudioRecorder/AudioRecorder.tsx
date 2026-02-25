@@ -100,7 +100,7 @@ export const RecordButton = forwardRef<HTMLButtonElement, RecordButtonProps>(
           isRecording
             ? "bg-red-500 text-white animate-pulse"
             : "bg-gray-100 text-gray-600 hover:bg-gray-200",
-          "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500",
+          "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500",
           className,
         )}
         {...props}

@@ -10,7 +10,7 @@ export const progressSizes: Record<ProgressSize, string> = {
 };
 
 export const progressVariants: Record<ProgressVariant, string> = {
-  default: "bg-primary-500",
+  default: "bg-accent-500",
   success: "bg-green-500",
   warning: "bg-yellow-500",
   error: "bg-red-500",

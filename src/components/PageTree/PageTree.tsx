@@ -177,8 +177,8 @@ export const PageTree = forwardRef<HTMLDivElement, PageTreeProps>(
               "flex items-center gap-1 py-1.5 pr-2 rounded-md cursor-pointer",
               "transition-colors duration-150",
               "hover:bg-gray-100",
-              isSelected && "bg-primary-100 text-primary-900",
-              "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1",
+              isSelected && "bg-accent-100 text-accent-900",
+              "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-1",
             )}
             onClick={() => onSelect?.(page)}
             onKeyDown={(e) => handleKeyDown(e, page, level)}
@@ -313,7 +313,7 @@ export const PageTreeItem = forwardRef<HTMLLIElement, PageTreeItemProps>(
             "flex items-center gap-1 py-1.5 px-2 rounded-md cursor-pointer",
             "transition-colors duration-150",
             "hover:bg-gray-100",
-            selected && "bg-primary-100 text-primary-900",
+            selected && "bg-accent-100 text-accent-900",
           )}
         >
           {children}

@@ -39,9 +39,9 @@ export function switchTrackStyles(props: SwitchTrackStyleProps = {}): string {
   return cn(
     "relative inline-flex items-center shrink-0 rounded-full cursor-pointer p-0.5",
     "transition-colors duration-200 ease-out",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20 focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/20 focus-visible:ring-offset-2",
     switchTrackSizes[size],
-    checked ? "bg-primary-500" : "bg-gray-300",
+    checked ? "bg-accent-500" : "bg-gray-300",
     disabled && "opacity-50 cursor-not-allowed",
     className,
   );

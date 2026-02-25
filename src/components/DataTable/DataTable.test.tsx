@@ -215,7 +215,7 @@ describe("DataTable Component", () => {
       );
 
       const rows = screen.getAllByRole("row");
-      expect(rows[1]).toHaveClass("bg-primary-50");
+      expect(rows[1]).toHaveClass("bg-accent-50");
     });
   });
 

@@ -26,7 +26,7 @@ export function accordionTriggerStyles(disabled?: boolean): string {
     "flex w-full items-center justify-between py-4 px-4 text-left font-medium",
     "transition-colors duration-200",
     "hover:bg-gray-50",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/20",
     disabled && "opacity-50 cursor-not-allowed hover:bg-transparent",
     !disabled && "cursor-pointer",
   );

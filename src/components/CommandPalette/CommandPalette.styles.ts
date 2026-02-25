@@ -39,9 +39,7 @@ export function commandPaletteItemStyles(active: boolean): string {
   return cn(
     "flex items-center gap-3 px-4 py-2.5 text-sm cursor-pointer",
     "transition-colors duration-100",
-    active
-      ? "bg-primary-50 text-primary-900"
-      : "text-gray-700 hover:bg-gray-50",
+    active ? "bg-accent-50 text-accent-900" : "text-gray-700 hover:bg-gray-50",
   );
 }
 

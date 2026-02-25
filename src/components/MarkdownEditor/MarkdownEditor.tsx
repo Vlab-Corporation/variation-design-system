@@ -119,7 +119,7 @@ export const MarkdownEditor = forwardRef<
       className={cn(
         "w-full min-h-[200px] p-3 text-sm font-mono",
         "border border-gray-200 rounded-lg resize-y",
-        "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
+        "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent",
         className,
       )}
       {...props}
@@ -200,7 +200,7 @@ export const MarkdownFormatButton = forwardRef<
       className={cn(
         "flex items-center justify-center w-8 h-8 rounded",
         "hover:bg-gray-200 transition-colors",
-        "focus:outline-none focus:ring-2 focus:ring-primary-500",
+        "focus:outline-none focus:ring-2 focus:ring-accent-500",
         className,
       )}
       {...props}

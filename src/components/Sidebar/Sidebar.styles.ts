@@ -32,7 +32,7 @@ export function sidebarStyles({
   className,
 }: SidebarStyleProps = {}) {
   return cn(
-    "flex h-full flex-col bg-rwPrimary-100 transition-[width] duration-normal",
+    "flex h-full flex-col bg-accent-100 transition-[width] duration-normal",
     collapsed ? "w-16" : "w-[284px]",
     className,
   );
@@ -78,9 +78,9 @@ export function sidebarMenuButtonStyles({
 }: SidebarMenuButtonStyleProps = {}) {
   return cn(
     "flex h-[46px] w-full items-center gap-[14px] rounded-button px-3 text-body-2 font-medium text-black transition-colors duration-fast",
-    "hover:bg-rwPrimary-200",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rwPrimary-400",
-    active && "bg-rwPrimary-300 font-semibold text-rwPrimary-800",
+    "hover:bg-accent-200",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
+    active && "bg-accent-300 font-semibold text-accent-800",
     collapsed && "justify-center px-0",
     hasSub && "cursor-pointer",
     className,
@@ -100,17 +100,17 @@ export function sidebarMenuSubButtonStyles({
 }: SidebarMenuSubButtonStyleProps = {}) {
   return cn(
     "flex w-full items-center rounded-button px-3 transition-colors duration-fast",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rwPrimary-400",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
     isHeader
       ? cn(
           "h-[46px] text-body-2 font-semibold text-black",
-          "hover:bg-rwPrimary-200",
-          active && "bg-rwPrimary-200 text-rwPrimary-800",
+          "hover:bg-accent-200",
+          active && "bg-accent-200 text-accent-800",
         )
       : cn(
           "h-[38px] text-body-3 font-medium text-gray-700",
           "hover:bg-gray-200",
-          active && "bg-rwPrimary-200 text-rwPrimary-800",
+          active && "bg-accent-200 text-accent-800",
         ),
     className,
   );
@@ -132,8 +132,8 @@ export function sidebarTriggerStyles({
 }: { className?: string } = {}) {
   return cn(
     "inline-flex h-8 w-8 items-center justify-center rounded-button transition-colors duration-fast",
-    "hover:bg-rwPrimary-200",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rwPrimary-400",
+    "hover:bg-accent-200",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
     className,
   );
 }

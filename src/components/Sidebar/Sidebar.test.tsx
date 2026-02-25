@@ -179,16 +179,16 @@ describe("Active States", () => {
       </SidebarProvider>,
     );
     const btn = screen.getByText("Active Item").closest("button")!;
-    expect(btn.className).toContain("bg-rwPrimary-300");
-    expect(btn.className).toContain("text-rwPrimary-800");
+    expect(btn.className).toContain("bg-accent-300");
+    expect(btn.className).toContain("text-accent-800");
     expect(btn).toHaveAttribute("aria-current", "page");
   });
 
   it("applies active classes to SidebarMenuSubButton", () => {
     renderSidebar();
     const btn = screen.getByText("Bookmarks").closest("button")!;
-    expect(btn.className).toContain("bg-rwPrimary-200");
-    expect(btn.className).toContain("text-rwPrimary-800");
+    expect(btn.className).toContain("bg-accent-200");
+    expect(btn.className).toContain("text-accent-800");
     expect(btn).toHaveAttribute("aria-current", "page");
   });
 

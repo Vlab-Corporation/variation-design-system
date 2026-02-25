@@ -352,7 +352,7 @@ describe("KanbanBoard Component", () => {
 
       fireEvent.dragOver(dropZone);
 
-      expect(dropZone).toHaveClass("bg-primary-50");
+      expect(dropZone).toHaveClass("bg-accent-50");
     });
   });
 

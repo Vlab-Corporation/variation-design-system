@@ -12,7 +12,7 @@ export const spinnerSizes: Record<SpinnerSize, string> = {
 };
 
 export const spinnerColors: Record<SpinnerColor, string> = {
-  primary: "text-primary-500",
+  primary: "text-accent-500",
   white: "text-white",
   current: "text-current",
   gray: "text-gray-400",

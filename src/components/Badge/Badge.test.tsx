@@ -26,8 +26,8 @@ describe("Badge Component", () => {
     it("should render primary variant", () => {
       render(<Badge variant="primary">Primary</Badge>);
       const badge = screen.getByText("Primary");
-      expect(badge).toHaveClass("bg-primary-100");
-      expect(badge).toHaveClass("text-primary-800");
+      expect(badge).toHaveClass("bg-accent-100");
+      expect(badge).toHaveClass("text-accent-800");
     });
 
     it("should render success variant", () => {

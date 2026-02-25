@@ -104,7 +104,7 @@ export const IconPickerTrigger = forwardRef<
       className={cn(
         "flex items-center justify-center p-2 rounded-md",
         "hover:bg-gray-100 transition-colors",
-        "focus:outline-none focus:ring-2 focus:ring-primary-500",
+        "focus:outline-none focus:ring-2 focus:ring-accent-500",
         className,
       )}
       {...props}
@@ -202,7 +202,7 @@ export const IconPickerItem = forwardRef<
       className={cn(
         "flex items-center justify-center w-8 h-8 text-lg rounded",
         "hover:bg-gray-100 transition-colors",
-        "focus:outline-none focus:ring-2 focus:ring-primary-500",
+        "focus:outline-none focus:ring-2 focus:ring-accent-500",
         className,
       )}
       {...props}

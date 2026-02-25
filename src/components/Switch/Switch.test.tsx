@@ -61,7 +61,7 @@ describe("Switch Component", () => {
 
     it("should have checked styling", () => {
       render(<Switch checked />);
-      expect(screen.getByRole("switch")).toHaveClass("bg-primary-500");
+      expect(screen.getByRole("switch")).toHaveClass("bg-accent-500");
     });
 
     it("should have unchecked styling", () => {

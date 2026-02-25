@@ -18,7 +18,7 @@ export function calendarNavButtonStyles(): string {
     "inline-flex items-center justify-center w-8 h-8 rounded-button",
     "text-gray-600 hover:bg-gray-100 cursor-pointer",
     "transition-colors duration-150",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/20",
   );
 }
 
@@ -44,10 +44,10 @@ export function calendarDayStyles(options: {
   return cn(
     "inline-flex items-center justify-center w-9 h-9 rounded-full text-sm",
     "transition-colors duration-150",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/20",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/20",
     !selected && !disabled && "hover:bg-gray-100 cursor-pointer",
-    selected && "bg-primary-500 text-white hover:bg-primary-600",
-    !selected && today && "font-bold text-primary-600",
+    selected && "bg-accent-500 text-white hover:bg-accent-600",
+    !selected && today && "font-bold text-accent-600",
     !selected && !today && !outsideMonth && "text-gray-900",
     outsideMonth && !selected && "text-gray-300",
     disabled && "text-gray-300 cursor-not-allowed hover:bg-transparent",
