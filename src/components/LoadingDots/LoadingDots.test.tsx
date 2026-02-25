@@ -122,8 +122,8 @@ describe("LoadingDots Component", () => {
       render(<LoadingDots />);
       const dots = screen.getByRole("status").querySelectorAll("span");
       expect(dots[0]).toHaveStyle({ animationDelay: "0ms" });
-      expect(dots[1]).toHaveStyle({ animationDelay: "160ms" });
-      expect(dots[2]).toHaveStyle({ animationDelay: "320ms" });
+      expect(dots[1]).toHaveStyle({ animationDelay: "200ms" });
+      expect(dots[2]).toHaveStyle({ animationDelay: "400ms" });
     });
 
     it("should apply slow stagger delay", () => {
@@ -138,8 +138,8 @@ describe("LoadingDots Component", () => {
       render(<LoadingDots speed="fast" />);
       const dots = screen.getByRole("status").querySelectorAll("span");
       expect(dots[0]).toHaveStyle({ animationDelay: "0ms" });
-      expect(dots[1]).toHaveStyle({ animationDelay: "100ms" });
-      expect(dots[2]).toHaveStyle({ animationDelay: "200ms" });
+      expect(dots[1]).toHaveStyle({ animationDelay: "160ms" });
+      expect(dots[2]).toHaveStyle({ animationDelay: "320ms" });
     });
   });
 });
