@@ -44,7 +44,7 @@ export const Buttons: Story = {
     <div className="flex flex-col gap-6">
       <div>
         <h3 className="text-sm font-medium text-gray-500 mb-2">Primary Button</h3>
-        <button className="inline-flex items-center justify-center px-4 py-2 bg-primary-500 text-white font-medium rounded-button transition-all duration-200 hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:ring-offset-2">
+        <button className="inline-flex items-center justify-center px-4 py-2 bg-accent-500 text-white font-medium rounded-button transition-all duration-200 hover:bg-accent-600 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-500/20 focus:ring-offset-2">
           Primary Button
         </button>
       </div>
@@ -58,7 +58,7 @@ export const Buttons: Story = {
 
       <div>
         <h3 className="text-sm font-medium text-gray-500 mb-2">Outline Button</h3>
-        <button className="inline-flex items-center justify-center px-4 py-2 bg-transparent border border-primary-500 text-primary-600 font-medium rounded-button transition-all duration-200 hover:bg-primary-50 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:ring-offset-2">
+        <button className="inline-flex items-center justify-center px-4 py-2 bg-transparent border border-accent-500 text-accent-600 font-medium rounded-button transition-all duration-200 hover:bg-accent-50 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-500/20 focus:ring-offset-2">
           Outline Button
         </button>
       </div>
@@ -84,7 +84,7 @@ export const Inputs: Story = {
         <input
           type="text"
           placeholder="Enter text..."
-          className="w-full px-3 py-2 bg-white border border-gray-300 rounded-input transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
+          className="w-full px-3 py-2 bg-white border border-gray-300 rounded-input transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500/20 focus:border-accent-500"
         />
       </div>
 
@@ -95,7 +95,7 @@ export const Inputs: Story = {
         <input
           type="email"
           placeholder="you@example.com"
-          className="w-full px-3 py-2 bg-white border border-gray-300 rounded-input transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500"
+          className="w-full px-3 py-2 bg-white border border-gray-300 rounded-input transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-500/20 focus:border-accent-500"
         />
         <p className="text-sm text-gray-500">We&apos;ll never share your email.</p>
       </div>
@@ -145,7 +145,7 @@ export const Badges: Story = {
         <span className="inline-flex items-center px-2 py-0.5 text-sm font-medium bg-gray-100 text-gray-800 rounded-md animate-fade-in">
           Default
         </span>
-        <span className="inline-flex items-center px-2 py-0.5 text-sm font-medium bg-primary-100 text-primary-800 rounded-md animate-fade-in">
+        <span className="inline-flex items-center px-2 py-0.5 text-sm font-medium bg-accent-100 text-accent-800 rounded-md animate-fade-in">
           Primary
         </span>
         <span className="inline-flex items-center px-2 py-0.5 text-sm font-medium bg-green-100 text-green-800 rounded-md animate-fade-in">
@@ -204,10 +204,10 @@ export const Alerts: Story = {
 export const Spinners: Story = {
   render: () => (
     <div className="flex gap-8 items-center">
-      <div className="w-4 h-4 border-2 border-primary-500 border-b-transparent rounded-full animate-spin" />
-      <div className="w-6 h-6 border-2 border-primary-500 border-b-transparent rounded-full animate-spin" />
-      <div className="w-8 h-8 border-2 border-primary-500 border-b-transparent rounded-full animate-spin" />
-      <div className="w-12 h-12 border-2 border-primary-500 border-b-transparent rounded-full animate-spin-slow" />
+      <div className="w-4 h-4 border-2 border-accent-500 border-b-transparent rounded-full animate-spin" />
+      <div className="w-6 h-6 border-2 border-accent-500 border-b-transparent rounded-full animate-spin" />
+      <div className="w-8 h-8 border-2 border-accent-500 border-b-transparent rounded-full animate-spin" />
+      <div className="w-12 h-12 border-2 border-accent-500 border-b-transparent rounded-full animate-spin-slow" />
     </div>
   ),
 };

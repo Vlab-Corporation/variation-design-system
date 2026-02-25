@@ -28,7 +28,7 @@ const AnimationCard = ({
       <div className="w-full h-20 flex items-center justify-center overflow-hidden">
         <div
           key={key}
-          className="w-14 h-14 rounded-lg bg-primary-500"
+          className="w-14 h-14 rounded-lg bg-accent-500"
           style={{ animation: value }}
         />
       </div>
@@ -72,7 +72,7 @@ export const TransitionDurations: Story = {
           ([name, duration]) => (
             <div key={name} className="flex flex-col items-center gap-2">
               <div
-                className="w-20 h-20 rounded-lg bg-primary-200 hover:bg-primary-600 hover:scale-110 cursor-pointer"
+                className="w-20 h-20 rounded-lg bg-accent-200 hover:bg-accent-600 hover:scale-110 cursor-pointer"
                 style={{
                   transitionProperty: 'background-color, transform',
                   transitionDuration: duration,
@@ -103,7 +103,7 @@ export const TimingFunctions: Story = {
           ([name, easing]) => (
             <div key={name} className="flex flex-col items-center gap-2">
               <div
-                className="w-20 h-20 rounded-lg bg-primary-200 hover:bg-primary-600 hover:scale-110 cursor-pointer"
+                className="w-20 h-20 rounded-lg bg-accent-200 hover:bg-accent-600 hover:scale-110 cursor-pointer"
                 style={{
                   transitionProperty: 'background-color, transform',
                   transitionDuration: '500ms',

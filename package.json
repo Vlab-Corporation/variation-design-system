@@ -37,14 +37,15 @@
       "import": "./dist/tailwind.preset.js",
       "require": "./dist/tailwind.preset.cjs"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles.css",
+    "./themes/rehabworks": "./dist/themes/rehabworks.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "tsup",
+    "build": "tsup && mkdir -p dist/themes && cp src/styles/themes/rehabworks.css dist/themes/rehabworks.css",
     "build:storybook": "storybook build",
     "test": "vitest run",
     "test:watch": "vitest",

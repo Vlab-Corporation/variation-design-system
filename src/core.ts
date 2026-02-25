@@ -118,14 +118,15 @@ export {
 } from "./components/Typography/Typography.styles";
 
 export {
-  checkboxStyles,
   checkboxWrapperStyles,
-  checkboxSizes,
-  checkboxLabelSizes,
-  checkboxIconSizes,
+  checkboxRowStyles,
+  checkboxIndicatorStyles,
+  checkboxLabelStyles,
+  checkboxTextFieldStyles,
   type CheckboxStyleProps,
-  type CheckboxWrapperStyleProps,
-  type CheckboxSize,
+  type CheckboxRowStyleProps,
+  type CheckboxIndicatorStyleProps,
+  type CheckboxTextFieldStyleProps,
 } from "./components/Checkbox/Checkbox.styles";
 
 export {
@@ -149,11 +150,11 @@ export {
 } from "./components/Select/Select.styles";
 
 export {
-  textareaStyles,
-  textareaSizes,
-  type TextareaStyleProps,
-  type TextareaSize,
-} from "./components/Textarea/Textarea.styles";
+  textFieldStyles,
+  textFieldSizes,
+  type TextFieldStyleProps,
+  type TextFieldSize,
+} from "./components/TextField/TextField.styles";
 
 export {
   switchTrackStyles,
@@ -376,3 +377,21 @@ export {
   commandPaletteShortcutStyles,
   type CommandPaletteStyleProps,
 } from "./components/CommandPalette/CommandPalette.styles";
+
+// Chat Style Functions
+export {
+  promptInputContainerStyles,
+  promptInputTextareaStyles,
+  promptInputSendButtonStyles,
+  type PromptInputContainerStyleProps,
+  type PromptInputTextareaStyleProps,
+  type PromptInputSendButtonStyleProps,
+} from "./components/PromptInput/PromptInput.styles";
+
+// Themes
+export {
+  variationTheme,
+  rehabworksTheme,
+  applyTheme,
+  type AccentTheme,
+} from "./themes";

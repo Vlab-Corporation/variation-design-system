@@ -90,6 +90,7 @@ export const PaletteScales: Story = {
       <PaletteStrip name="primary" palette={colors.primary} />
       <PaletteStrip name="secondary" palette={colors.secondary} />
       <PaletteStrip name="gray" palette={colors.gray} />
+      <PaletteStrip name="rwPrimary" palette={colors.rwPrimary} />
     </div>
   ),
 };

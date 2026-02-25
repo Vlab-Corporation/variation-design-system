@@ -81,7 +81,7 @@ export const Speeds: Story = {
 // In button
 export const InButton: Story = {
   render: () => (
-    <button className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-md">
+    <button className="inline-flex items-center gap-2 px-4 py-2 bg-accent-500 text-white rounded-md">
       <Spinner size="sm" color="white" />
       <span>Loading...</span>
     </button>

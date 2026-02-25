@@ -109,8 +109,8 @@ export const ProfileCard: Story = {
   render: () => (
     <Card className="w-80" interactive>
       <CardContent className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
-          <span className="text-primary-600 font-semibold">JD</span>
+        <div className="w-12 h-12 rounded-full bg-accent-100 flex items-center justify-center">
+          <span className="text-accent-600 font-semibold">JD</span>
         </div>
         <div>
           <p className="font-medium">John Doe</p>
@@ -126,7 +126,7 @@ export const Paddings: Story = {
   render: () => (
     <div className="flex gap-4">
       <Card padding="none" variant="outlined" className="w-32">
-        <div className="bg-primary-100 p-2 text-center">None</div>
+        <div className="bg-accent-100 p-2 text-center">None</div>
       </Card>
       <Card padding="sm" variant="outlined" className="w-32">
         <span>Small</span>

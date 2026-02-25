@@ -33,7 +33,7 @@ export const SpacingScale: Story = {
                 {value}
               </span>
               <div
-                className="h-4 rounded-sm bg-primary-400"
+                className="h-4 rounded-sm bg-accent-400"
                 style={{ width: value === '0' ? '1px' : value }}
               />
             </div>
@@ -60,7 +60,7 @@ export const BorderRadiusScale: Story = {
             {scaleKeys.map((key) => (
               <div key={key} className="flex flex-col items-center gap-2">
                 <div
-                  className="w-20 h-20 bg-primary-100 border-2 border-primary-400"
+                  className="w-20 h-20 bg-accent-100 border-2 border-accent-400"
                   style={{ borderRadius: borderRadius[key] }}
                 />
                 <span className="text-xs font-mono text-gray-500">{key}</span>
@@ -78,7 +78,7 @@ export const BorderRadiusScale: Story = {
             {semanticKeys.map((key) => (
               <div key={key} className="flex flex-col items-center gap-2">
                 <div
-                  className="w-20 h-20 bg-primary-100 border-2 border-primary-400"
+                  className="w-20 h-20 bg-accent-100 border-2 border-accent-400"
                   style={{ borderRadius: borderRadius[key] }}
                 />
                 <span className="text-xs font-mono text-gray-500">{key}</span>
