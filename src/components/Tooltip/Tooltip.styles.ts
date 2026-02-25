@@ -27,7 +27,7 @@ export function tooltipStyles(props: TooltipStyleProps = {}): string {
   const { placement = "top", className } = props;
 
   return cn(
-    "absolute z-50 px-2.5 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md",
+    "absolute z-tooltip px-2.5 py-1.5 text-xs font-medium text-white bg-gray-900 rounded-md",
     "whitespace-nowrap pointer-events-none",
     "animate-fade-in",
     tooltipPlacements[placement],

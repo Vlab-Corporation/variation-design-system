@@ -102,7 +102,7 @@ export const AutoSaveIndicator = forwardRef<
       className={cn("flex items-center gap-1 text-xs text-gray-500", className)}
       {...props}
     >
-      <span className={cn(enabled ? "text-green-600" : "text-gray-400")}>
+      <span className={cn(enabled ? "text-success-600" : "text-gray-400")}>
         Auto-save {enabled ? "on" : "off"}
       </span>
       {enabled && lastSaved && (

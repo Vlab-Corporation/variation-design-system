@@ -133,7 +133,7 @@ export const IconPickerContent = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "absolute z-50 mt-1 p-2 bg-white rounded-lg shadow-lg border border-gray-200",
+        "absolute z-dropdown mt-1 p-2 bg-white rounded-lg shadow-lg border border-gray-200",
         "animate-fade-in",
         className,
       )}

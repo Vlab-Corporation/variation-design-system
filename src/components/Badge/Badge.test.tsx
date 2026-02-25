@@ -33,29 +33,29 @@ describe("Badge Component", () => {
     it("should render success variant", () => {
       render(<Badge variant="success">Success</Badge>);
       const badge = screen.getByText("Success");
-      expect(badge).toHaveClass("bg-green-100");
-      expect(badge).toHaveClass("text-green-800");
+      expect(badge).toHaveClass("bg-success-100");
+      expect(badge).toHaveClass("text-success-800");
     });
 
     it("should render warning variant", () => {
       render(<Badge variant="warning">Warning</Badge>);
       const badge = screen.getByText("Warning");
-      expect(badge).toHaveClass("bg-yellow-100");
-      expect(badge).toHaveClass("text-yellow-800");
+      expect(badge).toHaveClass("bg-warning-100");
+      expect(badge).toHaveClass("text-warning-800");
     });
 
     it("should render error variant", () => {
       render(<Badge variant="error">Error</Badge>);
       const badge = screen.getByText("Error");
-      expect(badge).toHaveClass("bg-red-100");
-      expect(badge).toHaveClass("text-red-800");
+      expect(badge).toHaveClass("bg-error-100");
+      expect(badge).toHaveClass("text-error-800");
     });
 
     it("should render info variant", () => {
       render(<Badge variant="info">Info</Badge>);
       const badge = screen.getByText("Info");
-      expect(badge).toHaveClass("bg-blue-100");
-      expect(badge).toHaveClass("text-blue-800");
+      expect(badge).toHaveClass("bg-info-100");
+      expect(badge).toHaveClass("text-info-800");
     });
   });
 
@@ -126,7 +126,7 @@ describe("Badge Component", () => {
       expect(dot).toHaveClass("w-2");
       expect(dot).toHaveClass("h-2");
       expect(dot).toHaveClass("rounded-full");
-      expect(dot).toHaveClass("bg-green-500");
+      expect(dot).toHaveClass("bg-success-500");
     });
   });
 

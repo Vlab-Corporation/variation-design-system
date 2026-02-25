@@ -47,7 +47,7 @@ describe("AudioRecorder Component", () => {
 
     it("should show stop icon when recording", () => {
       render(<RecordButton isRecording onClick={() => {}} data-testid="btn" />);
-      expect(screen.getByTestId("btn")).toHaveClass("bg-red-500");
+      expect(screen.getByTestId("btn")).toHaveClass("bg-error-500");
     });
 
     it("should have pulse animation when recording", () => {

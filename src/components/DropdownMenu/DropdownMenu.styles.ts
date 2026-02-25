@@ -19,7 +19,7 @@ export function dropdownMenuContentStyles(
   const { align = "start", className } = props;
 
   return cn(
-    "absolute z-50 mt-1 min-w-[8rem] py-1",
+    "absolute z-dropdown mt-1 min-w-[8rem] py-1",
     "bg-white border border-gray-200 rounded-card shadow-lg",
     "animate-fade-in",
     dropdownMenuAligns[align],

@@ -59,7 +59,7 @@ export function toastContainerStyles(
   const { position = "top-right", className } = props;
 
   return cn(
-    "fixed z-50 flex flex-col gap-2 pointer-events-none",
+    "fixed z-toast flex flex-col gap-2 pointer-events-none",
     toastPositions[position],
     className,
   );

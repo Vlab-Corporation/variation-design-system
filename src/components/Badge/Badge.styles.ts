@@ -20,14 +20,14 @@ export const badgeVariants: Record<
     text: "text-accent-800",
     dot: "bg-accent-500",
   },
-  success: { bg: "bg-green-100", text: "text-green-800", dot: "bg-green-500" },
+  success: { bg: "bg-success-100", text: "text-success-800", dot: "bg-success-500" },
   warning: {
-    bg: "bg-yellow-100",
-    text: "text-yellow-800",
-    dot: "bg-yellow-500",
+    bg: "bg-warning-100",
+    text: "text-warning-800",
+    dot: "bg-warning-500",
   },
-  error: { bg: "bg-red-100", text: "text-red-800", dot: "bg-red-500" },
-  info: { bg: "bg-blue-100", text: "text-blue-800", dot: "bg-blue-500" },
+  error: { bg: "bg-error-100", text: "text-error-800", dot: "bg-error-500" },
+  info: { bg: "bg-info-100", text: "text-info-800", dot: "bg-info-500" },
 };
 
 export const badgeSizes: Record<BadgeSize, string> = {

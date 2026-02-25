@@ -84,13 +84,13 @@ describe("Progress Component", () => {
     it("should apply success variant", () => {
       render(<Progress value={50} variant="success" />);
       const inner = screen.getByRole("progressbar").firstChild as HTMLElement;
-      expect(inner).toHaveClass("bg-green-500");
+      expect(inner).toHaveClass("bg-success-500");
     });
 
     it("should apply error variant", () => {
       render(<Progress value={50} variant="error" />);
       const inner = screen.getByRole("progressbar").firstChild as HTMLElement;
-      expect(inner).toHaveClass("bg-red-500");
+      expect(inner).toHaveClass("bg-error-500");
     });
   });
 

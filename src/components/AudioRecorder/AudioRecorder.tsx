@@ -98,7 +98,7 @@ export const RecordButton = forwardRef<HTMLButtonElement, RecordButtonProps>(
         className={cn(
           "flex items-center justify-center w-12 h-12 rounded-full transition-all",
           isRecording
-            ? "bg-red-500 text-white animate-pulse"
+            ? "bg-error-500 text-white animate-pulse"
             : "bg-gray-100 text-gray-600 hover:bg-gray-200",
           "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500",
           className,
@@ -172,7 +172,7 @@ export const RecordingWaveform = forwardRef<
           key={i}
           className={cn(
             "w-1 rounded-full transition-all",
-            isActive ? "bg-red-400" : "bg-gray-300",
+            isActive ? "bg-error-400" : "bg-gray-300",
           )}
           style={{
             height: isActive ? `${40 + Math.random() * 60}%` : "40%",

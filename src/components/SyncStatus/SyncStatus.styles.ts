@@ -6,9 +6,9 @@ export const syncStatusConfig: Record<
   SyncState,
   { color: string; text: string; animate?: boolean }
 > = {
-  synced: { color: "bg-green-500", text: "All changes saved" },
-  syncing: { color: "bg-yellow-500", text: "Saving...", animate: true },
-  error: { color: "bg-red-500", text: "Error saving" },
+  synced: { color: "bg-success-500", text: "All changes saved" },
+  syncing: { color: "bg-warning-500", text: "Saving...", animate: true },
+  error: { color: "bg-error-500", text: "Error saving" },
   offline: { color: "bg-gray-400", text: "Offline" },
 };
 

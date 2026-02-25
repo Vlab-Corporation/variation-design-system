@@ -5,7 +5,7 @@ export interface CommandPaletteStyleProps {
 }
 
 export function commandPaletteOverlayStyles(): string {
-  return "fixed inset-0 z-50 bg-black/50 flex items-start justify-center pt-[20vh]";
+  return "fixed inset-0 z-modal bg-black/50 flex items-start justify-center pt-[20vh]";
 }
 
 export function commandPaletteStyles(

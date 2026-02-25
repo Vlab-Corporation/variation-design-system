@@ -68,13 +68,13 @@ describe("Input Component", () => {
     it("should have error styling on input", () => {
       render(<Input error="Error" />);
       const input = screen.getByRole("textbox");
-      expect(input).toHaveClass("border-red-500");
+      expect(input).toHaveClass("border-error-500");
     });
 
     it("should have error styling on error message", () => {
       render(<Input error="Error message" />);
       const error = screen.getByText("Error message");
-      expect(error).toHaveClass("text-red-500");
+      expect(error).toHaveClass("text-error-500");
     });
 
     it("should show error instead of helper text when both provided", () => {

@@ -43,17 +43,17 @@ describe("SyncStatus Component", () => {
 
     it("should have green color when synced", () => {
       render(<SyncStatusIndicator status="synced" data-testid="indicator" />);
-      expect(screen.getByTestId("indicator")).toHaveClass("bg-green-500");
+      expect(screen.getByTestId("indicator")).toHaveClass("bg-success-500");
     });
 
     it("should have yellow color when syncing", () => {
       render(<SyncStatusIndicator status="syncing" data-testid="indicator" />);
-      expect(screen.getByTestId("indicator")).toHaveClass("bg-yellow-500");
+      expect(screen.getByTestId("indicator")).toHaveClass("bg-warning-500");
     });
 
     it("should have red color when error", () => {
       render(<SyncStatusIndicator status="error" data-testid="indicator" />);
-      expect(screen.getByTestId("indicator")).toHaveClass("bg-red-500");
+      expect(screen.getByTestId("indicator")).toHaveClass("bg-error-500");
     });
 
     it("should have gray color when offline", () => {

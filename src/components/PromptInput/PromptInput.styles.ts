@@ -22,8 +22,8 @@ export function promptInputContainerStyles(
   const { multiLine = false, disabled = false, className } = props;
 
   return cn(
-    "relative flex gap-2 bg-white border border-[#E5E5E5]",
-    "shadow-[0_0_20px_1px_rgba(0,0,0,0.07)]",
+    "relative flex gap-2 bg-white border border-gray-200",
+    "shadow-md",
     "px-6 py-[18px]",
     "transition-[border-radius] duration-200 ease-out",
     multiLine ? "rounded-[20px] items-end" : "rounded-[40px] items-center",
@@ -40,7 +40,7 @@ export function promptInputTextareaStyles(
   return cn(
     "flex-1 resize-none bg-transparent",
     "text-[16px] leading-[24px] tracking-[-0.32px] font-sans",
-    "text-[#262626] placeholder:text-gray-600",
+    "text-gray-900 placeholder:text-gray-600",
     "focus:outline-none",
     "overflow-y-auto",
     className,

@@ -60,7 +60,7 @@ describe("Select Component", () => {
 
     it("should have error styling", () => {
       render(<Select options={defaultOptions} error="Error" />);
-      expect(screen.getByRole("combobox")).toHaveClass("border-red-500");
+      expect(screen.getByRole("combobox")).toHaveClass("border-error-500");
     });
 
     it("should set aria-invalid", () => {

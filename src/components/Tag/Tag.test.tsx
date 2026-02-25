@@ -23,12 +23,12 @@ describe("Tag Component", () => {
 
     it("should apply success variant", () => {
       render(<Tag variant="success">Tag</Tag>);
-      expect(screen.getByText("Tag")).toHaveClass("bg-green-100");
+      expect(screen.getByText("Tag")).toHaveClass("bg-success-100");
     });
 
     it("should apply error variant", () => {
       render(<Tag variant="error">Tag</Tag>);
-      expect(screen.getByText("Tag")).toHaveClass("bg-red-100");
+      expect(screen.getByText("Tag")).toHaveClass("bg-error-100");
     });
   });
 

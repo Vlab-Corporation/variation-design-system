@@ -24,33 +24,33 @@ describe("Alert Component", () => {
     it("should render info variant by default", () => {
       render(<Alert>Info</Alert>);
       const alert = screen.getByRole("alert");
-      expect(alert).toHaveClass("bg-blue-50");
-      expect(alert).toHaveClass("border-blue-200");
-      expect(alert).toHaveClass("text-blue-800");
+      expect(alert).toHaveClass("bg-info-50");
+      expect(alert).toHaveClass("border-info-200");
+      expect(alert).toHaveClass("text-info-800");
     });
 
     it("should render success variant", () => {
       render(<Alert variant="success">Success</Alert>);
       const alert = screen.getByRole("alert");
-      expect(alert).toHaveClass("bg-green-50");
-      expect(alert).toHaveClass("border-green-200");
-      expect(alert).toHaveClass("text-green-800");
+      expect(alert).toHaveClass("bg-success-50");
+      expect(alert).toHaveClass("border-success-200");
+      expect(alert).toHaveClass("text-success-800");
     });
 
     it("should render warning variant", () => {
       render(<Alert variant="warning">Warning</Alert>);
       const alert = screen.getByRole("alert");
-      expect(alert).toHaveClass("bg-yellow-50");
-      expect(alert).toHaveClass("border-yellow-200");
-      expect(alert).toHaveClass("text-yellow-800");
+      expect(alert).toHaveClass("bg-warning-50");
+      expect(alert).toHaveClass("border-warning-200");
+      expect(alert).toHaveClass("text-warning-800");
     });
 
     it("should render error variant", () => {
       render(<Alert variant="error">Error</Alert>);
       const alert = screen.getByRole("alert");
-      expect(alert).toHaveClass("bg-red-50");
-      expect(alert).toHaveClass("border-red-200");
-      expect(alert).toHaveClass("text-red-800");
+      expect(alert).toHaveClass("bg-error-50");
+      expect(alert).toHaveClass("border-error-200");
+      expect(alert).toHaveClass("text-error-800");
     });
   });
 

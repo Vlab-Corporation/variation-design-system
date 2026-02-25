@@ -104,7 +104,7 @@ export const FilterContent = forwardRef<HTMLDivElement, FilterContentProps>(
       <div
         ref={ref}
         className={cn(
-          "absolute z-50 mt-1 min-w-[200px] p-2",
+          "absolute z-dropdown mt-1 min-w-[200px] p-2",
           "bg-white border border-gray-200 rounded-lg shadow-lg",
           "animate-fade-in",
           className,

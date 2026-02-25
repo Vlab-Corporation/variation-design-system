@@ -18,7 +18,7 @@ export function popoverStyles(props: PopoverStyleProps = {}): string {
   const { placement = "bottom", className } = props;
 
   return cn(
-    "absolute z-50",
+    "absolute z-popover",
     "bg-white rounded-card shadow-lg border border-gray-200",
     "p-4",
     "animate-fade-in",
