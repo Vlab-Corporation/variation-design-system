@@ -50,12 +50,17 @@ export const colors = {
 
   // RW Primary - RehabWorks violet-blue palette
   rwPrimary: {
+    "50": "#FAFAFF",
     "100": "#F5F5FF",
     "200": "#EEEEFF",
     "300": "#DBDBFF",
     "400": "#B7B7FF",
+    "500": "#9494FE",
     "600": "#7070FE",
+    "700": "#5858FF",
     "800": "#4141FF",
+    "900": "#2F2FD9",
+    "950": "#1E1E8A",
   },
 
   // Base colors
@@ -135,10 +140,25 @@ export const colors = {
     inverse: "#FFFFFF",
   },
 
+  // Accent - CSS custom property based (themeable)
+  accent: {
+    50: "rgb(var(--accent-50) / <alpha-value>)",
+    100: "rgb(var(--accent-100) / <alpha-value>)",
+    200: "rgb(var(--accent-200) / <alpha-value>)",
+    300: "rgb(var(--accent-300) / <alpha-value>)",
+    400: "rgb(var(--accent-400) / <alpha-value>)",
+    500: "rgb(var(--accent-500) / <alpha-value>)",
+    600: "rgb(var(--accent-600) / <alpha-value>)",
+    700: "rgb(var(--accent-700) / <alpha-value>)",
+    800: "rgb(var(--accent-800) / <alpha-value>)",
+    900: "rgb(var(--accent-900) / <alpha-value>)",
+    950: "rgb(var(--accent-950) / <alpha-value>)",
+  },
+
   // Border colors
   border: {
     default: "#DEE2E6",
-    focus: "#FE7070",
+    focus: "rgb(var(--accent-600))",
   },
 
   // Surface colors - Background layers for elevation hierarchy
@@ -151,9 +171,9 @@ export const colors = {
 
   // Interactive colors - States for interactive elements
   interactive: {
-    default: "#FE7070",
-    hover: "#F65F5F",
-    pressed: "#EE4E4E",
+    default: "rgb(var(--accent-600))",
+    hover: "rgb(var(--accent-700))",
+    pressed: "rgb(var(--accent-800))",
     disabled: "#CED4DA",
   },
 
@@ -175,7 +195,7 @@ export const colors = {
 
   // Focus ring
   focus: {
-    ring: "rgba(254, 112, 112, 0.2)",
-    outline: "#FE7070",
+    ring: "rgb(var(--accent-600) / 0.2)",
+    outline: "rgb(var(--accent-600))",
   },
 };

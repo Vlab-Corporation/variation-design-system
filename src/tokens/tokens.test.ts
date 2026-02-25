@@ -69,7 +69,7 @@ describe("Design Tokens", () => {
 
     it("should export interactive colors", () => {
       expect(colors.interactive).toBeDefined();
-      expect(colors.interactive.default).toBe("#FE7070");
+      expect(colors.interactive.default).toBe("rgb(var(--accent-600))");
       expect(colors.interactive.hover).toBeDefined();
       expect(colors.interactive.pressed).toBeDefined();
       expect(colors.interactive.disabled).toBeDefined();
@@ -92,7 +92,7 @@ describe("Design Tokens", () => {
     it("should export focus colors", () => {
       expect(colors.focus).toBeDefined();
       expect(colors.focus.ring).toBeDefined();
-      expect(colors.focus.outline).toBe("#FE7070");
+      expect(colors.focus.outline).toBe("rgb(var(--accent-600))");
     });
   });
 
