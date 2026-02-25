@@ -37,8 +37,16 @@ const meta: Meta<typeof Avatar> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default with image
+// Default (no user data — shows placeholder icon)
 export const Default: Story = {
+  args: {
+    size: "md",
+    shape: "circle",
+  },
+};
+
+// With image
+export const WithImage: Story = {
   args: {
     src: "https://i.pravatar.cc/150?img=1",
     alt: "John Doe",
