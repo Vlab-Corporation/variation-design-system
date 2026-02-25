@@ -21,7 +21,7 @@ export * from "./Typography";
 export * from "./Checkbox";
 export * from "./Radio";
 export * from "./Select";
-export * from "./Textarea";
+export * from "./TextField";
 export * from "./Switch";
 export * from "./Modal";
 export * from "./Toast";
@@ -48,3 +48,6 @@ export * from "./Stepper";
 export * from "./Calendar";
 export * from "./EmptyState";
 export * from "./CommandPalette";
+
+// Chat Components
+export * from "./PromptInput";
