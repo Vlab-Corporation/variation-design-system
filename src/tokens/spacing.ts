@@ -52,6 +52,7 @@ export const borderRadius = {
   full: "9999px",
   // Semantic
   card: "0.75rem", // 12px
-  button: "0.375rem", // 6px
+  button: "7px",
+  pill: "30px",
   input: "0.375rem", // 6px
 };

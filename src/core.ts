@@ -61,6 +61,21 @@ export {
 } from "./components/Spinner/Spinner.styles";
 
 export {
+  loadingDotsContainerStyles,
+  loadingDotStyles,
+  loadingDotsContainerSizes,
+  loadingDotSizes,
+  loadingDotsColors,
+  loadingDotsSpeeds,
+  loadingDotsStaggerMs,
+  type LoadingDotsContainerStyleProps,
+  type LoadingDotStyleProps,
+  type LoadingDotsSize,
+  type LoadingDotsColor,
+  type LoadingDotsSpeed,
+} from "./components/LoadingDots/LoadingDots.styles";
+
+export {
   alertStyles,
   alertIconStyles,
   alertDismissStyles,
@@ -196,6 +211,7 @@ export {
 export {
   dropdownMenuContentStyles,
   dropdownMenuItemStyles,
+  dropdownMenuItemIconStyles,
   dropdownMenuSeparatorStyles,
   dropdownMenuLabelStyles,
   dropdownMenuAligns,

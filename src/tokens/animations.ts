@@ -45,6 +45,10 @@ export const animations = {
       "0%": { backgroundPosition: "-200% 0" },
       "100%": { backgroundPosition: "200% 0" },
     },
+    dotPulse: {
+      "0%, 20%, 100%": { opacity: "0.3", transform: "scale(0.8)" },
+      "10%": { opacity: "1", transform: "scale(1)" },
+    },
     // Spin keyframe is built into Tailwind, but we define speeds
     spinSlow: {
       "0%": { transform: "rotate(0deg)" },
@@ -70,6 +74,9 @@ export const animations = {
     shimmer: "shimmer 2s ease-in-out infinite",
     "spin-slow": "spin 1.5s linear infinite",
     "spin-fast": "spin 0.5s linear infinite",
+    "dot-pulse": "dotPulse 1.4s ease-in-out infinite",
+    "dot-pulse-slow": "dotPulse 2s ease-in-out infinite",
+    "dot-pulse-fast": "dotPulse 0.8s ease-in-out infinite",
   },
 
   // Transition durations
