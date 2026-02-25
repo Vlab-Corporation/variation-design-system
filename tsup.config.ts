@@ -35,7 +35,7 @@ export default defineConfig([
   },
   // Tailwind preset build (CommonJS for require())
   {
-    entry: ['tailwind.preset.js'],
+    entry: ['tailwind.preset.ts'],
     format: ['cjs', 'esm'],
     outDir: 'dist',
     dts: false,
