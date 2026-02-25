@@ -3,6 +3,7 @@ export * from "./Input";
 export * from "./Card";
 export * from "./Badge";
 export * from "./Spinner";
+export * from "./LoadingDots";
 export * from "./Alert";
 export * from "./Breadcrumb";
 export * from "./PageTree";
