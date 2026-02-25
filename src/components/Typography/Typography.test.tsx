@@ -45,7 +45,7 @@ describe("Display Component", () => {
 
     it("should apply color", () => {
       render(<Display color="primary">Colored</Display>);
-      expect(screen.getByRole("heading")).toHaveClass("text-primary-500");
+      expect(screen.getByRole("heading")).toHaveClass("text-accent-500");
     });
 
     it("should apply custom className", () => {
@@ -134,7 +134,7 @@ describe("Heading Component", () => {
 
     it("should apply primary color", () => {
       render(<Heading color="primary">Title</Heading>);
-      expect(screen.getByRole("heading")).toHaveClass("text-primary-500");
+      expect(screen.getByRole("heading")).toHaveClass("text-accent-500");
     });
 
     it("should apply muted color", () => {

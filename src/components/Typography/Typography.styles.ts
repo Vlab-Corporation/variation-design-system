@@ -79,7 +79,7 @@ export const textColors: Record<TextColor, string> = {
   secondary: "text-gray-700",
   muted: "text-gray-500",
   inverse: "text-white",
-  primary: "text-primary-500",
+  primary: "text-accent-500",
   success: "text-success-600",
   warning: "text-warning-600",
   error: "text-error-600",
