@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "@/components/Checkbox";
 
@@ -9,18 +10,9 @@ const meta: Meta<typeof Checkbox> = {
   },
   tags: ["autodocs"],
   argTypes: {
-    size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-      description: "Checkbox size",
-    },
     label: {
       control: "text",
       description: "Label text or element",
-    },
-    description: {
-      control: "text",
-      description: "Description text shown below label",
     },
     indeterminate: {
       control: "boolean",
@@ -34,20 +26,35 @@ const meta: Meta<typeof Checkbox> = {
       control: "boolean",
       description: "Checked state",
     },
+    withTextField: {
+      control: "boolean",
+      description: "Show text field when checked",
+    },
+    textFieldPlaceholder: {
+      control: "text",
+      description: "Text field placeholder",
+    },
+    textFieldError: {
+      control: "boolean",
+      description: "Text field error state",
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default
+// Default (unchecked)
 export const Default: Story = {
-  args: {},
+  args: {
+    label: "Label",
+  },
 };
 
-// Checked
+// Checked (active)
 export const Checked: Story = {
   args: {
+    label: "Label",
     defaultChecked: true,
   },
 };
@@ -55,57 +62,81 @@ export const Checked: Story = {
 // Indeterminate
 export const Indeterminate: Story = {
   args: {
+    label: "Label",
     indeterminate: true,
-  },
-};
-
-// With Label
-export const WithLabel: Story = {
-  args: {
-    label: "Accept terms and conditions",
-  },
-};
-
-// With Description
-export const WithDescription: Story = {
-  args: {
-    label: "Marketing emails",
-    description: "Receive emails about new products, features, and more.",
   },
 };
 
 // Disabled
 export const Disabled: Story = {
   args: {
-    label: "Disabled checkbox",
+    label: "Label",
     disabled: true,
   },
 };
 
-// All Sizes
-export const AllSizes: Story = {
+// With TextField
+const WithTextFieldTemplate = () => {
+  const [value, setValue] = useState("");
+
+  return (
+    <Checkbox
+      label="기타"
+      defaultChecked
+      withTextField
+      textFieldValue={value}
+      onTextFieldChange={(e) => setValue(e.target.value)}
+      textFieldPlaceholder="기타 내용을 입력해주세요."
+    />
+  );
+};
+
+export const WithTextField: Story = {
+  render: () => <WithTextFieldTemplate />,
+};
+
+// With TextField Error
+export const WithTextFieldError: Story = {
+  args: {
+    label: "기타",
+    checked: true,
+    onChange: () => {},
+    withTextField: true,
+    textFieldPlaceholder: "기타 내용을 입력해주세요.",
+    textFieldError: true,
+  },
+};
+
+// All States
+export const AllStates: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4">
-        <Checkbox size="sm" label="Small checkbox" defaultChecked />
-        <Checkbox size="md" label="Medium checkbox (default)" defaultChecked />
-        <Checkbox size="lg" label="Large checkbox" defaultChecked />
+      <div className="flex items-center gap-8">
+        <Checkbox label="Label" />
+        <Checkbox label="Label" defaultChecked />
       </div>
-      <div className="flex flex-col gap-4">
-        <Checkbox size="sm" label="Small" description="Small description" />
-        <Checkbox size="md" label="Medium" description="Medium description" />
-        <Checkbox size="lg" label="Large" description="Large description" />
-      </div>
-      <div className="flex flex-col gap-4">
-        <Checkbox size="sm" indeterminate label="Small indeterminate" />
-        <Checkbox size="md" indeterminate label="Medium indeterminate" />
-        <Checkbox size="lg" indeterminate label="Large indeterminate" />
-      </div>
-      <div className="flex flex-col gap-4">
-        <Checkbox size="sm" disabled label="Small disabled" />
-        <Checkbox size="md" disabled label="Medium disabled" />
-        <Checkbox size="lg" disabled label="Large disabled" />
-      </div>
+      <Checkbox
+        label="기타"
+        defaultChecked
+        withTextField
+        textFieldPlaceholder="기타 내용을 입력해주세요."
+      />
+      <Checkbox
+        label="기타"
+        checked
+        onChange={() => {}}
+        withTextField
+        textFieldValue="기타 내용을 입력함"
+        textFieldPlaceholder="기타 내용을 입력해주세요."
+      />
+      <Checkbox
+        label="기타"
+        checked
+        onChange={() => {}}
+        withTextField
+        textFieldPlaceholder="기타 내용을 입력해주세요."
+        textFieldError
+      />
     </div>
   ),
 };

@@ -14,9 +14,10 @@ describe("Checkbox Component", () => {
       expect(screen.getByText("Accept terms")).toBeInTheDocument();
     });
 
-    it("should render with description", () => {
-      render(<Checkbox label="Terms" description="Read the terms" />);
-      expect(screen.getByText("Read the terms")).toBeInTheDocument();
+    it("should render circular indicator", () => {
+      const { container } = render(<Checkbox />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toHaveClass("rounded-full");
     });
 
     it("should apply custom className to wrapper", () => {
@@ -38,27 +39,24 @@ describe("Checkbox Component", () => {
     });
   });
 
-  describe("Sizes", () => {
-    it("should render small size", () => {
-      render(<Checkbox size="sm" />);
-      expect(screen.getByRole("checkbox")).toHaveClass("h-3.5", "w-3.5");
-    });
-
-    it("should render medium size by default", () => {
-      render(<Checkbox />);
-      expect(screen.getByRole("checkbox")).toHaveClass("h-4", "w-4");
-    });
-
-    it("should render large size", () => {
-      render(<Checkbox size="lg" />);
-      expect(screen.getByRole("checkbox")).toHaveClass("h-5", "w-5");
-    });
-  });
-
   describe("States", () => {
     it("should be checked when checked prop is true", () => {
       render(<Checkbox checked onChange={() => {}} />);
       expect(screen.getByRole("checkbox")).toBeChecked();
+    });
+
+    it("should show check icon when checked", () => {
+      const { container } = render(<Checkbox checked onChange={() => {}} />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toHaveClass("bg-accent-600");
+      expect(indicator?.querySelector("svg")).toBeInTheDocument();
+    });
+
+    it("should show unchecked circle when not checked", () => {
+      const { container } = render(<Checkbox />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toHaveClass("border", "border-gray-400");
+      expect(indicator?.querySelector("svg")).not.toBeInTheDocument();
     });
 
     it("should be disabled when disabled prop is true", () => {
@@ -66,18 +64,23 @@ describe("Checkbox Component", () => {
       expect(screen.getByRole("checkbox")).toBeDisabled();
     });
 
-    it("should have disabled styling", () => {
-      render(<Checkbox disabled />);
-      expect(screen.getByRole("checkbox")).toHaveClass(
-        "opacity-50",
-        "cursor-not-allowed",
-      );
+    it("should have disabled styling on indicator", () => {
+      const { container } = render(<Checkbox disabled />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toHaveClass("opacity-50");
     });
 
     it("should support indeterminate state", () => {
       render(<Checkbox indeterminate />);
       const checkbox = screen.getByRole("checkbox");
       expect(checkbox).toHaveAttribute("aria-checked", "mixed");
+    });
+
+    it("should show indeterminate icon", () => {
+      const { container } = render(<Checkbox indeterminate />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toHaveClass("bg-accent-600");
+      expect(indicator?.querySelector("svg")).toBeInTheDocument();
     });
   });
 
@@ -95,6 +98,99 @@ describe("Checkbox Component", () => {
       fireEvent.click(screen.getByRole("checkbox"));
       expect(handleChange).not.toHaveBeenCalled();
     });
+
+    it("should toggle internal state for uncontrolled checkbox", () => {
+      const { container } = render(<Checkbox />);
+      const checkbox = screen.getByRole("checkbox");
+      const indicator = container.querySelector("[aria-hidden='true']");
+
+      expect(indicator).toHaveClass("border");
+      fireEvent.click(checkbox);
+      expect(indicator).toHaveClass("bg-accent-600");
+    });
+  });
+
+  describe("TextField", () => {
+    it("should not show text field when withTextField is false", () => {
+      render(<Checkbox checked onChange={() => {}} />);
+      expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+    });
+
+    it("should not show text field when unchecked", () => {
+      render(<Checkbox withTextField />);
+      expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+    });
+
+    it("should show text field when withTextField and checked", () => {
+      render(<Checkbox withTextField checked onChange={() => {}} />);
+      expect(screen.getByRole("textbox")).toBeInTheDocument();
+    });
+
+    it("should show text field placeholder", () => {
+      render(
+        <Checkbox
+          withTextField
+          checked
+          onChange={() => {}}
+          textFieldPlaceholder="기타 내용을 입력해주세요."
+        />,
+      );
+      expect(
+        screen.getByPlaceholderText("기타 내용을 입력해주세요."),
+      ).toBeInTheDocument();
+    });
+
+    it("should call onTextFieldChange when text field value changes", () => {
+      const handleTextChange = vi.fn();
+      render(
+        <Checkbox
+          withTextField
+          checked
+          onChange={() => {}}
+          onTextFieldChange={handleTextChange}
+          textFieldPlaceholder="입력"
+        />,
+      );
+      fireEvent.change(screen.getByRole("textbox"), {
+        target: { value: "test" },
+      });
+      expect(handleTextChange).toHaveBeenCalled();
+    });
+
+    it("should apply error styling when textFieldError is true", () => {
+      render(
+        <Checkbox
+          withTextField
+          checked
+          onChange={() => {}}
+          textFieldError
+          textFieldPlaceholder="입력"
+        />,
+      );
+      const textField = screen.getByRole("textbox");
+      expect(textField).toHaveClass("border-b-error-600", "text-error-600");
+    });
+
+    it("should apply normal styling when no error", () => {
+      render(
+        <Checkbox
+          withTextField
+          checked
+          onChange={() => {}}
+          textFieldPlaceholder="입력"
+        />,
+      );
+      const textField = screen.getByRole("textbox");
+      expect(textField).toHaveClass("border-b-accent-600");
+    });
+
+    it("should show text field when uncontrolled checkbox is clicked", () => {
+      render(<Checkbox withTextField label="기타" />);
+      expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole("checkbox"));
+      expect(screen.getByRole("textbox")).toBeInTheDocument();
+    });
   });
 
   describe("Accessibility", () => {
@@ -109,6 +205,12 @@ describe("Checkbox Component", () => {
         "aria-label",
         "Toggle feature",
       );
+    });
+
+    it("should hide indicator from screen readers", () => {
+      const { container } = render(<Checkbox />);
+      const indicator = container.querySelector("[aria-hidden='true']");
+      expect(indicator).toBeInTheDocument();
     });
   });
 

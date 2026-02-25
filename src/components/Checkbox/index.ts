@@ -1,10 +1,12 @@
-export { Checkbox, type CheckboxProps, type CheckboxSize } from "./Checkbox";
+export { Checkbox, type CheckboxProps } from "./Checkbox";
 export {
-  checkboxStyles,
   checkboxWrapperStyles,
-  checkboxSizes,
-  checkboxLabelSizes,
-  checkboxIconSizes,
+  checkboxRowStyles,
+  checkboxIndicatorStyles,
+  checkboxLabelStyles,
+  checkboxTextFieldStyles,
   type CheckboxStyleProps,
-  type CheckboxWrapperStyleProps,
+  type CheckboxRowStyleProps,
+  type CheckboxIndicatorStyleProps,
+  type CheckboxTextFieldStyleProps,
 } from "./Checkbox.styles";
