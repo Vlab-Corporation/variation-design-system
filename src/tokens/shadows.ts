@@ -19,4 +19,6 @@ export const shadows = {
   focus: "0 0 0 3px rgba(254, 112, 112, 0.2)",
   /** Inner shadow for pressed/sunken states */
   inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+  /** Soft uniform shadow for dropdowns and popups */
+  dropdown: "0 0 14px 0 rgba(0, 0, 0, 0.1)",
 };

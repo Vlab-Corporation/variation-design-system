@@ -12,12 +12,14 @@ import {
 import {
   dropdownMenuContentStyles,
   dropdownMenuItemStyles,
+  dropdownMenuItemIconStyles,
   dropdownMenuSeparatorStyles,
   dropdownMenuLabelStyles,
   type DropdownMenuAlign,
+  type DropdownMenuSide,
 } from "./DropdownMenu.styles";
 
-export type { DropdownMenuAlign } from "./DropdownMenu.styles";
+export type { DropdownMenuAlign, DropdownMenuSide } from "./DropdownMenu.styles";
 
 // --- DropdownMenu ---
 
@@ -26,6 +28,8 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLDivElement> {
   trigger: ReactNode;
   /** Content alignment */
   align?: DropdownMenuAlign;
+  /** Vertical placement relative to trigger */
+  side?: DropdownMenuSide;
   /** Controlled open state */
   open?: boolean;
   /** Called when open state changes */
@@ -37,6 +41,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     {
       trigger,
       align = "start",
+      side = "bottom",
       open: controlledOpen,
       onOpenChange,
       className,
@@ -155,7 +160,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
           <div
             ref={menuRef}
             role="menu"
-            className={dropdownMenuContentStyles({ align, className })}
+            className={dropdownMenuContentStyles({ align, side, className })}
             onKeyDown={handleMenuKeyDown}
           >
             {children}
@@ -178,6 +183,8 @@ export interface DropdownMenuItemProps extends Omit<
   disabled?: boolean;
   /** Destructive (danger) styling */
   destructive?: boolean;
+  /** Leading icon element */
+  icon?: ReactNode;
   /** Called when item is selected */
   onSelect?: () => void;
 }
@@ -190,6 +197,7 @@ export const DropdownMenuItem = forwardRef<
     {
       disabled = false,
       destructive = false,
+      icon,
       onSelect,
       className,
       children,
@@ -223,6 +231,9 @@ export const DropdownMenuItem = forwardRef<
         onClick={handleClick}
         {...props}
       >
+        {icon && (
+          <span className={dropdownMenuItemIconStyles()}>{icon}</span>
+        )}
         {children}
       </button>
     );

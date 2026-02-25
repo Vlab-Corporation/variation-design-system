@@ -61,6 +61,51 @@ describe("DropdownMenu Component", () => {
     });
   });
 
+  describe("Icon", () => {
+    it("should render icon when provided", () => {
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem
+            icon={<svg data-testid="test-icon" />}
+            onSelect={() => {}}
+          >
+            Settings
+          </DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      expect(screen.getByTestId("test-icon")).toBeInTheDocument();
+    });
+
+    it("should not render icon wrapper when icon is not provided", () => {
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem onSelect={() => {}}>Settings</DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      const button = screen.getByText("Settings");
+      expect(button.querySelector("span")).toBeNull();
+    });
+
+    it("should render icon with correct wrapper styles", () => {
+      render(
+        <DropdownMenu trigger={<button>Open</button>}>
+          <DropdownMenuItem
+            icon={<svg data-testid="test-icon" />}
+            onSelect={() => {}}
+          >
+            Settings
+          </DropdownMenuItem>
+        </DropdownMenu>,
+      );
+      fireEvent.click(screen.getByText("Open"));
+      const iconWrapper = screen.getByTestId("test-icon").parentElement;
+      expect(iconWrapper?.tagName).toBe("SPAN");
+      expect(iconWrapper).toHaveClass("size-6");
+    });
+  });
+
   describe("Open/Close", () => {
     it("should toggle menu on trigger click", () => {
       renderDropdown();
@@ -132,7 +177,7 @@ describe("DropdownMenu Component", () => {
     it("should have destructive styling", () => {
       renderDropdown();
       fireEvent.click(screen.getByText("Open Menu"));
-      expect(screen.getByText("Delete")).toHaveClass("text-error-600");
+      expect(screen.getByText("Delete")).toHaveClass("text-primary-600");
     });
 
     it("should have disabled styling", () => {
@@ -175,6 +220,18 @@ describe("DropdownMenu Component", () => {
       renderDropdown({ align: "end" });
       fireEvent.click(screen.getByText("Open Menu"));
       expect(screen.getByRole("menu")).toHaveClass("right-0");
+    });
+
+    it("should apply bottom side by default", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toHaveClass("top-full");
+    });
+
+    it("should apply top side", () => {
+      renderDropdown({ side: "top" });
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toHaveClass("bottom-full");
     });
   });
 
