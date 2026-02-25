@@ -19,15 +19,19 @@ export const avatarShapes: Record<AvatarShape, string> = {
 export interface AvatarStyleProps {
   size?: AvatarSize;
   shape?: AvatarShape;
+  isDefault?: boolean;
   className?: string;
 }
 
 export function avatarStyles(props: AvatarStyleProps = {}): string {
-  const { size = "md", shape = "circle", className } = props;
+  const { size = "md", shape = "circle", isDefault = false, className } = props;
 
   return cn(
     "inline-flex items-center justify-center overflow-hidden",
-    "bg-gray-200 text-gray-600 font-medium select-none shrink-0",
+    "select-none shrink-0",
+    isDefault
+      ? "bg-white border border-gray-300 text-gray-700"
+      : "bg-gray-200 text-gray-600 font-medium",
     avatarSizes[size],
     avatarShapes[shape],
     className,

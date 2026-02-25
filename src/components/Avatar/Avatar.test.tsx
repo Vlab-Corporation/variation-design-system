@@ -16,6 +16,13 @@ describe("Avatar Component", () => {
       expect(screen.getByText("JD")).toBeInTheDocument();
     });
 
+    it("should render default person icon when no data provided", () => {
+      render(<Avatar data-testid="avatar" />);
+      const avatar = screen.getByTestId("avatar");
+      expect(avatar.querySelector("svg")).toBeInTheDocument();
+      expect(avatar).toHaveClass("bg-white", "border-gray-300");
+    });
+
     it("should render custom fallback", () => {
       render(<Avatar fallback="?" />);
       expect(screen.getByText("?")).toBeInTheDocument();
