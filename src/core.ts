@@ -89,9 +89,13 @@ export {
 
 export {
   cardStyles,
+  cardTitleStyles,
+  cardDescriptionStyles,
   cardVariants,
   cardPaddings,
   type CardStyleProps,
+  type CardTitleStyleProps,
+  type CardDescriptionStyleProps,
   type CardVariant,
   type CardPadding,
 } from "./components/Card/Card.styles";

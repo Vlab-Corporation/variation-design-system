@@ -121,6 +121,30 @@ export const ProfileCard: Story = {
   ),
 };
 
+// Action Card (Figma hover design)
+export const ActionCard: Story = {
+  render: () => (
+    <div className="flex gap-6">
+      <Card variant="filled" interactive className="w-72">
+        <CardHeader>
+          <CardTitle>Action Card</CardTitle>
+          <CardDescription>
+            Hover to see the accent color effect from the Figma design.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+      <Card variant="filled" interactive className="w-72">
+        <CardHeader>
+          <CardTitle>Another Action</CardTitle>
+          <CardDescription>
+            Cards change border and background color on hover.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </div>
+  ),
+};
+
 // Padding variations
 export const Paddings: Story = {
   render: () => (

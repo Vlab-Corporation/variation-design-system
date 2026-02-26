@@ -16,7 +16,11 @@ export {
 } from "./Card";
 export {
   cardStyles,
+  cardTitleStyles,
+  cardDescriptionStyles,
   cardVariants,
   cardPaddings,
   type CardStyleProps,
+  type CardTitleStyleProps,
+  type CardDescriptionStyleProps,
 } from "./Card.styles";

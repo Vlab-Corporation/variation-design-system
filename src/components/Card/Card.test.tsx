@@ -29,7 +29,7 @@ describe("Card Component", () => {
     it("should have default styling", () => {
       render(<Card data-testid="card">Content</Card>);
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("rounded-lg");
+      expect(card).toHaveClass("rounded-card");
       expect(card).toHaveClass("bg-white");
       expect(card).toHaveClass("shadow-sm");
     });
@@ -75,6 +75,35 @@ describe("Card Component", () => {
       );
       const card = screen.getByTestId("card");
       expect(card).toHaveClass("bg-gray-50");
+    });
+
+    it("should have border-transparent on default variant for layout shift prevention", () => {
+      render(<Card data-testid="card">Content</Card>);
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("border");
+      expect(card).toHaveClass("border-transparent");
+    });
+
+    it("should have border-transparent on elevated variant for layout shift prevention", () => {
+      render(
+        <Card variant="elevated" data-testid="card">
+          Content
+        </Card>,
+      );
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("border");
+      expect(card).toHaveClass("border-transparent");
+    });
+
+    it("should have border-transparent on filled variant for layout shift prevention", () => {
+      render(
+        <Card variant="filled" data-testid="card">
+          Content
+        </Card>,
+      );
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("border");
+      expect(card).toHaveClass("border-transparent");
     });
   });
 
@@ -139,8 +168,15 @@ describe("Card Component", () => {
     it("should have appropriate typography", () => {
       render(<CardTitle data-testid="title">Title</CardTitle>);
       const title = screen.getByTestId("title");
-      expect(title).toHaveClass("text-lg");
+      expect(title).toHaveClass("text-body-1");
       expect(title).toHaveClass("font-semibold");
+      expect(title).toHaveClass("tracking-tight");
+    });
+
+    it("should have hover color change class for interactive card", () => {
+      render(<CardTitle data-testid="title">Title</CardTitle>);
+      const title = screen.getByTestId("title");
+      expect(title).toHaveClass("group-hover/card:text-accent-800");
     });
   });
 
@@ -153,8 +189,16 @@ describe("Card Component", () => {
     it("should have muted styling", () => {
       render(<CardDescription data-testid="desc">Desc</CardDescription>);
       const desc = screen.getByTestId("desc");
-      expect(desc).toHaveClass("text-gray-500");
-      expect(desc).toHaveClass("text-sm");
+      expect(desc).toHaveClass("text-gray-600");
+      expect(desc).toHaveClass("text-body-3");
+      expect(desc).toHaveClass("font-medium");
+      expect(desc).toHaveClass("tracking-tight");
+    });
+
+    it("should have hover color change class for interactive card", () => {
+      render(<CardDescription data-testid="desc">Desc</CardDescription>);
+      const desc = screen.getByTestId("desc");
+      expect(desc).toHaveClass("group-hover/card:text-gray-700");
     });
   });
 
@@ -211,7 +255,7 @@ describe("Card Component", () => {
     });
   });
 
-  describe("Animations", () => {
+  describe("Interactive (Hover)", () => {
     it("should have hover transition when interactive", () => {
       render(
         <Card interactive data-testid="card">
@@ -223,24 +267,54 @@ describe("Card Component", () => {
       expect(card).toHaveClass("duration-200");
     });
 
-    it("should have hover shadow effect when interactive", () => {
+    it("should have group/card class for named group when interactive", () => {
       render(
         <Card interactive data-testid="card">
           Content
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("hover:shadow-md");
+      expect(card).toHaveClass("group/card");
     });
 
-    it("should have subtle scale on hover when interactive", () => {
+    it("should have accent hover background when interactive", () => {
       render(
         <Card interactive data-testid="card">
           Content
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("hover:scale-[1.01]");
+      expect(card).toHaveClass("hover:bg-accent-100");
+    });
+
+    it("should have accent hover border when interactive", () => {
+      render(
+        <Card interactive data-testid="card">
+          Content
+        </Card>,
+      );
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("hover:border-accent-800");
+    });
+
+    it("should remove shadow on hover when interactive", () => {
+      render(
+        <Card interactive data-testid="card">
+          Content
+        </Card>,
+      );
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("hover:shadow-none");
+    });
+
+    it("should have cursor-pointer when interactive", () => {
+      render(
+        <Card interactive data-testid="card">
+          Content
+        </Card>,
+      );
+      const card = screen.getByTestId("card");
+      expect(card).toHaveClass("cursor-pointer");
     });
   });
 });

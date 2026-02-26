@@ -4,7 +4,13 @@ import React, {
   type ElementType,
 } from "react";
 import { cn } from "@/utils/cn";
-import { cardStyles, type CardVariant, type CardPadding } from "./Card.styles";
+import {
+  cardStyles,
+  cardTitleStyles,
+  cardDescriptionStyles,
+  type CardVariant,
+  type CardPadding,
+} from "./Card.styles";
 
 export type { CardVariant, CardPadding } from "./Card.styles";
 
@@ -77,7 +83,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     return (
       <h3
         ref={ref}
-        className={cn("text-lg font-semibold text-gray-900", className)}
+        className={cardTitleStyles({ className })}
         {...props}
       >
         {children}
@@ -97,7 +103,7 @@ export const CardDescription = forwardRef<
   CardDescriptionProps
 >(({ className, children, ...props }, ref) => {
   return (
-    <p ref={ref} className={cn("text-sm text-gray-500", className)} {...props}>
+    <p ref={ref} className={cardDescriptionStyles({ className })} {...props}>
       {children}
     </p>
   );
