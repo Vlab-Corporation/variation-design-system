@@ -31,7 +31,7 @@ describe("Card Component", () => {
       const card = screen.getByTestId("card");
       expect(card).toHaveClass("rounded-card");
       expect(card).toHaveClass("bg-white");
-      expect(card).toHaveClass("shadow-sm");
+      expect(card).toHaveClass("shadow-md");
     });
 
     it("should render as different HTML element when as prop is provided", () => {
@@ -53,7 +53,7 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("shadow-md");
+      expect(card).toHaveClass("shadow-lg");
     });
 
     it("should render outlined variant", () => {
