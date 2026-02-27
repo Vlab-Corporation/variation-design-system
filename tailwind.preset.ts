@@ -72,6 +72,7 @@ const config = {
         button: borderRadius.button,
         pill: borderRadius.pill,
         input: borderRadius.input,
+        "chat-bubble": borderRadius["chat-bubble"],
       },
 
       keyframes: animations.keyframes,

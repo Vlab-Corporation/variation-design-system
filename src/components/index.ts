@@ -52,3 +52,4 @@ export * from "./CommandPalette";
 
 // Chat Components
 export * from "./PromptInput";
+export * from "./ChatBubble";

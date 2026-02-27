@@ -404,6 +404,11 @@ export {
 
 // Chat Style Functions
 export {
+  chatBubbleStyles,
+  type ChatBubbleStyleProps,
+} from "./components/ChatBubble/ChatBubble.styles";
+
+export {
   promptInputContainerStyles,
   promptInputTextareaStyles,
   promptInputSendButtonStyles,

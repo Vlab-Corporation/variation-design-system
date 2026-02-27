@@ -55,4 +55,5 @@ export const borderRadius = {
   button: "7px",
   pill: "30px",
   input: "0.375rem", // 6px
+  "chat-bubble": "1.25rem", // 20px
 };
