@@ -5,3 +5,4 @@ export { animations } from "./animations";
 export { shadows } from "./shadows";
 export { zIndex } from "./zIndex";
 export { textStyles, type TextStylePreset } from "./textStyles";
+export { gradients } from "./gradients";

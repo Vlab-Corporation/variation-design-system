@@ -16,6 +16,7 @@ import { borderRadius } from "./src/tokens/spacing";
 import { animations } from "./src/tokens/animations";
 import { shadows } from "./src/tokens/shadows";
 import { zIndex } from "./src/tokens/zIndex";
+import { gradients } from "./src/tokens/gradients";
 
 /** Convert `default` key to Tailwind's `DEFAULT` convention */
 function withDefault<T extends Record<string, unknown>>(
@@ -81,6 +82,8 @@ const config = {
         normal: animations.transitionDuration.normal,
         slow: animations.transitionDuration.slow,
       },
+
+      backgroundImage: gradients,
 
       boxShadow: shadows,
 

@@ -20,6 +20,7 @@ export {
   textStyles as textStylePresets,
   type TextStylePreset,
 } from "./tokens/textStyles";
+export { gradients } from "./tokens/gradients";
 
 // Component Style Functions (framework-agnostic class generators)
 export {
@@ -309,10 +310,13 @@ export {
   sidebarMenuStyles,
   sidebarMenuButtonStyles,
   sidebarMenuSubStyles,
+  sidebarMenuSubItemStyles,
   sidebarMenuSubButtonStyles,
+  sidebarMenuSubSubStyles,
   sidebarChevronStyles,
   sidebarTriggerStyles,
   type SidebarStyleProps,
+  type SidebarGroupStyleProps,
   type SidebarMenuButtonStyleProps,
   type SidebarMenuSubButtonStyleProps,
   type SidebarChevronStyleProps,

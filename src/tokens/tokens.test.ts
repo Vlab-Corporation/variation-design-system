@@ -8,6 +8,7 @@ import {
   shadows,
   zIndex,
   textStyles,
+  gradients,
 } from "./index";
 
 describe("Design Tokens", () => {
@@ -232,6 +233,19 @@ describe("Design Tokens", () => {
       expect(zIndex.modal).toBeLessThan(zIndex.popover);
       expect(zIndex.popover).toBeLessThan(zIndex.tooltip);
       expect(zIndex.tooltip).toBeLessThan(zIndex.toast);
+    });
+  });
+
+  describe("Gradients", () => {
+    it("should export RW gradient tokens", () => {
+      expect(gradients).toBeDefined();
+      expect(gradients["rw-gradient-01"]).toContain("linear-gradient");
+      expect(gradients["rw-gradient-02"]).toContain("linear-gradient");
+    });
+
+    it("should use rwPrimary-600 (#7070FE) as base color", () => {
+      expect(gradients["rw-gradient-01"]).toContain("#7070FE");
+      expect(gradients["rw-gradient-02"]).toContain("#7070FE");
     });
   });
 
