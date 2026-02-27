@@ -209,11 +209,6 @@ export const SidebarMenuButton = forwardRef<
     const { collapsed } = useSidebarContext();
     const subCtx = useSubMenuContext();
 
-    // Hide nav items when collapsed (only action buttons remain visible)
-    if (collapsed && variant !== "action") {
-      return null;
-    }
-
     const handleClick = useCallback(
       (e: ReactMouseEvent<HTMLButtonElement>) => {
         if (hasSub && subCtx) {
@@ -223,6 +218,11 @@ export const SidebarMenuButton = forwardRef<
       },
       [hasSub, subCtx, onClick],
     );
+
+    // Hide nav items when collapsed (only action buttons remain visible)
+    if (collapsed && variant !== "action") {
+      return null;
+    }
 
     const button = (
       <button

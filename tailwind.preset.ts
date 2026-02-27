@@ -21,10 +21,10 @@ import { gradients } from "./src/tokens/gradients";
 /** Convert `default` key to Tailwind's `DEFAULT` convention */
 function withDefault<T extends Record<string, unknown>>(
   obj: T,
-): T & { DEFAULT?: unknown } {
-  if (!("default" in obj)) return obj;
+): Omit<T, "default"> & { DEFAULT?: string } {
+  if (!("default" in obj)) return obj as Omit<T, "default"> & { DEFAULT?: string };
   const { default: defaultVal, ...rest } = obj;
-  return { ...rest, DEFAULT: defaultVal } as T & { DEFAULT?: unknown };
+  return { ...rest, DEFAULT: defaultVal } as Omit<T, "default"> & { DEFAULT?: string };
 }
 
 /** @type {import('tailwindcss').Config} */

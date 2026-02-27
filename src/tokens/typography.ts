@@ -1,6 +1,8 @@
 /**
  * Design System Typography Tokens
  */
+type FontSizeEntry = [string, { lineHeight: string }];
+
 export const typography = {
   fontFamily: {
     sans: [
@@ -34,26 +36,26 @@ export const typography = {
 
   fontSize: {
     // Generic scale (Tailwind-compatible)
-    xs: ["0.75rem", { lineHeight: "1rem" }],
-    sm: ["0.875rem", { lineHeight: "1.25rem" }],
-    base: ["1rem", { lineHeight: "1.5rem" }],
-    lg: ["1.125rem", { lineHeight: "1.75rem" }],
-    xl: ["1.25rem", { lineHeight: "1.75rem" }],
-    "2xl": ["1.5rem", { lineHeight: "2rem" }],
-    "3xl": ["1.875rem", { lineHeight: "2.25rem" }],
-    "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
-    "5xl": ["3rem", { lineHeight: "1" }],
+    xs: ["0.75rem", { lineHeight: "1rem" }] as FontSizeEntry,
+    sm: ["0.875rem", { lineHeight: "1.25rem" }] as FontSizeEntry,
+    base: ["1rem", { lineHeight: "1.5rem" }] as FontSizeEntry,
+    lg: ["1.125rem", { lineHeight: "1.75rem" }] as FontSizeEntry,
+    xl: ["1.25rem", { lineHeight: "1.75rem" }] as FontSizeEntry,
+    "2xl": ["1.5rem", { lineHeight: "2rem" }] as FontSizeEntry,
+    "3xl": ["1.875rem", { lineHeight: "2.25rem" }] as FontSizeEntry,
+    "4xl": ["2.25rem", { lineHeight: "2.5rem" }] as FontSizeEntry,
+    "5xl": ["3rem", { lineHeight: "1" }] as FontSizeEntry,
     // Semantic scale (Figma Display spec)
-    "display-lg": ["2.75rem", { lineHeight: "3.625rem" }],
-    "display-md": ["2.25rem", { lineHeight: "2.75rem" }],
-    "heading-1": ["1.875rem", { lineHeight: "2.5rem" }],
-    "heading-2": ["1.75rem", { lineHeight: "2.25rem" }],
-    "heading-3": ["1.625rem", { lineHeight: "2rem" }],
-    "heading-4": ["1.375rem", { lineHeight: "1.875rem" }],
-    "body-1": ["1.125rem", { lineHeight: "1.75rem" }],
-    "body-2": ["1rem", { lineHeight: "1.625rem" }],
-    "body-3": ["0.875rem", { lineHeight: "1.25rem" }],
-    label: ["0.75rem", { lineHeight: "1rem" }],
+    "display-lg": ["2.75rem", { lineHeight: "3.625rem" }] as FontSizeEntry,
+    "display-md": ["2.25rem", { lineHeight: "2.75rem" }] as FontSizeEntry,
+    "heading-1": ["1.875rem", { lineHeight: "2.5rem" }] as FontSizeEntry,
+    "heading-2": ["1.75rem", { lineHeight: "2.25rem" }] as FontSizeEntry,
+    "heading-3": ["1.625rem", { lineHeight: "2rem" }] as FontSizeEntry,
+    "heading-4": ["1.375rem", { lineHeight: "1.875rem" }] as FontSizeEntry,
+    "body-1": ["1.125rem", { lineHeight: "1.75rem" }] as FontSizeEntry,
+    "body-2": ["1rem", { lineHeight: "1.625rem" }] as FontSizeEntry,
+    "body-3": ["0.875rem", { lineHeight: "1.25rem" }] as FontSizeEntry,
+    label: ["0.75rem", { lineHeight: "1rem" }] as FontSizeEntry,
   },
 
   fontWeight: {

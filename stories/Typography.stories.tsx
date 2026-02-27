@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Display, Heading, Text } from "@/components/Typography";
+import { Heading } from "@/components/Typography";
 
 // ── Heading ──────────────────────────────────────────────
 
