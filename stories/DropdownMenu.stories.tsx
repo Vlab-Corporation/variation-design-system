@@ -249,6 +249,109 @@ export const SideTop: Story = {
   ),
 };
 
+// Portal — overflow:hidden 컨테이너에서도 드롭다운이 잘리지 않음
+export const Portal: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: 360, display: "flex", alignItems: "start", justifyContent: "center", paddingTop: 40 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: () => (
+    <div
+      style={{
+        overflow: "hidden",
+        border: "2px dashed #D38475",
+        borderRadius: 8,
+        padding: 16,
+        width: 240,
+      }}
+    >
+      <p style={{ fontSize: 12, color: "#888", marginBottom: 8 }}>
+        overflow: hidden container
+      </p>
+      <DropdownMenu
+        trigger={<Button variant="secondary">Portal Menu</Button>}
+        portal
+      >
+        <DropdownMenuItem
+          icon={<SettingsIcon />}
+          onSelect={() => console.log("Settings")}
+        >
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          icon={<CreditCardIcon />}
+          onSelect={() => console.log("Billing")}
+        >
+          Billing
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          destructive
+          icon={<LogOutIcon />}
+          onSelect={() => console.log("Logout")}
+        >
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenu>
+    </div>
+  ),
+};
+
+// Portal Side Top — overflow:hidden에서 위로 열기
+export const PortalSideTop: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: 360, display: "flex", alignItems: "end", justifyContent: "center", paddingBottom: 40 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: () => (
+    <div
+      style={{
+        overflow: "hidden",
+        border: "2px dashed #D38475",
+        borderRadius: 8,
+        padding: 16,
+        width: 240,
+      }}
+    >
+      <p style={{ fontSize: 12, color: "#888", marginBottom: 8 }}>
+        overflow: hidden container
+      </p>
+      <DropdownMenu
+        trigger={<Button variant="secondary">Portal Top</Button>}
+        portal
+        side="top"
+      >
+        <DropdownMenuItem
+          icon={<SettingsIcon />}
+          onSelect={() => console.log("Settings")}
+        >
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          icon={<CreditCardIcon />}
+          onSelect={() => console.log("Billing")}
+        >
+          Billing
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          destructive
+          icon={<LogOutIcon />}
+          onSelect={() => console.log("Logout")}
+        >
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenu>
+    </div>
+  ),
+};
+
 // With Icons
 export const WithIcons: Story = {
   render: () => (

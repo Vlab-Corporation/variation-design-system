@@ -22,6 +22,12 @@ function renderDropdown(props?: Partial<ComponentProps<typeof DropdownMenu>>) {
   );
 }
 
+function renderPortalDropdown(
+  props?: Partial<ComponentProps<typeof DropdownMenu>>,
+) {
+  return renderDropdown({ portal: true, ...props });
+}
+
 describe("DropdownMenu Component", () => {
   describe("Rendering", () => {
     it("should render trigger", () => {
@@ -254,6 +260,83 @@ describe("DropdownMenu Component", () => {
       renderDropdown();
       fireEvent.click(screen.getByText("Open Menu"));
       expect(screen.getAllByRole("menuitem")).toHaveLength(3);
+    });
+  });
+
+  describe("Portal Mode", () => {
+    it("should render menu in document.body when portal is true", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const menu = screen.getByRole("menu");
+      expect(menu).toBeInTheDocument();
+      // Menu should be a direct child of document.body (portaled)
+      expect(menu.parentElement).toBe(document.body);
+    });
+
+    it("should render menu inside container when portal is false", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const menu = screen.getByRole("menu");
+      // Menu should NOT be a direct child of document.body
+      expect(menu.parentElement).not.toBe(document.body);
+    });
+
+    it("should use fixed positioning in portal mode", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const menu = screen.getByRole("menu");
+      expect(menu).toHaveClass("fixed");
+      expect(menu).not.toHaveClass("absolute");
+    });
+
+    it("should close on outside click in portal mode", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.mouseDown(document.body);
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should not close when clicking the menu itself in portal mode", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const menu = screen.getByRole("menu");
+      fireEvent.mouseDown(menu);
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+    });
+
+    it("should close on Escape in portal mode", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should support keyboard navigation in portal mode", () => {
+      renderPortalDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const firstItem = screen.getByText("Edit");
+      firstItem.focus();
+      fireEvent.keyDown(firstItem, { key: "ArrowDown" });
+      expect(screen.getByText("Copy")).toHaveFocus();
+    });
+
+    it("should toggle menu on trigger click in portal mode", () => {
+      renderPortalDropdown();
+      const trigger = screen.getByText("Open Menu");
+      fireEvent.click(trigger);
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+      fireEvent.click(trigger);
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should default portal to false", () => {
+      renderDropdown();
+      fireEvent.click(screen.getByText("Open Menu"));
+      const menu = screen.getByRole("menu");
+      expect(menu).toHaveClass("absolute");
+      expect(menu).not.toHaveClass("fixed");
     });
   });
 });

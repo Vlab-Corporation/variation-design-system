@@ -4,11 +4,14 @@ import {
   useRef,
   useCallback,
   useEffect,
+  useLayoutEffect,
   type ReactNode,
   type HTMLAttributes,
   type KeyboardEvent,
   type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
 } from "react";
+import { createPortal } from "react-dom";
 import {
   dropdownMenuContentStyles,
   dropdownMenuItemStyles,
@@ -34,6 +37,8 @@ export interface DropdownMenuProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean;
   /** Called when open state changes */
   onOpenChange?: (open: boolean) => void;
+  /** Render dropdown content in a portal (document.body) to avoid overflow clipping */
+  portal?: boolean;
 }
 
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
@@ -42,6 +47,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       trigger,
       align = "start",
       side = "bottom",
+      portal = false,
       open: controlledOpen,
       onOpenChange,
       className,
@@ -55,6 +61,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
     const isOpen = isControlled ? controlledOpen : internalOpen;
 
     const containerRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
 
     const setOpen = useCallback(
@@ -67,23 +74,84 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       [isControlled, onOpenChange],
     );
 
+    // --- Portal positioning ---
+    const PORTAL_GAP = 4; // matches mt-1/mb-1 (0.25rem)
+
+    const [portalStyle, setPortalStyle] = useState<CSSProperties>({});
+
+    const updatePortalPosition = useCallback(() => {
+      if (!triggerRef.current || !menuRef.current) return;
+
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const menuRect = menuRef.current.getBoundingClientRect();
+
+      let top: number;
+      if (side === "bottom") {
+        top = triggerRect.bottom + PORTAL_GAP;
+      } else {
+        top = triggerRect.top - menuRect.height - PORTAL_GAP;
+      }
+
+      let left: number;
+      if (align === "end") {
+        left = triggerRect.right - menuRect.width;
+      } else if (align === "center") {
+        left = triggerRect.left + triggerRect.width / 2 - menuRect.width / 2;
+      } else {
+        left = triggerRect.left;
+      }
+
+      setPortalStyle({ top, left });
+    }, [side, align]);
+
+    // Position before paint to avoid flash
+    useLayoutEffect(() => {
+      if (portal && isOpen) {
+        updatePortalPosition();
+      }
+    }, [portal, isOpen, updatePortalPosition]);
+
+    // Reposition on scroll/resize
+    useEffect(() => {
+      if (!portal || !isOpen) return;
+
+      window.addEventListener("scroll", updatePortalPosition, true);
+      window.addEventListener("resize", updatePortalPosition);
+
+      return () => {
+        window.removeEventListener("scroll", updatePortalPosition, true);
+        window.removeEventListener("resize", updatePortalPosition);
+      };
+    }, [portal, isOpen, updatePortalPosition]);
+
     // Close on outside click
     useEffect(() => {
       if (!isOpen) return;
 
       const handleClickOutside = (e: MouseEvent) => {
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(e.target as Node)
-        ) {
-          setOpen(false);
+        const target = e.target as Node;
+
+        if (portal) {
+          // In portal mode, check both trigger container and portaled menu
+          const isInsideContainer = containerRef.current?.contains(target);
+          const isInsideMenu = menuRef.current?.contains(target);
+          if (!isInsideContainer && !isInsideMenu) {
+            setOpen(false);
+          }
+        } else {
+          if (
+            containerRef.current &&
+            !containerRef.current.contains(target)
+          ) {
+            setOpen(false);
+          }
         }
       };
 
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
-    }, [isOpen, setOpen]);
+    }, [isOpen, setOpen, portal]);
 
     // Close on Escape
     useEffect(() => {
@@ -135,6 +203,18 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       }
     };
 
+    const menuContent = (
+      <div
+        ref={menuRef}
+        role="menu"
+        className={dropdownMenuContentStyles({ align, side, portal, className })}
+        style={portal ? portalStyle : undefined}
+        onKeyDown={handleMenuKeyDown}
+      >
+        {children}
+      </div>
+    );
+
     return (
       <div
         ref={(node) => {
@@ -149,6 +229,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         {...props}
       >
         <div
+          ref={triggerRef}
           onClick={() => setOpen(!isOpen)}
           onKeyDown={handleTriggerKeyDown}
           aria-haspopup="true"
@@ -156,16 +237,8 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
         >
           {trigger}
         </div>
-        {isOpen && (
-          <div
-            ref={menuRef}
-            role="menu"
-            className={dropdownMenuContentStyles({ align, side, className })}
-            onKeyDown={handleMenuKeyDown}
-          >
-            {children}
-          </div>
-        )}
+        {isOpen &&
+          (portal ? createPortal(menuContent, document.body) : menuContent)}
       </div>
     );
   },

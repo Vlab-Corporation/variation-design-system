@@ -17,20 +17,24 @@ export const dropdownMenuSides: Record<DropdownMenuSide, string> = {
 export interface DropdownMenuContentStyleProps {
   align?: DropdownMenuAlign;
   side?: DropdownMenuSide;
+  /** When true, uses fixed positioning (side/align handled via inline styles) */
+  portal?: boolean;
   className?: string;
 }
 
 export function dropdownMenuContentStyles(
   props: DropdownMenuContentStyleProps = {},
 ): string {
-  const { align = "start", side = "bottom", className } = props;
+  const { align = "start", side = "bottom", portal = false, className } = props;
 
   return cn(
-    "absolute z-dropdown min-w-[13.25rem] py-2.5",
+    portal
+      ? "fixed z-dropdown min-w-[13.25rem] py-2.5"
+      : "absolute z-dropdown min-w-[13.25rem] py-2.5",
     "bg-white border border-gray-200 rounded-card shadow-dropdown",
     "animate-fade-in",
-    dropdownMenuSides[side],
-    dropdownMenuAligns[align],
+    !portal && dropdownMenuSides[side],
+    !portal && dropdownMenuAligns[align],
     className,
   );
 }
