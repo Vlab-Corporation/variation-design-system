@@ -30,6 +30,7 @@ npm-debug.log*
 
 # Project docs (local only)
 CLAUDE.md
+.claude/
 
 # Lock files (optional - depends on preference)
 # package-lock.json
