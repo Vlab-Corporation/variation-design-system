@@ -86,6 +86,26 @@ Defined in `src/tokens/` (colors, typography, spacing, animations). When adding 
 - **ESM-only output** for the main library; Tailwind preset also ships CJS for `require()` compatibility
 - **react and react-dom are optional peer dependencies** — the `core` entry point works without them
 
+## Pre-Push 필수 검증
+
+**커밋 또는 push 전에 아래 4개 명령을 반드시 실행하고 모두 통과해야 한다.** 하나라도 실패하면 push하지 않는다.
+
+```bash
+npm run format           # 1. Prettier 포맷팅 자동 적용
+npm run lint:fix         # 2. ESLint 자동 수정
+npm run typecheck        # 3. TypeScript 타입 검사
+npm test                 # 4. 테스트 실행
+```
+
+### 자주 발생하는 CI 실패 원인과 예방
+
+| 실패 유형 | 원인 | 예방 규칙 |
+|-----------|------|-----------|
+| **미사용 import** | 코드 수정 후 import 정리 누락 | 파일 수정 시 해당 파일의 import 목록을 확인하고 미사용 import를 제거한다 |
+| **Prettier 포맷팅** | 새 코드나 수정 코드가 포맷 규칙 미준수 | 수정한 파일에 `npm run format` 적용 후 커밋한다 |
+| **Tailwind 타입 불일치** | 토큰 배열이 튜플이 아닌 일반 배열로 추론됨 | `src/tokens/`에서 배열 값은 `as [type, type]` 튜플 타입을 명시한다 |
+| **React Hooks 규칙 위반** | 조건부 return 이후에 Hook 호출 | 모든 Hook 호출은 컴포넌트 최상위에서, 조건부 return보다 먼저 배치한다 |
+
 ## CI Pipeline
 
 GitHub Actions runs on push to `main` and PRs:
