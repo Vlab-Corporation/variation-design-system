@@ -81,11 +81,7 @@ export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <h3
-        ref={ref}
-        className={cardTitleStyles({ className })}
-        {...props}
-      >
+      <h3 ref={ref} className={cardTitleStyles({ className })} {...props}>
         {children}
       </h3>
     );

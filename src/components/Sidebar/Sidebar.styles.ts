@@ -100,10 +100,7 @@ export function sidebarMenuButtonStyles({
     "flex h-[46px] w-full items-center gap-[14px] rounded-button text-body-2 font-medium transition-colors duration-fast",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
     variant === "action"
-      ? cn(
-          "text-black",
-          "hover:bg-accent-200",
-        )
+      ? cn("text-black", "hover:bg-accent-200")
       : cn(
           "text-black",
           "hover:bg-accent-200",

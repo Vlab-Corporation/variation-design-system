@@ -62,7 +62,10 @@ export function dropdownMenuItemStyles(
 }
 
 export function dropdownMenuItemIconStyles(className?: string): string {
-  return cn("inline-flex shrink-0 items-center justify-center size-6", className);
+  return cn(
+    "inline-flex shrink-0 items-center justify-center size-6",
+    className,
+  );
 }
 
 export function dropdownMenuSeparatorStyles(className?: string): string {

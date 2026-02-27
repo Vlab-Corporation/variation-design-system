@@ -203,7 +203,17 @@ export const SidebarMenuButton = forwardRef<
   SidebarMenuButtonProps
 >(
   (
-    { variant, icon, active, hasSub, tooltip, className, children, onClick, ...props },
+    {
+      variant,
+      icon,
+      active,
+      hasSub,
+      tooltip,
+      className,
+      children,
+      onClick,
+      ...props
+    },
     ref,
   ) => {
     const { collapsed } = useSidebarContext();

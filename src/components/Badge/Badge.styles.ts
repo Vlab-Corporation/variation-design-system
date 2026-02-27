@@ -20,7 +20,11 @@ export const badgeVariants: Record<
     text: "text-accent-800",
     dot: "bg-accent-500",
   },
-  success: { bg: "bg-success-100", text: "text-success-800", dot: "bg-success-500" },
+  success: {
+    bg: "bg-success-100",
+    text: "text-success-800",
+    dot: "bg-success-500",
+  },
   warning: {
     bg: "bg-warning-100",
     text: "text-warning-800",

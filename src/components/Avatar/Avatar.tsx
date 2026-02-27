@@ -81,7 +81,8 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
     const showImage = src && !imgError;
 
     const isDefault = !showImage && !fallback && !alt;
-    const fallbackContent = fallback ?? (alt ? getInitials(alt) : <DefaultAvatarIcon />);
+    const fallbackContent =
+      fallback ?? (alt ? getInitials(alt) : <DefaultAvatarIcon />);
 
     return (
       <span

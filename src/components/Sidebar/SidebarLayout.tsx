@@ -34,7 +34,11 @@ export const SidebarContent = forwardRef<HTMLDivElement, SidebarContentProps>(
   ({ className, children, ...props }, ref) => {
     const { collapsed } = useSidebarContext();
     return (
-      <div ref={ref} className={sidebarContentStyles({ collapsed, className })} {...props}>
+      <div
+        ref={ref}
+        className={sidebarContentStyles({ collapsed, className })}
+        {...props}
+      >
         {children}
       </div>
     );

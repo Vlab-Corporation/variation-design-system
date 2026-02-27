@@ -405,7 +405,10 @@ export const DragOverlay = ({
   }
 
   return (
-    <div className={cn("fixed pointer-events-none z-popover", className)} {...props}>
+    <div
+      className={cn("fixed pointer-events-none z-popover", className)}
+      {...props}
+    >
       {children(context.activeId)}
     </div>
   );

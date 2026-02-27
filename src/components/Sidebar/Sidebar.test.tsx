@@ -586,7 +586,11 @@ describe("Collapsed mode layout", () => {
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton variant="action" icon={<span>+</span>} tooltip="Create">
+                <SidebarMenuButton
+                  variant="action"
+                  icon={<span>+</span>}
+                  tooltip="Create"
+                >
                   New Item
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -22,7 +22,10 @@ import {
   type DropdownMenuSide,
 } from "./DropdownMenu.styles";
 
-export type { DropdownMenuAlign, DropdownMenuSide } from "./DropdownMenu.styles";
+export type {
+  DropdownMenuAlign,
+  DropdownMenuSide,
+} from "./DropdownMenu.styles";
 
 // --- DropdownMenu ---
 
@@ -139,10 +142,7 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
             setOpen(false);
           }
         } else {
-          if (
-            containerRef.current &&
-            !containerRef.current.contains(target)
-          ) {
+          if (containerRef.current && !containerRef.current.contains(target)) {
             setOpen(false);
           }
         }
@@ -207,7 +207,12 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
       <div
         ref={menuRef}
         role="menu"
-        className={dropdownMenuContentStyles({ align, side, portal, className })}
+        className={dropdownMenuContentStyles({
+          align,
+          side,
+          portal,
+          className,
+        })}
         style={portal ? portalStyle : undefined}
         onKeyDown={handleMenuKeyDown}
       >
@@ -304,9 +309,7 @@ export const DropdownMenuItem = forwardRef<
         onClick={handleClick}
         {...props}
       >
-        {icon && (
-          <span className={dropdownMenuItemIconStyles()}>{icon}</span>
-        )}
+        {icon && <span className={dropdownMenuItemIconStyles()}>{icon}</span>}
         {children}
       </button>
     );
