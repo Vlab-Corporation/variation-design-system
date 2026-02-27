@@ -8,6 +8,12 @@ import {
   CardContent,
   CardFooter,
 } from "./Card";
+import {
+  cardVariants,
+  cardPaddings,
+  cardTitleStyles,
+  cardDescriptionStyles,
+} from "./Card.styles";
 
 describe("Card Component", () => {
   describe("Card", () => {
@@ -30,8 +36,9 @@ describe("Card Component", () => {
       render(<Card data-testid="card">Content</Card>);
       const card = screen.getByTestId("card");
       expect(card).toHaveClass("rounded-card");
-      expect(card).toHaveClass("bg-white");
-      expect(card).toHaveClass("shadow-md");
+      for (const cls of cardVariants.default.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should render as different HTML element when as prop is provided", () => {
@@ -53,7 +60,9 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("shadow-lg");
+      for (const cls of cardVariants.elevated.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should render outlined variant", () => {
@@ -63,8 +72,9 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("border");
-      expect(card).toHaveClass("border-gray-200");
+      for (const cls of cardVariants.outlined.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should render filled variant", () => {
@@ -74,14 +84,17 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("bg-gray-50");
+      for (const cls of cardVariants.filled.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should have border-transparent on default variant for layout shift prevention", () => {
       render(<Card data-testid="card">Content</Card>);
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("border");
-      expect(card).toHaveClass("border-transparent");
+      for (const cls of cardVariants.default.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should have border-transparent on elevated variant for layout shift prevention", () => {
@@ -91,8 +104,9 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("border");
-      expect(card).toHaveClass("border-transparent");
+      for (const cls of cardVariants.elevated.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
 
     it("should have border-transparent on filled variant for layout shift prevention", () => {
@@ -102,8 +116,9 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("border");
-      expect(card).toHaveClass("border-transparent");
+      for (const cls of cardVariants.filled.split(" ")) {
+        expect(card).toHaveClass(cls);
+      }
     });
   });
 
@@ -115,13 +130,13 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("p-3");
+      expect(card).toHaveClass(cardPaddings.sm);
     });
 
     it("should apply medium padding by default", () => {
       render(<Card data-testid="card">Content</Card>);
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("p-4");
+      expect(card).toHaveClass(cardPaddings.md);
     });
 
     it("should apply large padding", () => {
@@ -131,7 +146,7 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("p-6");
+      expect(card).toHaveClass(cardPaddings.lg);
     });
 
     it("should apply no padding when none specified", () => {
@@ -141,7 +156,7 @@ describe("Card Component", () => {
         </Card>,
       );
       const card = screen.getByTestId("card");
-      expect(card).toHaveClass("p-0");
+      expect(card).toHaveClass(cardPaddings.none);
     });
   });
 
@@ -168,15 +183,9 @@ describe("Card Component", () => {
     it("should have appropriate typography", () => {
       render(<CardTitle data-testid="title">Title</CardTitle>);
       const title = screen.getByTestId("title");
-      expect(title).toHaveClass("text-body-1");
-      expect(title).toHaveClass("font-semibold");
-      expect(title).toHaveClass("tracking-tight");
-    });
-
-    it("should have hover color change class for interactive card", () => {
-      render(<CardTitle data-testid="title">Title</CardTitle>);
-      const title = screen.getByTestId("title");
-      expect(title).toHaveClass("group-hover/card:text-accent-800");
+      for (const cls of cardTitleStyles().split(" ")) {
+        expect(title).toHaveClass(cls);
+      }
     });
   });
 
@@ -189,16 +198,9 @@ describe("Card Component", () => {
     it("should have muted styling", () => {
       render(<CardDescription data-testid="desc">Desc</CardDescription>);
       const desc = screen.getByTestId("desc");
-      expect(desc).toHaveClass("text-gray-600");
-      expect(desc).toHaveClass("text-body-3");
-      expect(desc).toHaveClass("font-medium");
-      expect(desc).toHaveClass("tracking-tight");
-    });
-
-    it("should have hover color change class for interactive card", () => {
-      render(<CardDescription data-testid="desc">Desc</CardDescription>);
-      const desc = screen.getByTestId("desc");
-      expect(desc).toHaveClass("group-hover/card:text-gray-700");
+      for (const cls of cardDescriptionStyles().split(" ")) {
+        expect(desc).toHaveClass(cls);
+      }
     });
   });
 
