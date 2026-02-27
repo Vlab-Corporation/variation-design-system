@@ -8,6 +8,8 @@ export interface SidebarStyleProps {
 }
 
 export interface SidebarMenuButtonStyleProps {
+  /** "nav" = navigation item (default), "action" = action trigger (e.g. create) */
+  variant?: "nav" | "action";
   active?: boolean;
   collapsed?: boolean;
   hasSub?: boolean;
@@ -17,6 +19,10 @@ export interface SidebarMenuButtonStyleProps {
 export interface SidebarMenuSubButtonStyleProps {
   active?: boolean;
   isHeader?: boolean;
+  hasSub?: boolean;
+  collapsed?: boolean;
+  /** Whether this button is inside an expanded group (hasSub && expanded) */
+  inExpandedGroup?: boolean;
   className?: string;
 }
 
@@ -45,19 +51,32 @@ export function sidebarHeaderStyles({
 }
 
 export function sidebarContentStyles({
+  collapsed,
   className,
-}: { className?: string } = {}) {
-  return cn("flex-1 overflow-y-auto py-2", className);
+}: { collapsed?: boolean; className?: string } = {}) {
+  return cn(
+    "flex-1 py-2",
+    collapsed ? "overflow-visible" : "overflow-y-auto",
+    className,
+  );
 }
 
 export function sidebarFooterStyles({
   className,
 }: { className?: string } = {}) {
-  return cn("shrink-0 px-4 py-3", className);
+  return cn("shrink-0 border-t border-gray-200 px-4 py-3", className);
 }
 
-export function sidebarGroupStyles({ className }: { className?: string } = {}) {
-  return cn("px-4 pb-4", className);
+export interface SidebarGroupStyleProps {
+  collapsed?: boolean;
+  className?: string;
+}
+
+export function sidebarGroupStyles({
+  collapsed,
+  className,
+}: SidebarGroupStyleProps = {}) {
+  return cn(collapsed ? "px-2 pb-4" : "px-4 pb-4", className);
 }
 
 export function sidebarGroupLabelStyles({
@@ -71,31 +90,55 @@ export function sidebarMenuStyles({ className }: { className?: string } = {}) {
 }
 
 export function sidebarMenuButtonStyles({
+  variant = "nav",
   active,
   collapsed,
   hasSub,
   className,
 }: SidebarMenuButtonStyleProps = {}) {
   return cn(
-    "flex h-[46px] w-full items-center gap-[14px] rounded-button px-3 text-body-2 font-medium text-black transition-colors duration-fast",
-    "hover:bg-accent-200",
+    "flex h-[46px] w-full items-center gap-[14px] rounded-button text-body-2 font-medium transition-colors duration-fast",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
-    active && "bg-accent-300 font-semibold text-accent-800",
-    collapsed && "justify-center px-0",
+    variant === "action"
+      ? cn(
+          "text-black",
+          "hover:bg-accent-200",
+        )
+      : cn(
+          "text-black",
+          "hover:bg-accent-200",
+          active && "bg-accent-300 font-semibold text-accent-800",
+        ),
+    collapsed ? "justify-center px-0" : "pl-1 pr-3",
     hasSub && "cursor-pointer",
     className,
   );
 }
 
 export function sidebarMenuSubStyles({
+  hidden,
   className,
-}: { className?: string } = {}) {
-  return cn("flex flex-col gap-0.5 pl-[38px]", className);
+}: { hidden?: boolean; className?: string } = {}) {
+  return cn(
+    hidden ? "hidden" : "flex flex-col gap-0.5",
+    "pl-[38px]",
+    className,
+  );
+}
+
+export function sidebarMenuSubItemStyles({
+  expanded,
+  className,
+}: { expanded?: boolean; className?: string } = {}) {
+  return cn("rounded-button", expanded && "bg-accent-200", className);
 }
 
 export function sidebarMenuSubButtonStyles({
   active,
   isHeader,
+  hasSub,
+  collapsed,
+  inExpandedGroup,
   className,
 }: SidebarMenuSubButtonStyleProps = {}) {
   return cn(
@@ -103,17 +146,30 @@ export function sidebarMenuSubButtonStyles({
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400",
     isHeader
       ? cn(
-          "h-[46px] text-body-2 font-semibold text-black",
-          "hover:bg-accent-200",
-          active && "bg-accent-200 text-accent-800",
+          "h-[46px] gap-[14px] text-body-2 font-medium text-black",
+          inExpandedGroup
+            ? "text-accent-800"
+            : cn(
+                "hover:bg-accent-200",
+                active && "bg-accent-300 text-accent-800",
+              ),
         )
       : cn(
           "h-[38px] text-body-3 font-medium text-gray-700",
           "hover:bg-gray-200",
           active && "bg-accent-200 text-accent-800",
         ),
+    hasSub && "cursor-pointer",
+    collapsed && "justify-center px-0",
     className,
   );
+}
+
+export function sidebarMenuSubSubStyles({
+  hidden,
+  className,
+}: { hidden?: boolean; className?: string } = {}) {
+  return cn(hidden ? "hidden" : "flex flex-col gap-0.5", "pl-6", className);
 }
 
 export function sidebarChevronStyles({

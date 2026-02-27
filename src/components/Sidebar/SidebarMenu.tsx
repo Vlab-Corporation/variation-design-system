@@ -15,6 +15,8 @@ import {
   sidebarMenuStyles,
   sidebarMenuButtonStyles,
   sidebarMenuSubStyles,
+  sidebarMenuSubSubStyles,
+  sidebarMenuSubItemStyles,
   sidebarMenuSubButtonStyles,
   sidebarChevronStyles,
 } from "./Sidebar.styles";
@@ -183,6 +185,8 @@ SidebarMenuItem.displayName = "SidebarMenuItem";
 // --- SidebarMenuButton ---
 
 export interface SidebarMenuButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** "nav" = navigation item (default), "action" = action trigger (e.g. create) */
+  variant?: "nav" | "action";
   /** Icon element (24x24 recommended) */
   icon?: ReactNode;
   /** Active state */
@@ -199,11 +203,16 @@ export const SidebarMenuButton = forwardRef<
   SidebarMenuButtonProps
 >(
   (
-    { icon, active, hasSub, tooltip, className, children, onClick, ...props },
+    { variant, icon, active, hasSub, tooltip, className, children, onClick, ...props },
     ref,
   ) => {
     const { collapsed } = useSidebarContext();
     const subCtx = useSubMenuContext();
+
+    // Hide nav items when collapsed (only action buttons remain visible)
+    if (collapsed && variant !== "action") {
+      return null;
+    }
 
     const handleClick = useCallback(
       (e: ReactMouseEvent<HTMLButtonElement>) => {
@@ -220,6 +229,7 @@ export const SidebarMenuButton = forwardRef<
         ref={ref}
         type="button"
         className={sidebarMenuButtonStyles({
+          variant,
           active,
           collapsed,
           hasSub,
@@ -251,7 +261,7 @@ export const SidebarMenuButton = forwardRef<
 
     if (collapsed && tooltip) {
       return (
-        <Tooltip content={tooltip} placement="right">
+        <Tooltip content={tooltip} placement="right" wrapperClassName="w-full">
           {button}
         </Tooltip>
       );
@@ -266,20 +276,34 @@ SidebarMenuButton.displayName = "SidebarMenuButton";
 // --- SidebarMenuSub ---
 
 export interface SidebarMenuSubProps extends HTMLAttributes<HTMLUListElement> {
+  /** Whether this is a nested sub-menu (Level 3+), uses tighter indentation */
+  nested?: boolean;
   children: ReactNode;
 }
 
 export const SidebarMenuSub = forwardRef<HTMLUListElement, SidebarMenuSubProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ nested = false, className, children, ...props }, ref) => {
+    const { collapsed } = useSidebarContext();
     const subCtx = useSubMenuContext();
+
+    // Hide sub-menus entirely when sidebar is collapsed
+    if (collapsed) {
+      return null;
+    }
+
+    const isHidden = subCtx ? !subCtx.expanded : false;
 
     return (
       <ul
         ref={ref}
         id={subCtx?.subMenuId}
         role="list"
-        hidden={subCtx ? !subCtx.expanded : false}
-        className={sidebarMenuSubStyles({ className })}
+        aria-hidden={isHidden}
+        className={
+          nested
+            ? sidebarMenuSubSubStyles({ hidden: isHidden, className })
+            : sidebarMenuSubStyles({ hidden: isHidden, className })
+        }
         {...props}
       >
         {children}
@@ -293,43 +317,160 @@ SidebarMenuSub.displayName = "SidebarMenuSub";
 // --- SidebarMenuSubItem ---
 
 export interface SidebarMenuSubItemProps extends HTMLAttributes<HTMLLIElement> {
+  /** Default expanded state (uncontrolled) */
+  defaultExpanded?: boolean;
+  /** Controlled expanded state */
+  expanded?: boolean;
+  /** Callback when expanded state changes */
+  onExpandedChange?: (expanded: boolean) => void;
   children: ReactNode;
 }
 
 export const SidebarMenuSubItem = forwardRef<
   HTMLLIElement,
   SidebarMenuSubItemProps
->(({ className, children, ...props }, ref) => (
-  <li ref={ref} className={className} {...props}>
-    {children}
-  </li>
-));
+>(
+  (
+    {
+      defaultExpanded = false,
+      expanded: controlledExpanded,
+      onExpandedChange,
+      className,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+    const isControlled = controlledExpanded !== undefined;
+    const expanded = isControlled ? controlledExpanded : internalExpanded;
+    const subMenuId = useId();
+
+    const setExpanded = useCallback(
+      (value: boolean) => {
+        if (!isControlled) setInternalExpanded(value);
+        onExpandedChange?.(value);
+      },
+      [isControlled, onExpandedChange],
+    );
+
+    const toggleExpanded = useCallback(() => {
+      setExpanded(!expanded);
+    }, [expanded, setExpanded]);
+
+    return (
+      <SubMenuContext.Provider
+        value={{ expanded, setExpanded, toggleExpanded, subMenuId }}
+      >
+        <li
+          ref={ref}
+          className={sidebarMenuSubItemStyles({ expanded, className })}
+          {...props}
+        >
+          {children}
+        </li>
+      </SubMenuContext.Provider>
+    );
+  },
+);
 
 SidebarMenuSubItem.displayName = "SidebarMenuSubItem";
 
 // --- SidebarMenuSubButton ---
 
 export interface SidebarMenuSubButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Icon element (24x24 recommended) */
+  icon?: ReactNode;
   /** Active state */
   active?: boolean;
-  /** Header style (B2 SemiBold) vs list style (B3 Medium) */
+  /** Header style (B2 Medium) vs list style (B3 Medium) */
   isHeader?: boolean;
+  /** Whether this button has a nested sub-menu */
+  hasSub?: boolean;
+  /** Tooltip label for collapsed sidebar mode */
+  tooltip?: string;
   children: ReactNode;
 }
 
 export const SidebarMenuSubButton = forwardRef<
   HTMLButtonElement,
   SidebarMenuSubButtonProps
->(({ active, isHeader, className, children, ...props }, ref) => (
-  <button
-    ref={ref}
-    type="button"
-    className={sidebarMenuSubButtonStyles({ active, isHeader, className })}
-    aria-current={active ? "page" : undefined}
-    {...props}
-  >
-    {children}
-  </button>
-));
+>(
+  (
+    {
+      icon,
+      active,
+      isHeader,
+      hasSub,
+      tooltip,
+      className,
+      children,
+      onClick,
+      ...props
+    },
+    ref,
+  ) => {
+    const { collapsed } = useSidebarContext();
+    const subCtx = useSubMenuContext();
+
+    const handleClick = useCallback(
+      (e: ReactMouseEvent<HTMLButtonElement>) => {
+        if (hasSub && subCtx) {
+          subCtx.toggleExpanded();
+        }
+        onClick?.(e);
+      },
+      [hasSub, subCtx, onClick],
+    );
+
+    const inExpandedGroup = !!(hasSub && subCtx?.expanded);
+
+    const button = (
+      <button
+        ref={ref}
+        type="button"
+        className={sidebarMenuSubButtonStyles({
+          active,
+          isHeader,
+          hasSub,
+          collapsed,
+          inExpandedGroup,
+          className,
+        })}
+        onClick={handleClick}
+        aria-expanded={hasSub && subCtx ? subCtx.expanded : undefined}
+        aria-controls={hasSub && subCtx ? subCtx.subMenuId : undefined}
+        aria-current={active ? "page" : undefined}
+        {...props}
+      >
+        {icon && (
+          <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center">
+            {icon}
+          </span>
+        )}
+        {!collapsed && children && (
+          <span className="flex-1 truncate text-left">{children}</span>
+        )}
+        {!collapsed && hasSub && (
+          <ChevronDownIcon
+            className={sidebarChevronStyles({
+              expanded: subCtx?.expanded,
+            })}
+          />
+        )}
+      </button>
+    );
+
+    if (collapsed && tooltip) {
+      return (
+        <Tooltip content={tooltip} placement="right" wrapperClassName="w-full">
+          {button}
+        </Tooltip>
+      );
+    }
+
+    return button;
+  },
+);
 
 SidebarMenuSubButton.displayName = "SidebarMenuSubButton";

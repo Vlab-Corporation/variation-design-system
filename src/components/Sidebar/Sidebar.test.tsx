@@ -195,7 +195,7 @@ describe("Active States", () => {
   it("applies isHeader styles to SidebarMenuSubButton", () => {
     renderSidebar();
     const btn = screen.getByText("John Doe").closest("button")!;
-    expect(btn.className).toContain("font-semibold");
+    expect(btn.className).toContain("font-medium");
   });
 });
 
@@ -238,6 +238,38 @@ describe("Events", () => {
     );
 
     fireEvent.click(screen.getByText("Toggle Me").closest("button")!);
+    expect(handler).toHaveBeenCalledWith(true);
+  });
+
+  it("calls onExpandedChange on SidebarMenuSubItem", () => {
+    const handler = vi.fn();
+    render(
+      <SidebarProvider>
+        <Sidebar>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem defaultExpanded>
+                <SidebarMenuButton hasSub>Members</SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem onExpandedChange={handler}>
+                    <SidebarMenuSubButton isHeader hasSub>
+                      Member A
+                    </SidebarMenuSubButton>
+                    <SidebarMenuSub nested>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton>Page 1</SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>,
+    );
+
+    fireEvent.click(screen.getByText("Member A").closest("button")!);
     expect(handler).toHaveBeenCalledWith(true);
   });
 
@@ -437,6 +469,143 @@ describe("forwardRef", () => {
   });
 });
 
+// --- 3-Level Menu ---
+describe("3-Level Menu", () => {
+  function renderThreeLevel() {
+    return render(
+      <SidebarProvider>
+        <Sidebar>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem defaultExpanded>
+                <SidebarMenuButton icon={<span>👥</span>} hasSub>
+                  회원 목록
+                </SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem defaultExpanded>
+                    <SidebarMenuSubButton isHeader hasSub active>
+                      류한희 19800421
+                    </SidebarMenuSubButton>
+                    <SidebarMenuSub nested>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton>
+                          초진 결과 요약본
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton>
+                          원인 추정 분석 결과 요약본
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton isHeader>
+                      임재혁 19631014
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>,
+    );
+  }
+
+  it("renders Level 3 items when parent sub-item is expanded", () => {
+    renderThreeLevel();
+    expect(screen.getByText("초진 결과 요약본")).toBeVisible();
+    expect(screen.getByText("원인 추정 분석 결과 요약본")).toBeVisible();
+  });
+
+  it("toggles Level 2 sub-item independently of Level 1", () => {
+    renderThreeLevel();
+    const memberBtn = screen.getByText("류한희 19800421").closest("button")!;
+    expect(memberBtn).toHaveAttribute("aria-expanded", "true");
+
+    fireEvent.click(memberBtn);
+    expect(memberBtn).toHaveAttribute("aria-expanded", "false");
+
+    // Level 3 items should be hidden
+    const level3List = screen.getByText("초진 결과 요약본").closest("ul")!;
+    expect(level3List).toHaveAttribute("aria-hidden", "true");
+
+    // Level 1 should still be expanded
+    const level1Btn = screen.getByText("회원 목록").closest("button")!;
+    expect(level1Btn).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("sets aria-controls on Level 2 sub-button with hasSub", () => {
+    renderThreeLevel();
+    const memberBtn = screen.getByText("류한희 19800421").closest("button")!;
+    const controlsId = memberBtn.getAttribute("aria-controls");
+    expect(controlsId).toBeTruthy();
+    expect(document.getElementById(controlsId!)).toBeInTheDocument();
+  });
+
+  it("applies active state to Level 2 sub-button", () => {
+    renderThreeLevel();
+    const btn = screen.getByText("류한희 19800421").closest("button")!;
+    // When expanded with sub-items, group background is on the parent li instead
+    expect(btn.className).toContain("text-accent-800");
+    expect(btn).toHaveAttribute("aria-current", "page");
+  });
+
+  it("applies nested indentation class", () => {
+    renderThreeLevel();
+    const nestedList = screen.getByText("초진 결과 요약본").closest("ul")!;
+    expect(nestedList.className).toContain("pl-6");
+  });
+});
+
+// --- Collapsed mode: layout & visibility ---
+describe("Collapsed mode layout", () => {
+  it("applies px-2 on SidebarGroup when collapsed", () => {
+    renderSidebar({ defaultCollapsed: true });
+    const group = screen.getByRole("group");
+    expect(group.className).toContain("px-2");
+  });
+
+  it("applies px-4 on SidebarGroup when expanded", () => {
+    renderSidebar();
+    const group = screen.getByRole("group");
+    expect(group.className).toContain("px-4");
+  });
+
+  it("hides nav variant SidebarMenuButton when collapsed", () => {
+    renderSidebar({ defaultCollapsed: true });
+    expect(screen.queryByText("Dashboard")).not.toBeInTheDocument();
+    expect(screen.queryByText("Members")).not.toBeInTheDocument();
+  });
+
+  it("shows action variant SidebarMenuButton when collapsed", () => {
+    render(
+      <SidebarProvider defaultCollapsed>
+        <Sidebar>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton variant="action" icon={<span>+</span>} tooltip="Create">
+                  New Item
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>,
+    );
+    // action button should still render (icon visible via tooltip wrapper)
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
+
+  it("hides SidebarMenuSub when collapsed", () => {
+    renderSidebar({ defaultCollapsed: true });
+    expect(screen.queryByText("John Doe")).not.toBeInTheDocument();
+    expect(screen.queryByText("Bookmarks")).not.toBeInTheDocument();
+  });
+});
+
 // --- Controlled mode ---
 describe("Controlled mode", () => {
   it("respects controlled collapsed state", () => {
@@ -480,7 +649,7 @@ describe("Controlled mode", () => {
     );
 
     const sub = screen.getByText("Child").closest("ul")!;
-    expect(sub).toHaveAttribute("hidden");
+    expect(sub).toHaveAttribute("aria-hidden", "true");
 
     rerender(
       <SidebarProvider>
@@ -500,6 +669,64 @@ describe("Controlled mode", () => {
         </Sidebar>
       </SidebarProvider>,
     );
-    expect(sub).not.toHaveAttribute("hidden");
+    expect(sub).not.toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("respects controlled expanded state on SidebarMenuSubItem", () => {
+    const { rerender } = render(
+      <SidebarProvider>
+        <Sidebar>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem defaultExpanded>
+                <SidebarMenuButton hasSub>Members</SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem expanded={false}>
+                    <SidebarMenuSubButton isHeader hasSub>
+                      Member A
+                    </SidebarMenuSubButton>
+                    <SidebarMenuSub nested>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton>Page 1</SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>,
+    );
+
+    const nestedList = screen.getByText("Page 1").closest("ul")!;
+    expect(nestedList).toHaveAttribute("aria-hidden", "true");
+
+    rerender(
+      <SidebarProvider>
+        <Sidebar>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem defaultExpanded>
+                <SidebarMenuButton hasSub>Members</SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem expanded={true}>
+                    <SidebarMenuSubButton isHeader hasSub>
+                      Member A
+                    </SidebarMenuSubButton>
+                    <SidebarMenuSub nested>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton>Page 1</SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>,
+    );
+    expect(nestedList).not.toHaveAttribute("aria-hidden", "true");
   });
 });

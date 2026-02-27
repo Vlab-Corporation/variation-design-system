@@ -31,11 +31,14 @@ export interface SidebarContentProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const SidebarContent = forwardRef<HTMLDivElement, SidebarContentProps>(
-  ({ className, children, ...props }, ref) => (
-    <div ref={ref} className={sidebarContentStyles({ className })} {...props}>
-      {children}
-    </div>
-  ),
+  ({ className, children, ...props }, ref) => {
+    const { collapsed } = useSidebarContext();
+    return (
+      <div ref={ref} className={sidebarContentStyles({ collapsed, className })} {...props}>
+        {children}
+      </div>
+    );
+  },
 );
 
 SidebarContent.displayName = "SidebarContent";
@@ -63,16 +66,19 @@ export interface SidebarGroupProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const SidebarGroup = forwardRef<HTMLDivElement, SidebarGroupProps>(
-  ({ className, children, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="group"
-      className={sidebarGroupStyles({ className })}
-      {...props}
-    >
-      {children}
-    </div>
-  ),
+  ({ className, children, ...props }, ref) => {
+    const { collapsed } = useSidebarContext();
+    return (
+      <div
+        ref={ref}
+        role="group"
+        className={sidebarGroupStyles({ collapsed, className })}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
 );
 
 SidebarGroup.displayName = "SidebarGroup";
