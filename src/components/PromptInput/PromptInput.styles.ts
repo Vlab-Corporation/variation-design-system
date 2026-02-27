@@ -23,7 +23,7 @@ export function promptInputContainerStyles(
 
   return cn(
     "relative flex gap-2 bg-white border border-gray-200",
-    "shadow-md",
+    "shadow-lg",
     "px-6 py-[18px]",
     "transition-[border-radius] duration-200 ease-out",
     multiLine ? "rounded-[20px] items-end" : "rounded-[40px] items-center",

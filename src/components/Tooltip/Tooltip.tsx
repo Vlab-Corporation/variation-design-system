@@ -6,6 +6,7 @@ import {
   type ReactNode,
   type HTMLAttributes,
 } from "react";
+import { cn } from "@/utils/cn";
 import {
   tooltipStyles,
   tooltipArrows,
@@ -30,6 +31,8 @@ export interface TooltipProps extends Omit<
   arrow?: boolean;
   /** Controlled open state */
   open?: boolean;
+  /** Additional class for the wrapper element */
+  wrapperClassName?: string;
   /** The trigger element */
   children: ReactNode;
 }
@@ -43,6 +46,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       delayHide = 0,
       arrow = true,
       open: controlledOpen,
+      wrapperClassName,
       className,
       children,
       ...props
@@ -75,7 +79,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     return (
       <div
         ref={ref}
-        className="relative inline-flex"
+        className={cn("relative inline-flex", wrapperClassName)}
         onMouseEnter={show}
         onMouseLeave={hide}
         onFocus={show}
