@@ -2,7 +2,6 @@ import { describe, it, expect } from "vitest";
 import {
   colors,
   typography,
-  spacing,
   animations,
   borderRadius,
   shadows,
@@ -123,21 +122,6 @@ describe("Design Tokens", () => {
       expect(typography.lineHeight.tight).toBeDefined();
       expect(typography.lineHeight.normal).toBeDefined();
       expect(typography.lineHeight.relaxed).toBeDefined();
-    });
-  });
-
-  describe("Spacing", () => {
-    it("should export base spacing units", () => {
-      expect(spacing).toBeDefined();
-      expect(spacing["1"]).toBe("0.25rem");
-      expect(spacing["2"]).toBe("0.5rem");
-      expect(spacing["4"]).toBe("1rem");
-    });
-
-    it("should export extended spacing", () => {
-      expect(spacing["0.5"]).toBe("0.125rem");
-      expect(spacing["1.5"]).toBe("0.375rem");
-      expect(spacing["2.5"]).toBe("0.625rem");
     });
   });
 

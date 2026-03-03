@@ -39,7 +39,7 @@ const SINGLE_LINE_HEIGHT = 24;
 export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
   (
     {
-      placeholder = "메시지를 입력하세요",
+      placeholder,
       onSubmit,
       loading = false,
       maxRows = 5,
@@ -134,7 +134,7 @@ export const PromptInput = forwardRef<HTMLTextAreaElement, PromptInputProps>(
           placeholder={placeholder}
           disabled={disabled}
           rows={1}
-          aria-label={props["aria-label"] || "메시지 입력"}
+          aria-label={props["aria-label"]}
           className={promptInputTextareaStyles({
             className: textareaClassName,
           })}

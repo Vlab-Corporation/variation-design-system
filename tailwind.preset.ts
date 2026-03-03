@@ -64,7 +64,12 @@ const config = {
       },
 
       letterSpacing: {
+        tighter: typography.letterSpacing.tighter,
         tight: typography.letterSpacing.tight,
+        normal: typography.letterSpacing.normal,
+        wide: typography.letterSpacing.wide,
+        wider: typography.letterSpacing.wider,
+        widest: typography.letterSpacing.widest,
       },
 
       borderRadius: {
@@ -82,6 +87,7 @@ const config = {
         fast: animations.transitionDuration.fast,
         normal: animations.transitionDuration.normal,
         slow: animations.transitionDuration.slow,
+        slower: animations.transitionDuration.slower,
       },
 
       backgroundImage: gradients,

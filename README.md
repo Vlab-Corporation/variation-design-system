@@ -89,7 +89,7 @@ Then use Tailwind classes directly in HTML or any framework:
 ### Design Tokens
 
 ```ts
-import { colors, typography, spacing, animations, shadows, zIndex, textStyles } from '@vlab-corporation/design-system';
+import { colors, typography, animations, shadows, zIndex, textStyles } from '@vlab-corporation/design-system';
 
 console.log(colors.primary['500']); // #D38475
 console.log(typography.fontFamily.sans); // ['Pretendard', ...]

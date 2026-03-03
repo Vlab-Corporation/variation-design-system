@@ -27,7 +27,7 @@ export function textFieldStyles(props: TextFieldStyleProps = {}): string {
 
   return cn(
     // Base
-    "w-full rounded-[7px] border-[1.5px] bg-gray-50",
+    "w-full rounded-button border-[1.5px] bg-gray-50",
     "font-medium tracking-tight text-gray-900",
     "transition-all duration-200 ease-out",
     "placeholder:text-gray-500",

@@ -26,7 +26,7 @@ export function promptInputContainerStyles(
     "shadow-lg",
     "px-6 py-[18px]",
     "transition-[border-radius] duration-200 ease-out",
-    multiLine ? "rounded-[20px] items-end" : "rounded-[40px] items-center",
+    multiLine ? "rounded-chat-bubble items-end" : "rounded-full items-center",
     disabled && "opacity-50 cursor-not-allowed",
     className,
   );

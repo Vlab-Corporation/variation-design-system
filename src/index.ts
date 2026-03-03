@@ -8,9 +8,10 @@ export { Portal, type PortalProps } from "./utils/Portal";
 // Design Tokens
 export { colors } from "./tokens/colors";
 export { typography } from "./tokens/typography";
-export { spacing, borderRadius } from "./tokens/spacing";
+export { borderRadius } from "./tokens/spacing";
 export { animations } from "./tokens/animations";
 export { shadows } from "./tokens/shadows";
+export { gradients } from "./tokens/gradients";
 export { zIndex } from "./tokens/zIndex";
 export {
   textStyles as textStylePresets,

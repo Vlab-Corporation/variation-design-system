@@ -12,7 +12,7 @@ export { cn } from "./utils/cn";
 // Design Tokens
 export { colors } from "./tokens/colors";
 export { typography } from "./tokens/typography";
-export { spacing, borderRadius } from "./tokens/spacing";
+export { borderRadius } from "./tokens/spacing";
 export { animations } from "./tokens/animations";
 export { shadows } from "./tokens/shadows";
 export { zIndex } from "./tokens/zIndex";
@@ -416,6 +416,22 @@ export {
   type PromptInputTextareaStyleProps,
   type PromptInputSendButtonStyleProps,
 } from "./components/PromptInput/PromptInput.styles";
+
+// CoverImage Style Functions
+export {
+  coverImageStyles,
+  coverImagePreviewStyles,
+  coverImageUploaderStyles,
+  coverImageActionsStyles,
+  coverImageHeights,
+  coverImageOverlayStyles,
+  type CoverImageStyleProps,
+  type CoverImagePreviewStyleProps,
+  type CoverImageUploaderStyleProps,
+  type CoverImageActionsStyleProps,
+  type CoverImageHeight,
+  type CoverImageOverlay,
+} from "./components/CoverImage/CoverImage.styles";
 
 // Themes
 export {

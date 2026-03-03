@@ -9,11 +9,10 @@ describe("PromptInput Component", () => {
       expect(screen.getByRole("textbox")).toBeInTheDocument();
     });
 
-    it("should render default placeholder", () => {
+    it("should render without placeholder by default", () => {
       render(<PromptInput />);
-      expect(
-        screen.getByPlaceholderText("메시지를 입력하세요"),
-      ).toBeInTheDocument();
+      const textarea = screen.getByRole("textbox");
+      expect(textarea).not.toHaveAttribute("placeholder");
     });
 
     it("should render custom placeholder", () => {
@@ -78,7 +77,7 @@ describe("PromptInput Component", () => {
     it("should have single-line border-radius by default", () => {
       render(<PromptInput />);
       const container = screen.getByRole("textbox").parentElement;
-      expect(container).toHaveClass("rounded-[40px]");
+      expect(container).toHaveClass("rounded-full");
     });
   });
 
@@ -138,12 +137,9 @@ describe("PromptInput Component", () => {
   });
 
   describe("Accessibility", () => {
-    it("should have default aria-label", () => {
+    it("should not have aria-label by default", () => {
       render(<PromptInput />);
-      expect(screen.getByRole("textbox")).toHaveAttribute(
-        "aria-label",
-        "메시지 입력",
-      );
+      expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-label");
     });
 
     it("should accept custom aria-label", () => {

@@ -5,16 +5,16 @@ import {
   type ReactNode,
 } from "react";
 import { cn } from "@/utils/cn";
+import {
+  coverImageStyles,
+  coverImagePreviewStyles,
+  coverImageUploaderStyles,
+  coverImageActionsStyles,
+  type CoverImageHeight,
+  type CoverImageOverlay,
+} from "./CoverImage.styles";
 
 /* CoverImage Root */
-type CoverImageHeight = "sm" | "md" | "lg";
-
-const heightStyles: Record<CoverImageHeight, string> = {
-  sm: "h-32",
-  md: "h-48",
-  lg: "h-64",
-};
-
 export interface CoverImageProps extends HTMLAttributes<HTMLDivElement> {
   height?: CoverImageHeight;
   children?: ReactNode;
@@ -25,11 +25,7 @@ export const CoverImage = forwardRef<HTMLDivElement, CoverImageProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          "relative w-full overflow-hidden group",
-          heightStyles[height],
-          className,
-        )}
+        className={coverImageStyles({ height, className })}
         {...props}
       >
         {children}
@@ -45,7 +41,7 @@ export interface CoverImagePreviewProps extends HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   color?: string;
-  overlay?: "none" | "gradient" | "dark";
+  overlay?: CoverImageOverlay;
   position?: string;
 }
 
@@ -65,18 +61,15 @@ export const CoverImagePreview = forwardRef<
     },
     ref,
   ) => {
-    const overlayStyles: Record<string, string> = {
-      none: "",
-      gradient:
-        "after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/30 after:to-transparent",
-      dark: "after:absolute after:inset-0 after:bg-black/20",
-    };
-
     if (color && !src) {
       return (
         <div
           ref={ref}
-          className={cn("w-full h-full", overlayStyles[overlay], className)}
+          className={coverImagePreviewStyles({
+            overlay,
+            hasSrc: false,
+            className,
+          })}
           style={{ backgroundColor: color }}
           {...props}
         />
@@ -86,11 +79,11 @@ export const CoverImagePreview = forwardRef<
     return (
       <div
         ref={ref}
-        className={cn(
-          "relative w-full h-full",
-          overlayStyles[overlay],
+        className={coverImagePreviewStyles({
+          overlay,
+          hasSrc: true,
           className,
-        )}
+        })}
         {...props}
       >
         {src && (
@@ -146,12 +139,7 @@ export const CoverImageUploader = forwardRef<
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex flex-col items-center justify-center w-full h-full",
-        "bg-gray-100 border-2 border-dashed border-gray-300",
-        "hover:bg-gray-50 hover:border-gray-400 transition-colors cursor-pointer",
-        className,
-      )}
+      className={coverImageUploaderStyles({ className })}
       {...props}
     >
       <label className="flex flex-col items-center justify-center cursor-pointer">
@@ -194,11 +182,7 @@ export const CoverImageActions = forwardRef<
   return (
     <div
       ref={ref}
-      className={cn(
-        "absolute bottom-2 right-2 flex gap-1",
-        "opacity-0 group-hover:opacity-100 transition-opacity",
-        className,
-      )}
+      className={coverImageActionsStyles({ className })}
       {...props}
     >
       {onReposition && (
