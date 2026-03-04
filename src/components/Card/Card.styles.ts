@@ -6,7 +6,7 @@ export type CardHover = "outline" | "elevated";
 
 export const cardVariants: Record<CardVariant, string> = {
   default: "bg-white shadow-md border border-transparent",
-  elevated: "bg-white shadow-lg border border-transparent",
+  elevated: "bg-white shadow-elevated border border-transparent",
   outlined: "bg-white border border-gray-200",
   filled: "bg-gray-50 border border-transparent",
 };
@@ -20,7 +20,7 @@ export const cardPaddings: Record<CardPadding, string> = {
 
 export const cardHoverStyles: Record<CardHover, string> = {
   outline: "hover:bg-accent-100 hover:border-accent-800 hover:shadow-none",
-  elevated: "hover:shadow-xl hover:-translate-y-0.5",
+  elevated: "hover:shadow-elevated-lg hover:-translate-y-0.5",
 };
 
 export interface CardStyleProps {

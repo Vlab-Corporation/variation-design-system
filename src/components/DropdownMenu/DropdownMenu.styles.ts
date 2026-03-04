@@ -31,7 +31,7 @@ export function dropdownMenuContentStyles(
     portal
       ? "fixed z-dropdown min-w-[13.25rem] py-2.5"
       : "absolute z-dropdown min-w-[13.25rem] py-2.5",
-    "bg-white border border-gray-200 rounded-card shadow-dropdown",
+    "bg-white border border-gray-200 rounded-card shadow-elevated",
     "animate-fade-in",
     !portal && dropdownMenuSides[side],
     !portal && dropdownMenuAligns[align],

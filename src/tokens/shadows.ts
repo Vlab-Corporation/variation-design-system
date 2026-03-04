@@ -21,4 +21,10 @@ export const shadows = {
   inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)",
   /** Soft uniform shadow for dropdowns and popups */
   dropdown: "0 0 14px 0 rgba(0, 0, 0, 0.1)",
+  /** Elevated card — directional Y-offset for floating look */
+  elevated:
+    "0 4px 12px -2px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.08)",
+  /** Elevated hover — more dramatic lift */
+  "elevated-lg":
+    "0 12px 28px -4px rgba(0, 0, 0, 0.14), 0 4px 10px -2px rgba(0, 0, 0, 0.08)",
 };
