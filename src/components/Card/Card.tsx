@@ -10,17 +10,18 @@ import {
   cardDescriptionStyles,
   type CardVariant,
   type CardPadding,
+  type CardHover,
 } from "./Card.styles";
 
-export type { CardVariant, CardPadding } from "./Card.styles";
+export type { CardVariant, CardPadding, CardHover } from "./Card.styles";
 
 export interface CardProps extends HTMLAttributes<HTMLElement> {
   /** Visual style variant */
   variant?: CardVariant;
   /** Padding size */
   padding?: CardPadding;
-  /** Whether the card has hover effects */
-  interactive?: boolean;
+  /** Hover effect mode: "outline" for accent tint, "elevated" for shadow lift */
+  hover?: CardHover;
   /** Render as different HTML element */
   as?: ElementType;
   children: React.ReactNode;
@@ -34,7 +35,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
     {
       variant = "default",
       padding = "md",
-      interactive = false,
+      hover,
       as: Component = "div",
       className,
       children,
@@ -45,7 +46,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
     return (
       <Component
         ref={ref}
-        className={cardStyles({ variant, padding, interactive, className })}
+        className={cardStyles({ variant, padding, hover, className })}
         {...props}
       >
         {children}

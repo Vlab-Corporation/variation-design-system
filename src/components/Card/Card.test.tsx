@@ -11,6 +11,7 @@ import {
 import {
   cardVariants,
   cardPaddings,
+  cardHoverStyles,
   cardTitleStyles,
   cardDescriptionStyles,
 } from "./Card.styles";
@@ -257,66 +258,82 @@ describe("Card Component", () => {
     });
   });
 
-  describe("Interactive (Hover)", () => {
-    it("should have hover transition when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("transition-all");
-      expect(card).toHaveClass("duration-200");
+  describe("Hover Modes", () => {
+    describe("Common hover behavior", () => {
+      it("should not have hover classes when hover is undefined", () => {
+        render(<Card data-testid="card">Content</Card>);
+        const card = screen.getByTestId("card");
+        expect(card).not.toHaveClass("group/card");
+        expect(card).not.toHaveClass("cursor-pointer");
+        expect(card).not.toHaveClass("transition-all");
+      });
+
+      it('should have base hover classes when hover="outline"', () => {
+        render(
+          <Card hover="outline" data-testid="card">
+            Content
+          </Card>,
+        );
+        const card = screen.getByTestId("card");
+        expect(card).toHaveClass("group/card");
+        expect(card).toHaveClass("cursor-pointer");
+        expect(card).toHaveClass("transition-all");
+        expect(card).toHaveClass("duration-200");
+        expect(card).toHaveClass("ease-out");
+      });
+
+      it('should have base hover classes when hover="elevated"', () => {
+        render(
+          <Card hover="elevated" data-testid="card">
+            Content
+          </Card>,
+        );
+        const card = screen.getByTestId("card");
+        expect(card).toHaveClass("group/card");
+        expect(card).toHaveClass("cursor-pointer");
+        expect(card).toHaveClass("transition-all");
+        expect(card).toHaveClass("duration-200");
+        expect(card).toHaveClass("ease-out");
+      });
     });
 
-    it("should have group/card class for named group when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("group/card");
+    describe('hover="outline"', () => {
+      it("should apply outline hover styles from cardHoverStyles map", () => {
+        render(
+          <Card hover="outline" data-testid="card">
+            Content
+          </Card>,
+        );
+        const card = screen.getByTestId("card");
+        for (const cls of cardHoverStyles.outline.split(" ")) {
+          expect(card).toHaveClass(cls);
+        }
+      });
     });
 
-    it("should have accent hover background when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("hover:bg-accent-100");
-    });
+    describe('hover="elevated"', () => {
+      it("should apply elevated hover styles from cardHoverStyles map", () => {
+        render(
+          <Card hover="elevated" data-testid="card">
+            Content
+          </Card>,
+        );
+        const card = screen.getByTestId("card");
+        for (const cls of cardHoverStyles.elevated.split(" ")) {
+          expect(card).toHaveClass(cls);
+        }
+      });
 
-    it("should have accent hover border when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("hover:border-accent-800");
-    });
-
-    it("should remove shadow on hover when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("hover:shadow-none");
-    });
-
-    it("should have cursor-pointer when interactive", () => {
-      render(
-        <Card interactive data-testid="card">
-          Content
-        </Card>,
-      );
-      const card = screen.getByTestId("card");
-      expect(card).toHaveClass("cursor-pointer");
+      it("should not have outline-specific classes", () => {
+        render(
+          <Card hover="elevated" data-testid="card">
+            Content
+          </Card>,
+        );
+        const card = screen.getByTestId("card");
+        expect(card).not.toHaveClass("hover:bg-accent-100");
+        expect(card).not.toHaveClass("hover:border-accent-800");
+      });
     });
   });
 });

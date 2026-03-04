@@ -241,7 +241,6 @@ export const SidebarMenuButton = forwardRef<
         className={sidebarMenuButtonStyles({
           variant,
           active,
-          collapsed,
           hasSub,
           className,
         })}
@@ -256,10 +255,10 @@ export const SidebarMenuButton = forwardRef<
             {icon}
           </span>
         )}
-        {!collapsed && children && (
+        {children && (
           <span className="flex-1 truncate text-left">{children}</span>
         )}
-        {!collapsed && hasSub && (
+        {hasSub && (
           <ChevronDownIcon
             className={sidebarChevronStyles({
               expanded: subCtx?.expanded,
@@ -269,9 +268,14 @@ export const SidebarMenuButton = forwardRef<
       </button>
     );
 
-    if (collapsed && tooltip) {
+    if (tooltip) {
       return (
-        <Tooltip content={tooltip} placement="right" wrapperClassName="w-full">
+        <Tooltip
+          content={tooltip}
+          placement="right"
+          wrapperClassName="w-full"
+          delayShow={collapsed ? 200 : 86400000}
+        >
           {button}
         </Tooltip>
       );

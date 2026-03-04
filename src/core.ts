@@ -94,11 +94,13 @@ export {
   cardDescriptionStyles,
   cardVariants,
   cardPaddings,
+  cardHoverStyles,
   type CardStyleProps,
   type CardTitleStyleProps,
   type CardDescriptionStyleProps,
   type CardVariant,
   type CardPadding,
+  type CardHover,
 } from "./components/Card/Card.styles";
 
 export {

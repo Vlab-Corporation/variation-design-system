@@ -13,6 +13,7 @@ export {
   type CardFooterProps,
   type CardVariant,
   type CardPadding,
+  type CardHover,
 } from "./Card";
 export {
   cardStyles,
@@ -20,6 +21,7 @@ export {
   cardDescriptionStyles,
   cardVariants,
   cardPaddings,
+  cardHoverStyles,
   type CardStyleProps,
   type CardTitleStyleProps,
   type CardDescriptionStyleProps,

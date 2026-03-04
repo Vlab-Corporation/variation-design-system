@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 
 export type CardVariant = "default" | "elevated" | "outlined" | "filled";
 export type CardPadding = "none" | "sm" | "md" | "lg";
+export type CardHover = "outline" | "elevated";
 
 export const cardVariants: Record<CardVariant, string> = {
   default: "bg-white shadow-md border border-transparent",
@@ -17,29 +18,29 @@ export const cardPaddings: Record<CardPadding, string> = {
   lg: "p-6",
 };
 
+export const cardHoverStyles: Record<CardHover, string> = {
+  outline: "hover:bg-accent-100 hover:border-accent-800 hover:shadow-none",
+  elevated: "hover:shadow-xl hover:-translate-y-0.5",
+};
+
 export interface CardStyleProps {
   variant?: CardVariant;
   padding?: CardPadding;
-  interactive?: boolean;
+  hover?: CardHover;
   className?: string;
 }
 
 export function cardStyles(props: CardStyleProps = {}): string {
-  const {
-    variant = "default",
-    padding = "md",
-    interactive = false,
-    className,
-  } = props;
+  const { variant = "default", padding = "md", hover, className } = props;
 
   return cn(
     "rounded-card",
     cardVariants[variant],
     cardPaddings[padding],
-    interactive && [
+    hover && [
       "group/card cursor-pointer",
       "transition-all duration-200 ease-out",
-      "hover:bg-accent-100 hover:border-accent-800 hover:shadow-none",
+      cardHoverStyles[hover],
     ],
     className,
   );

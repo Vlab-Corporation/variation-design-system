@@ -72,11 +72,8 @@ export interface SidebarGroupStyleProps {
   className?: string;
 }
 
-export function sidebarGroupStyles({
-  collapsed,
-  className,
-}: SidebarGroupStyleProps = {}) {
-  return cn(collapsed ? "px-2 pb-4" : "px-4 pb-4", className);
+export function sidebarGroupStyles({ className }: SidebarGroupStyleProps = {}) {
+  return cn("px-4 pb-4", className);
 }
 
 export function sidebarGroupLabelStyles({
@@ -92,7 +89,6 @@ export function sidebarMenuStyles({ className }: { className?: string } = {}) {
 export function sidebarMenuButtonStyles({
   variant = "nav",
   active,
-  collapsed,
   hasSub,
   className,
 }: SidebarMenuButtonStyleProps = {}) {
@@ -106,7 +102,7 @@ export function sidebarMenuButtonStyles({
           "hover:bg-accent-200",
           active && "bg-accent-300 font-semibold text-accent-800",
         ),
-    collapsed ? "justify-center px-0" : "pl-1 pr-3",
+    "pl-1 pr-3 overflow-hidden",
     hasSub && "cursor-pointer",
     className,
   );

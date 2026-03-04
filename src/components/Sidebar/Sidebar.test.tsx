@@ -561,10 +561,10 @@ describe("3-Level Menu", () => {
 
 // --- Collapsed mode: layout & visibility ---
 describe("Collapsed mode layout", () => {
-  it("applies px-2 on SidebarGroup when collapsed", () => {
+  it("applies fixed px-4 on SidebarGroup regardless of collapsed state", () => {
     renderSidebar({ defaultCollapsed: true });
     const group = screen.getByRole("group");
-    expect(group.className).toContain("px-2");
+    expect(group.className).toContain("px-4");
   });
 
   it("applies px-4 on SidebarGroup when expanded", () => {
