@@ -8,18 +8,47 @@ import {
 } from "./Sidebar.styles";
 import { useSidebarContext } from "./Sidebar";
 
+import { SidebarTrigger } from "./Sidebar";
+
 // --- SidebarHeader ---
 
 export interface SidebarHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children?: ReactNode;
+  /** Logo element */
+  logo?: ReactNode;
+  /** Sidebar title string */
+  title?: string;
+  /** Whether to show the sidebar toggle trigger automatically */
+  showTrigger?: boolean;
 }
 
 export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
-  ({ className, children, ...props }, ref) => (
-    <div ref={ref} className={sidebarHeaderStyles({ className })} {...props}>
-      {children}
-    </div>
-  ),
+  ({ logo, title, showTrigger, className, children, ...props }, ref) => {
+    const { collapsed } = useSidebarContext();
+
+    return (
+      <div ref={ref} className={sidebarHeaderStyles({ className })} {...props}>
+        <div className="flex h-[32px] items-center">
+          {showTrigger && (
+            <div className="flex shrink-0 items-center justify-center w-8 h-8">
+              <SidebarTrigger tooltip="메뉴 여닫기" />
+            </div>
+          )}
+          {!collapsed && (logo || title) && (
+            <div className={`flex items-center gap-2 overflow-hidden ${showTrigger ? "ml-3" : ""}`}>
+              {logo && <span className="shrink-0">{logo}</span>}
+              {title && (
+                <span className="truncate text-subtitle font-bold text-gray-900">
+                  {title}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+        {children}
+      </div>
+    );
+  },
 );
 
 SidebarHeader.displayName = "SidebarHeader";

@@ -7,6 +7,7 @@ export {
   type SidebarProviderProps,
   type SidebarProps,
   type SidebarTriggerProps,
+  type SidebarItemConfig,
 } from "./Sidebar";
 
 export {
@@ -36,6 +37,12 @@ export {
   type SidebarMenuSubItemProps,
   type SidebarMenuSubButtonProps,
 } from "./SidebarMenu";
+
+export {
+  SidebarUserProfile,
+  type SidebarUserProfileProps,
+  type SidebarUser,
+} from "./SidebarUserProfile";
 
 // Style functions
 export {

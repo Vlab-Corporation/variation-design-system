@@ -195,6 +195,8 @@ export interface SidebarMenuButtonProps extends ButtonHTMLAttributes<HTMLButtonE
   hasSub?: boolean;
   /** Tooltip label for collapsed mode */
   tooltip?: string;
+  /** Whether to show this item (just the icon) when the sidebar is collapsed */
+  showWhenCollapsed?: boolean;
   children?: ReactNode;
 }
 
@@ -209,6 +211,7 @@ export const SidebarMenuButton = forwardRef<
       active,
       hasSub,
       tooltip,
+      showWhenCollapsed,
       className,
       children,
       onClick,
@@ -229,8 +232,8 @@ export const SidebarMenuButton = forwardRef<
       [hasSub, subCtx, onClick],
     );
 
-    // Hide nav items when collapsed (only action buttons remain visible)
-    if (collapsed && variant !== "action") {
+    // Hide nav items when collapsed unless conditionally shown or variant is action
+    if (collapsed && variant !== "action" && !showWhenCollapsed) {
       return null;
     }
 
@@ -403,6 +406,8 @@ export interface SidebarMenuSubButtonProps extends ButtonHTMLAttributes<HTMLButt
   hasSub?: boolean;
   /** Tooltip label for collapsed sidebar mode */
   tooltip?: string;
+  /** Whether to show this item (just the icon) when the sidebar is collapsed */
+  showWhenCollapsed?: boolean;
   children: ReactNode;
 }
 
@@ -417,6 +422,7 @@ export const SidebarMenuSubButton = forwardRef<
       isHeader,
       hasSub,
       tooltip,
+      showWhenCollapsed,
       className,
       children,
       onClick,
@@ -474,6 +480,10 @@ export const SidebarMenuSubButton = forwardRef<
         )}
       </button>
     );
+
+    if (collapsed && !showWhenCollapsed) {
+      return null;
+    }
 
     if (collapsed && tooltip) {
       return (
